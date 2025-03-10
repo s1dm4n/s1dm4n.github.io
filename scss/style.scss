@@ -1,7 +1,0 @@
-
-$socails : facebook twitter youtube;
-@each $item in $socails {
-    .#{$item}-img{
-        background: url('../images/image-#{$item}.png');
-    }
-}

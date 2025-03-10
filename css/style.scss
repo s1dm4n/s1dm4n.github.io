@@ -1,0 +1,109 @@
+//Сброс CSS
+@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+
+// Подключаем шрифт
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
+
+//Переменные:
+//Текст
+$font-stack: Geologica,sans-serif;
+
+@mixin font-setting {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 113%;
+    white-space: nowrap;
+}
+
+//Цвета
+$color-gray: #444B50;
+$color-white: #ffffff;
+$color-red: #D45749;
+
+
+// Сброс настроек CSS
+* {
+    font-family: $font-stack;
+    color: $color-gray;
+    text-decoration: none;
+
+    svg {
+        display: block;
+    }
+}
+
+
+
+
+// Основной CSS
+
+//Плавный скролл
+body {
+    scroll-behavior: smooth;
+}
+
+//Центрирование контента
+.display__centered {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+// Стилизация шапки
+.header {
+    .article {
+        text-align: center;
+        @include font-setting;
+        font-size: 20px;
+        font-weight: 300;
+        background: repeating-linear-gradient(-45deg, transparent 0px 25px, rgba(255, 255, 255, 0.06) 25px 50px);
+        background-color: #D45749;
+        padding: 12px 0;
+
+        a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        a, span{
+            color: $color-white;
+        }
+    }
+}
+
+// Фиксированние шапки
+.fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 10;
+}
+
+// Меню навигации
+.nav {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.80) 100%);
+    backdrop-filter: blur(22.5px);
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px 0;
+    }
+    
+    &__ul {
+        display: flex;
+        gap: 24px;
+    }
+
+    a {
+        @include font-setting;
+    }
+
+    .display__centered {
+        max-width: 1198px;
+    }
+}
+
