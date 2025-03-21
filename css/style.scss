@@ -237,7 +237,7 @@ body:has(dialog[open]) {
 .main {
     margin-top: 242px;
 
-    .accordion, .cases, .advantages, .platforms, .security, .integration {
+    .accordion, .cases, .advantages, .platforms, .security, .integration, .contacts {
         scroll-margin: 178px;
     }
 
@@ -565,17 +565,20 @@ body:has(dialog[open]) {
     }
 
     .integration {
-        &__cover {
-            overflow: hidden;
-            width: 100%;
-        }
         &__image {
-            max-width: none;
+            height: 333px;
             object-position: left;
             object-fit: cover;
+            transition: object-position 0.5s ease;
         }
+        
+        .focus-animate {
+            scroll-margin: 178px;
+            transition: transform 0.3s ease;
+          }
     }
 
+    
     .contacts {
         border-radius: 48px;
         background-color: $color-red;
