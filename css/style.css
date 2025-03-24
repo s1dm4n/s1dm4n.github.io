@@ -432,17 +432,9 @@ body:has(dialog[open]) {
 .main .platforms, .main .integration {
   flex-direction: column;
 }
-.main .integration {
-  position: relative;
-  overflow: hidden;
-}
 .main .integration__cover {
-  position: absolute;
-  top: 0;
-  left: 0;
+  overflow: hidden;
   width: 100%;
-  height: 100%;
-  perspective: 1000px;
 }
 .main .integration__image {
   max-width: none;
