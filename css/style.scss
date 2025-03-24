@@ -71,6 +71,7 @@ $color-placeholder: rgba(68, 75, 80, 0.35);
 //Плавный скролл
 html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 
 //Блокирование скрола при открытии модального окна
@@ -565,11 +566,30 @@ body:has(dialog[open]) {
     }
 
     .integration {
+        
+        &__scroll-container {
+            width: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        &__scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        &__image-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: max-content;
+        }
+        
         &__image {
             height: 333px;
-            object-position: left;
             object-fit: cover;
-            transition: object-position 0.5s ease;
+            object-position: left;
+            transition: object-position 0.5s;
         }
         
         .focus-animate {
@@ -577,6 +597,8 @@ body:has(dialog[open]) {
             transition: transform 0.3s ease;
           }
     }
+
+    
 
     
     .contacts {

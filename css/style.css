@@ -27,6 +27,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body:has(dialog[open]) {
@@ -431,14 +432,30 @@ body:has(dialog[open]) {
 .main .platforms, .main .integration {
   flex-direction: column;
 }
+.main .integration__scroll-container {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.main .integration__scroll-container::-webkit-scrollbar {
+  display: none;
+}
+.main .integration__image-wrapper {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: -moz-max-content;
+  width: max-content;
+}
 .main .integration__image {
   height: 333px;
-  -o-object-position: left;
-     object-position: left;
   -o-object-fit: cover;
      object-fit: cover;
-  transition: object-position 0.5s ease;
-  transition: object-position 0.5s ease, -o-object-position 0.5s ease;
+  -o-object-position: left;
+     object-position: left;
+  transition: object-position 0.5s;
+  transition: object-position 0.5s, -o-object-position 0.5s;
 }
 .main .integration .focus-animate {
   scroll-margin: 178px;

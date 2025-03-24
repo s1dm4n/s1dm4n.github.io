@@ -108,102 +108,70 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. Интеграция с блоком прокрутки
     const integrationSection = document.querySelector('.integration');
     const integrationImage = document.querySelector('.integration__image');
-    let scrollCount = 0;
-    let isScrolling = false;
-
-    const integrationObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && scrollCount < 2) {
-                document.body.style.overflow = 'hidden';
-                integrationSection.addEventListener('wheel', handleIntegrationScroll);
-            } else {
-                document.body.style.overflow = '';
-                integrationSection.removeEventListener('wheel', handleIntegrationScroll);
-                scrollCount = 0;
-                updateImagePosition();
-            }
-        });
-    }, { threshold: 0.5 });
-
-    integrationObserver.observe(integrationSection);
-
-    const handleIntegrationScroll = (e) => {
-        e.preventDefault();
-        
-        if (isScrolling) return;
-        isScrolling = true;
-
-        const direction = e.deltaY > 0 ? 'down' : 'up';
-        
-        direction === 'down' && scrollCount < 2 ? scrollCount++ 
-            : direction === 'up' && scrollCount > 0 && scrollCount--;
-
-        updateImagePosition();
-
-        if (scrollCount === 2) {
-            setTimeout(() => {
-                document.body.style.overflow = '';
-                integrationSection.removeEventListener('wheel', handleIntegrationScroll);
-            }, 500);
-        }
-
-        setTimeout(() => isScrolling = false, 500);
+    let position = 0; // 0 - left, 1 - center, 2 - right
+  
+    // Настройки прокрутки
+    const scrollOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
     };
-
-    const updateImagePosition = () => {
-        integrationImage.style.objectPosition = 
-            scrollCount === 0 ? 'left' 
-            : scrollCount === 1 ? 'center' 
-            : 'right';
-    };
-
-    // 7. Обработка якорных ссылок
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = anchor.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                targetElement.dataset.noAutoScroll = true;
-                targetElement.setAttribute('tabindex', '-1');
-                
-                // Сброс состояния интеграции
-                if (integrationSection) {
-                    document.body.style.overflow = '';
-                    integrationSection.removeEventListener('wheel', handleIntegrationScroll);
-                    scrollCount = 0;
-                    updateImagePosition();
-                }
-
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                setTimeout(() => {
-                    targetElement.removeAttribute('tabindex');
-                    delete targetElement.dataset.noAutoScroll;
-                }, 1500);
-            }
-        });
-    });
-
-    // 8. Обработчик хэша
-    window.addEventListener('hashchange', () => {
-        const targetElement = document.querySelector(window.location.hash);
-        if (targetElement) {
-            targetElement.dataset.noAutoScroll = true;
-            
-            // Сброс состояния интеграции
-            if (integrationSection) {
-                document.body.style.overflow = '';
-                integrationSection.removeEventListener('wheel', handleIntegrationScroll);
-                scrollCount = 0;
-                updateImagePosition();
-            }
-
-            setTimeout(() => delete targetElement.dataset.noAutoScroll, 1500);
+  
+    // Наблюдатель за видимостью секции
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && position < 2) {
+          document.body.style.overflow = 'hidden';
+          entry.target.addEventListener('wheel', handleScroll);
+        } else {
+          document.body.style.overflow = '';
         }
-    });
+      });
+    }, scrollOptions);
+  
+    observer.observe(integrationSection);
+  
+    // Обработчик прокрутки
+    function handleScroll(e) {
+      e.preventDefault();
+      
+      if (position >= 2) return;
+  
+      // Определяем направление прокрутки
+      if (e.deltaY > 0) {
+        position++;
+      } else {
+        position--;
+      }
+  
+      // Ограничиваем значения
+      position = Math.max(0, Math.min(2, position));
+  
+      // Обновляем позицию изображения
+      updateImagePosition();
+  
+      // Если дошли до конца
+      if (position === 2) {
+        setTimeout(() => {
+          document.body.style.overflow = '';
+          integrationSection.removeEventListener('wheel', handleScroll);
+        }, 500);
+      }
+    }
+  
+    // Обновление позиции изображения
+    function updateImagePosition() {
+      integrationImage.style.transition = 'object-position 0.5s';
+      switch(position) {
+        case 0:
+          integrationImage.style.objectPosition = 'left';
+          break;
+        case 1:
+          integrationImage.style.objectPosition = 'center';
+          break;
+        case 2:
+          integrationImage.style.objectPosition = 'right';
+          break;
+      }
+    }
+
 });
