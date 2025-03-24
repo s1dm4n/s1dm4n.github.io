@@ -238,7 +238,7 @@ body:has(dialog[open]) {
 .main {
     margin-top: 242px;
 
-    .accordion, .cases, .advantages, .platforms, .security, .integration, .contacts {
+    .accordion, .cases, .advantages, .platforms, .security, .integration {
         scroll-margin: 178px;
     }
 
@@ -566,41 +566,24 @@ body:has(dialog[open]) {
     }
 
     .integration {
-        
-        &__scroll-container {
+        position: relative;
+        overflow: hidden;
+
+        &__cover {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            height: 100%;
+            perspective: 1000px;
         }
-        
-        &__scroll-container::-webkit-scrollbar {
-            display: none;
-        }
-        
-        &__image-wrapper {
-            display: flex;
-            transition: transform 0.5s ease;
-            width: max-content;
-        }
-        
         &__image {
-            height: 333px;
-            object-fit: cover;
+            max-width: none;
             object-position: left;
-            transition: object-position 0.5s;
+            object-fit: cover;
         }
-        
-        .focus-animate {
-            scroll-margin: 178px;
-            transition: transform 0.3s ease;
-          }
     }
 
-    
-
-    
     .contacts {
         border-radius: 48px;
         background-color: $color-red;

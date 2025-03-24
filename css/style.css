@@ -175,7 +175,7 @@ body:has(dialog[open]) {
 .main {
   margin-top: 242px;
 }
-.main .accordion, .main .cases, .main .advantages, .main .platforms, .main .security, .main .integration, .main .contacts {
+.main .accordion, .main .cases, .main .advantages, .main .platforms, .main .security, .main .integration {
   scroll-margin: 178px;
 }
 .main .preview {
@@ -432,34 +432,24 @@ body:has(dialog[open]) {
 .main .platforms, .main .integration {
   flex-direction: column;
 }
-.main .integration__scroll-container {
+.main .integration {
+  position: relative;
+  overflow: hidden;
+}
+.main .integration__cover {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.main .integration__scroll-container::-webkit-scrollbar {
-  display: none;
-}
-.main .integration__image-wrapper {
-  display: flex;
-  transition: transform 0.5s ease;
-  width: -moz-max-content;
-  width: max-content;
+  height: 100%;
+  perspective: 1000px;
 }
 .main .integration__image {
-  height: 333px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  max-width: none;
   -o-object-position: left;
      object-position: left;
-  transition: object-position 0.5s;
-  transition: object-position 0.5s, -o-object-position 0.5s;
-}
-.main .integration .focus-animate {
-  scroll-margin: 178px;
-  transition: transform 0.3s ease;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .main .contacts {
   border-radius: 48px;
