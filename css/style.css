@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
 * {
@@ -25,6 +26,22 @@
   outline-offset: 4px;
 }
 
+@keyframes open {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes close {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
@@ -40,9 +57,7 @@ body:has(dialog[open]) {
 }
 
 .fixed-top {
-  position: fixed;
-  right: 0;
-  left: 0;
+  position: sticky;
   z-index: 10;
   top: 0;
 }
@@ -142,7 +157,7 @@ body:has(dialog[open]) {
 }
 
 .nav {
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.05);
   background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.8) 100%);
   -webkit-backdrop-filter: blur(22.5px);
           backdrop-filter: blur(22.5px);
@@ -173,7 +188,7 @@ body:has(dialog[open]) {
 }
 
 .main {
-  margin-top: 242px;
+  margin-top: 178px;
 }
 .main .accordion, .main .cases, .main .advantages, .main .platforms, .main .security, .main .integration {
   scroll-margin: 178px;
@@ -337,7 +352,7 @@ body:has(dialog[open]) {
   margin-bottom: 32px;
 }
 .main .accordion__details {
-  transition: 0.3s;
+  transition: all 0.3s;
   cursor: pointer;
 }
 .main .accordion__details[open] {
@@ -433,15 +448,19 @@ body:has(dialog[open]) {
   flex-direction: column;
 }
 .main .integration__cover {
+  position: relative;
   overflow: hidden;
   width: 100%;
+  height: 333px; /* Высота контейнера */
 }
 .main .integration__image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: auto;
   max-width: none;
-  -o-object-position: left;
-     object-position: left;
-  -o-object-fit: cover;
-     object-fit: cover;
+  will-change: transform;
+  transition: transform 2s;
 }
 .main .contacts {
   border-radius: 48px;
@@ -705,10 +724,34 @@ dialog {
   overflow: visible;
 }
 
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.4);
+dialog:open {
+  opacity: 1;
 }
 
+dialog {
+  opacity: 0;
+  transition: opacity 0.1s ease-out, overlay 0.1s ease-out allow-discrete, display 0.1s ease-out allow-discrete;
+}
+
+@starting-style {
+  dialog:open {
+    opacity: 0;
+  }
+}
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  transition: display 0.1s allow-discrete, overlay 0.1s allow-discrete, background-color 0.3s;
+}
+
+dialog:open::backdrop {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+@starting-style {
+  dialog:open::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
 .scroll-lock {
   overflow: hidden;
 }
