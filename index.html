@@ -49,7 +49,7 @@
                                 <a href="#modules">Модули</a>
                             </li>
                             <li class="nav__li">
-                                <a href="#">Внедрение</a>
+                                <a href="#integration">Внедрение</a>
                             </li>
                             <li class="nav__li">
                                 <a href="#accordion">Стоимость</a>
@@ -114,15 +114,22 @@
                         </button>
                         <dialog class="child" id="casesDialog">
                             <div class="slider" role="region" aria-label="Паттерны">
-                                <div class="controls" role="group" aria-label="Управление слайдами">
-                                    <button class="button-radio" type="button" aria-current="true" aria-label="Показать 1 из 2"></button>
-                                    <button class="button-radio" type="button" aria-label="Показать 2 из 2"></button>
-                        
-                                    <button aria-label="Предыдущий" type="button" class="button-prev"></button>
-                                    <button aria-label="Следующий" type="button" class="button-next"></button>
+                                <div class="controls" role="group" aria-label="Управление слайдами">                     
+                                    <button aria-label="Предыдущий" type="button" class="button-prev">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="47" viewBox="0 0 46 47" fill="none">
+                                            <rect y="0.5" width="46" height="46" rx="12" fill="white"/>
+                                            <path d="M28.4116 36.9638C28.1963 37.1797 27.904 37.3012 27.5991 37.3017C27.2941 37.3021 27.0015 37.1814 26.7855 36.9661L14.1723 24.3966C14.0541 24.2791 13.9603 24.1393 13.8963 23.9853C13.8323 23.8314 13.7993 23.6663 13.7993 23.4996C13.7993 23.3329 13.8323 23.1678 13.8963 23.0139C13.9603 22.8599 14.0541 22.7202 14.1723 22.6026L26.7855 10.0354C26.8918 9.92573 27.0188 9.83831 27.1592 9.77825C27.2996 9.71819 27.4505 9.68668 27.6032 9.68558C27.7559 9.68447 27.9073 9.71378 28.0485 9.77181C28.1898 9.82983 28.3181 9.9154 28.4259 10.0235C28.5337 10.1317 28.6189 10.2602 28.6765 10.4016C28.7341 10.543 28.763 10.6944 28.7615 10.8471C28.76 10.9998 28.728 11.1507 28.6676 11.2909C28.6071 11.4311 28.5193 11.5579 28.4093 11.6638L16.5321 23.4996L28.4093 35.3377C28.6252 35.5531 28.7468 35.8453 28.7472 36.1503C28.7476 36.4552 28.6269 36.7478 28.4116 36.9638Z" fill="#6B6B6B"/>
+                                        </svg>
+                                    </button>
+                                    <button aria-label="Следующий" type="button" class="button-next">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="47" viewBox="0 0 46 47" fill="none">
+                                            <rect y="0.5" width="46" height="46" rx="12" fill="white"/>
+                                            <path d="M17.5858 10.0381C17.8012 9.82215 18.0934 9.70063 18.3984 9.7002C18.7033 9.69977 18.9959 9.82046 19.2119 10.0358L31.8251 22.6053C31.943 22.7228 32.0365 22.8624 32.1003 23.0161C32.1641 23.1698 32.197 23.3347 32.197 23.5011C32.197 23.6675 32.1641 23.8324 32.1003 23.9861C32.0365 24.1398 31.943 24.2794 31.8251 24.397L19.2119 36.9664C18.9947 37.1756 18.7041 37.2912 18.4025 37.2881C18.101 37.2851 17.8127 37.1637 17.5998 36.9502C17.3869 36.7367 17.2663 36.4481 17.2641 36.1465C17.262 35.845 17.3783 35.5546 17.5881 35.3381L29.4676 23.5L17.5881 11.6642C17.3722 11.4488 17.2507 11.1565 17.2502 10.8516C17.2498 10.5466 17.3705 10.254 17.5858 10.0381Z" fill="#6B6B6B"/>
+                                          </svg>
+                                    </button>
                                 </div>
-                        
-                                <div class="slides" aria-live="polite">
+                                <div class="slider-line">
+                                    <div class="slides" aria-live="polite">
                                     <div class="slide" role="group" aria-labelledby="item-1-label" id="carousel-item-1">
                                         <div class="card__block">
                                             <header class="card__header">
@@ -266,6 +273,7 @@
                                             </header>
                                             <img src="img/oil_rig.jpg" alt="" class="card__image">
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -411,19 +419,27 @@
                     <dialog class="child" id="securitySlider">
                         <div class="slider" role="region" aria-label="Паттерны">
                             <div class="controls" role="group" aria-label="Управление слайдами">
-                                <button class="button-radio" type="button" aria-current="true" aria-label="Показать 1 из 2"></button>
-                                <button class="button-radio" type="button" aria-label="Показать 2 из 2"></button>
-                    
-                                <button aria-label="Предыдущий" type="button" class="button-prev"></button>
-                                <button aria-label="Следующий" type="button" class="button-next"></button>
+                                <button aria-label="Предыдущий" type="button" class="button-prev">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="47" viewBox="0 0 46 47" fill="none">
+                                        <rect y="0.5" width="46" height="46" rx="12" fill="white"/>
+                                        <path d="M28.4116 36.9638C28.1963 37.1797 27.904 37.3012 27.5991 37.3017C27.2941 37.3021 27.0015 37.1814 26.7855 36.9661L14.1723 24.3966C14.0541 24.2791 13.9603 24.1393 13.8963 23.9853C13.8323 23.8314 13.7993 23.6663 13.7993 23.4996C13.7993 23.3329 13.8323 23.1678 13.8963 23.0139C13.9603 22.8599 14.0541 22.7202 14.1723 22.6026L26.7855 10.0354C26.8918 9.92573 27.0188 9.83831 27.1592 9.77825C27.2996 9.71819 27.4505 9.68668 27.6032 9.68558C27.7559 9.68447 27.9073 9.71378 28.0485 9.77181C28.1898 9.82983 28.3181 9.9154 28.4259 10.0235C28.5337 10.1317 28.6189 10.2602 28.6765 10.4016C28.7341 10.543 28.763 10.6944 28.7615 10.8471C28.76 10.9998 28.728 11.1507 28.6676 11.2909C28.6071 11.4311 28.5193 11.5579 28.4093 11.6638L16.5321 23.4996L28.4093 35.3377C28.6252 35.5531 28.7468 35.8453 28.7472 36.1503C28.7476 36.4552 28.6269 36.7478 28.4116 36.9638Z" fill="#6B6B6B"/>
+                                    </svg>
+                                </button>
+                                <button aria-label="Следующий" type="button" class="button-next">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="47" viewBox="0 0 46 47" fill="none">
+                                        <rect y="0.5" width="46" height="46" rx="12" fill="white"/>
+                                        <path d="M17.5858 10.0381C17.8012 9.82215 18.0934 9.70063 18.3984 9.7002C18.7033 9.69977 18.9959 9.82046 19.2119 10.0358L31.8251 22.6053C31.943 22.7228 32.0365 22.8624 32.1003 23.0161C32.1641 23.1698 32.197 23.3347 32.197 23.5011C32.197 23.6675 32.1641 23.8324 32.1003 23.9861C32.0365 24.1398 31.943 24.2794 31.8251 24.397L19.2119 36.9664C18.9947 37.1756 18.7041 37.2912 18.4025 37.2881C18.101 37.2851 17.8127 37.1637 17.5998 36.9502C17.3869 36.7367 17.2663 36.4481 17.2641 36.1465C17.262 35.845 17.3783 35.5546 17.5881 35.3381L29.4676 23.5L17.5881 11.6642C17.3722 11.4488 17.2507 11.1565 17.2502 10.8516C17.2498 10.5466 17.3705 10.254 17.5858 10.0381Z" fill="#6B6B6B"/>
+                                    </svg>
+                                </button>
                             </div>
-                    
-                            <div class="slides" aria-live="polite">
+                            <div class="slider-line">
+                                <div class="slides" aria-live="polite">
                                 <div class="slide" role="group" aria-labelledby="item-1-label" id="carousel-item-1">
                                     <img class="slide-img" src="img/certificat.png" alt="Отсканированный сертификат">
                                 </div>
                                 <div class="slide" role="group" aria-labelledby="item-2-label" id="carousel-item-2">
                                     <img class="slide-img" src="img/licence.png" alt="Отсканированный лицензия" class="security__image">
+                                </div>
                                 </div>
                             </div>
                         </div>

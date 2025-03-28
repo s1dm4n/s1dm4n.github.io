@@ -313,14 +313,11 @@ body:has(dialog[open]) {
 
             &__header {
                 gap: 28px;
+                margin: 24px 0;
 
                 img {
                     width: 75%;
                     margin: 0 auto;
-                }
-
-                .spb {
-                    width: 30%;
                 }
 
                 .oil {
@@ -342,14 +339,19 @@ body:has(dialog[open]) {
                 overflow: hidden;
             }
 
+            .gazprom {
+                img {
+                    margin-top: -5px;
+                }
+            }
+
             &__block {
                 border-radius: 28px;
                 background: #F5F6F8;
                 padding: 20px;
                 text-align: left;
                 flex-direction: row;
-                width: 1319px;
-            
+                
                 .card__header, ul {
                     display: flex;
                     flex-direction: column;
@@ -362,6 +364,7 @@ body:has(dialog[open]) {
                     
                     li, span {
                         @include font-setting-text;
+                        font-size: 18px;
                     }
 
                     span {
@@ -376,6 +379,10 @@ body:has(dialog[open]) {
 
                 .title {
                     font-weight: 400;
+                }
+
+                .text, .title {
+                    font-size: 18px;
                 }
 
                 a {
@@ -576,6 +583,8 @@ body:has(dialog[open]) {
 
     .integration {
         
+        scroll-margin: 300px;
+
         &__cover {
             position: relative;
             overflow: hidden;
@@ -943,92 +952,78 @@ dialog:open {
     overflow: hidden;
 }
 
-.controls {
-    margin-block-end: 20px;
-}
-
 .security__button,
 .button-radio {
     cursor     : pointer;
     user-select: none;
 }
 
-.button-radio {
-    background-color: transparent;
-    margin: 0;
-    padding: 0;
-    inline-size: 15px;
-    block-size: 15px;
-    border-radius: 50%;
-    border: 1px solid #FFF;
-    display: none !important;
+/* Стили для слайдера в casesDialog */
+.slider-line {
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
 }
 
-.button-radio+.button-radio {
-    margin-inline-start: 12px;
+.slider {
+    svg {
+        position: static !important;
+    }
+}
+
+.slides {
+    display: flex;
+    gap: 88px;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+    align-items: center;
+}
+
+.slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+}
+
+.button-radio {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid white;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
 }
 
 .button-radio.active {
-    background-color: #C56FFF;
-    pointer-events: none;
-}
-
-.button-radio:focus-visible {
-    outline: 3px solid white;
-    outline-offset: -1px;
+    background: white;
 }
 
 .button-prev,
 .button-next {
-    position         : absolute;
-    top              : 50%;
-    transform        : translateY(-50%);
-    border           : none;
-    inline-size      : 44px;
-    block-size       : 44px;
-    background-color : transparent;
-    background-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='94' height='94' viewBox='0 0 94 94' fill='none'%3e%3crect x='93.888' y='93.8879' width='93.184' height='93.184' rx='24' transform='rotate(-180 93.888 93.8879)' fill='white'/%3e%3cpath d='M58.2637 74.5663C57.8275 75.0037 57.2354 75.2499 56.6177 75.2507C55.9999 75.2516 55.4072 75.0071 54.9697 74.571L29.4186 49.1085C29.1798 48.8704 28.9904 48.5876 28.8611 48.2761C28.7319 47.9647 28.6653 47.6309 28.6653 47.2937C28.6653 46.9565 28.7319 46.6227 28.8611 46.3112C28.9904 45.9998 29.1799 45.717 29.4186 45.4789L54.9697 20.0164C55.4096 19.5926 55.9985 19.3586 56.6093 19.3648C57.2201 19.3709 57.8041 19.6168 58.2354 20.0493C58.6667 20.4819 58.9109 21.0665 58.9153 21.6774C58.9198 22.2882 58.6841 22.8764 58.2591 23.3151L34.1943 47.296L58.2591 71.2723C58.6964 71.7085 58.9426 72.3006 58.9435 72.9183C58.9444 73.5361 58.6998 74.1288 58.2637 74.5663Z' fill='%236B6B6B'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-size  : contain;
-    transition: opacity 0.3s ease-in-out;
-    opacity: 1;
-}
-
-.button-prev[aria-disabled="true"],
-.button-next[aria-disabled="true"] {
-    opacity: 0;
-    cursor: default;
-    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    inline-size: 48px;
+    block-size: 48px;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s;
 }
 
 .button-prev {
-    inset-inline-start: -100px;
+    left: 150px;
 }
 
 .button-next {
-    inset-inline-end: -100px;
-    transform       : translateY(-50%) rotateY(180deg);
-    transform-origin: center;
+    right: 150px;
 }
 
-.slider {
-    position: relative;
-}
-
-.slides {
-    inline-size: 100%;
-}
-
-.slide {
-    display   : none;
-    text-align: center;
-}
-
-.slide--active {
-    display: block;
-}
-
-.slide-img {
-    width        : 618px;
-    border-radius: 10px;
+.button-prev:disabled,
+.button-next:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

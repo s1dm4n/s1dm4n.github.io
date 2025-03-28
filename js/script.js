@@ -86,218 +86,166 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeImagePosition();
   });
   
-  // Инициализация слайдеров
-  document.addEventListener('DOMContentLoaded', function () {
-    function initSlider(container, startSlide = 0) {
-      if (!(container instanceof HTMLElement)) {
-        console.error('Container is not a valid DOM element:', container);
-        return;
-      }
-  
-      const slider = container.querySelector('.slider');
-      if (!slider) {
-        console.error('Slider element not found in container:', container);
-        return;
-      }
-  
-      const slides = slider.querySelectorAll('.slide');
-      const controlButtons = slider.querySelectorAll('.button-radio');
-      const prevButton = slider.querySelector('.button-prev');
-      const nextButton = slider.querySelector('.button-next');
-      const activeSlides = 'slide--active';
-      const activeButton = 'active';
-  
-      let currentSlide = Math.min(startSlide, slides.length - 1);
-  
-      function updateSlider() {
-        slides.forEach((slide, index) => {
-          slide.classList.toggle(activeSlides, index === currentSlide);
-        });
-  
+  document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация слайдера для casesDialog
+    function initCasesSlider(dialog, startSlide = 0) {
+        const slider = dialog.querySelector('.slider');
+        if (!slider) return;
+
+        const slides = slider.querySelectorAll('.slide');
+        const slidesContainer = slider.querySelector('.slides');
+        const controlButtons = slider.querySelectorAll('.button-radio');
+        const prevButton = slider.querySelector('.button-prev');
+        const nextButton = slider.querySelector('.button-next');
+        
+        let currentSlide = Math.min(startSlide, slides.length - 1);
+        const slideWidth = slides[0].offsetWidth + 88; // Add 88px gap to slide width
+        const totalSlides = slides.length;
+
+        // Установка начальной позиции
+        slidesContainer.style.transition = 'transform 0.6s';
+        updateSliderPosition();
+
+        function updateSliderPosition() {
+            slidesContainer.style.transform = `translateX(calc(-${currentSlide * slideWidth}px))`; // Add half gap offset
+            
+            // Обновление активных кнопок
+            controlButtons.forEach((button, index) => {
+                button.classList.toggle('active', index === currentSlide);
+            });
+
+            // Обновление состояния кнопок навигации
+            prevButton.disabled = currentSlide === 0;
+            nextButton.disabled = currentSlide === totalSlides - 1;
+        }
+
+        // Обработчики для кнопок управления
         controlButtons.forEach((button, index) => {
-          button.classList.toggle(activeButton, index === currentSlide);
-          prevButton.toggleAttribute('aria-disabled', currentSlide === 0);
-          nextButton.toggleAttribute('aria-disabled', currentSlide === slides.length - 1);
+            button.addEventListener('click', () => {
+                currentSlide = index;
+                updateSliderPosition();
+            });
         });
-  
-        // Прозрачность для стрелок
-        prevButton.style.opacity = currentSlide === 0 ? '0' : '1';
-        nextButton.style.opacity = currentSlide === slides.length - 1 ? '0' : '1';
-      }
-  
-      controlButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-          currentSlide = index;
-          updateSlider();
+
+        prevButton.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSliderPosition();
+            }
         });
-      });
-  
-      prevButton.addEventListener('click', () => {
-        if (currentSlide > 0) currentSlide--;
-        updateSlider();
-      });
-  
-      nextButton.addEventListener('click', () => {
-        if (currentSlide < slides.length - 1) currentSlide++;
-        updateSlider();
-      });
-  
-      updateSlider();
+
+        nextButton.addEventListener('click', () => {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSliderPosition();
+            }
+        });
     }
-  
-    // Обработчики для диалогов
-    document.querySelectorAll('.openDialogBtn').forEach(btn => {
-      btn.addEventListener('click', function () {
-        const dialogId = this.dataset.dialog;
-        const dialog = document.getElementById(dialogId);
-  
-        if (!dialog) {
-          console.error(`Dialog with id ${dialogId} not found!`);
-          return;
-        }
-  
-        // Закрываем все диалоги
-        document.querySelectorAll('dialog').forEach(d => d.close());
-  
-        // Показываем текущий диалог
-        dialog.showModal();
-  
-        // Инициализация слайдера
-        const startSlide = parseInt(this.dataset.startSlide) || 0;
-        initSlider(dialog, startSlide); // Передаем DOM-элемент
-      });
+
+    // Обработчик для открытия диалога casesDialog
+    const caseButtons = document.querySelectorAll('[data-dialog="casesDialog"]');
+    caseButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const dialog = document.getElementById('casesDialog');
+            if (!dialog) return;
+
+            dialog.showModal();
+            
+            // Инициализация слайдера с указанным начальным слайдом
+            const startSlide = parseInt(this.dataset.startSlide) || 0;
+            initCasesSlider(dialog, startSlide);
+        });
     });
-  
-    // Закрытие диалогов
+
+    // Закрытие диалога при клике вне контента
     document.querySelectorAll('dialog').forEach(dialog => {
-      dialog.addEventListener('click', function (e) {
-        if (e.target === dialog || e.target.closest('.closeDialogBtn')) {
-          dialog.close();
-        }
-      });
-    });
-  });
-  
-  // Поддержка CSS :has()
-  if (!CSS.supports('selector(:has(*))')) {
-    document.addEventListener('DOMContentLoaded', function () {
-      const dialogs = document.querySelectorAll('dialog');
-  
-      dialogs.forEach(dialog => {
-        dialog.addEventListener('open', () => {
-          document.body.style.overflow = 'hidden';
+        dialog.addEventListener('click', function(e) {
+            if (e.target === dialog) {
+                dialog.close();
+            }
         });
-  
-        dialog.addEventListener('close', () => {
-          document.body.style.overflow = '';
-        });
-      });
     });
-  }
-document.addEventListener('DOMContentLoaded', function() {
-  // Инициализация всех слайдеров
-  function initSlider(container, startSlide = 0) {
-      // Проверка, что container - это DOM-элемент
-      if (!(container instanceof HTMLElement)) {
-          console.error('Container is not a valid DOM element:', container);
-          return;
-      }
-
-      const slider = container.querySelector('.slider');
-      if (!slider) {
-          console.error('Slider element not found in container:', container);
-          return;
-      }
-
-      const slides = slider.querySelectorAll('.slide');
-      const controlButtons = slider.querySelectorAll('.button-radio');
-      const prevButton = slider.querySelector('.button-prev');
-      const nextButton = slider.querySelector('.button-next');
-      const activeSlides = 'slide--active';
-      const activeButton = 'active';
-      let currentSlide = Math.min(startSlide, slides.length - 1);
-
-      function updateSlider() {
-          slides.forEach((slide, index) => {
-              slide.classList.toggle(activфeSlides, index === currentSlide);
-          });
-
-          controlButtons.forEach((button, index) => {
-              button.classList.toggle(activeButton, index === currentSlide);
-              prevButton.toggleAttribute('aria-disabled', currentSlide === 0);
-              nextButton.toggleAttribute('aria-disabled', currentSlide === slides.length - 1);
-          });
-
-          // Прозрачность для стрелок
-          prevButton.style.opacity = currentSlide === 0 ? '0' : '1';
-          nextButton.style.opacity = currentSlide === slides.length - 1 ? '0' : '1';
-      }
-
-      controlButtons.forEach((button, index) => {
-          button.addEventListener('click', () => {
-              currentSlide = index;
-              updateSlider();
-          });
-      });
-
-      prevButton.addEventListener('click', () => {
-          if (currentSlide > 0) currentSlide--;
-          updateSlider();
-      });
-
-      nextButton.addEventListener('click', () => {
-          if (currentSlide < slides.length - 1) currentSlide++;
-          updateSlider();
-      });
-
-      updateSlider();
-  }
-
-  // Обработчики для диалогов
-  document.querySelectorAll('.openDialogBtn').forEach(btn => {
-      btn.addEventListener('click', function() {
-          const dialogId = this.dataset.dialog;
-          const dialog = document.getElementById(dialogId);
-          
-          if (!dialog) {
-              console.error(`Dialog with id ${dialogId} not found!`);
-              return;
-          }
-
-          // Закрываем все диалоги
-          document.querySelectorAll('dialog').forEach(d => d.close());
-          
-          // Показываем текущий диалог
-          dialog.showModal();
-          
-          // Инициализация слайдера
-          const startSlide = parseInt(this.dataset.startSlide) || 0;
-          initSlider(dialog, startSlide); // Передаем DOM-элемент
-      });
-  });
-
-  // Закрытие диалогов
-  document.querySelectorAll('dialog').forEach(dialog => {
-      dialog.addEventListener('click', function(e) {
-          if (e.target === dialog || e.target.closest('.closeDialogBtn')) {
-              dialog.close();
-          }
-      });
-  });
 });
 
-if (!CSS.supports('selector(:has(*))')) {
-    document.addEventListener('DOMContentLoaded', function() {
-        const dialogs = document.querySelectorAll('dialog');
-        
-        dialogs.forEach(dialog => {
-            dialog.addEventListener('open', () => {
-                document.body.style.overflow = 'hidden';
-            });
-            
-            dialog.addEventListener('close', () => {
-                document.body.style.overflow = '';
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    // Общая функция инициализации слайдера
+    // Общая инициализация для всех слайдеров
+function initSlider(dialog, startSlide = 0) {
+    const slider = dialog.querySelector('.slider');
+    if (!slider) return;
+
+    const slides = slider.querySelectorAll('.slide');
+    const controlButtons = slider.querySelectorAll('.button-radio');
+    const prevButton = slider.querySelector('.button-prev');
+    const nextButton = slider.querySelector('.button-next');
+    const slidesContainer = slider.querySelector('.slides');
+    
+    let currentSlide = startSlide;
+    const totalSlides = slides.length;
+
+    function updateSlider() {
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        controlButtons.forEach((btn, idx) => 
+            btn.classList.toggle('active', idx === currentSlide)
+        );
+        prevButton.disabled = currentSlide === 0;
+        nextButton.disabled = currentSlide === totalSlides - 1;
+    }
+
+    controlButtons.forEach((btn, idx) => {
+        btn.addEventListener('click', () => {
+            currentSlide = idx;
+            updateSlider();
         });
     });
+
+    prevButton.addEventListener('click', () => {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlider();
+        }
+    });
+
+    nextButton.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlider();
+        }
+    });
+
+    updateSlider();
 }
+
+    // Обработчики для securitySlider
+    const securityButtons = document.querySelectorAll('[data-dialog="securitySlider"]');
+    securityButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const dialog = document.getElementById('securitySlider');
+            if (!dialog) return;
+
+            dialog.showModal();
+            const startSlide = parseInt(this.dataset.startSlide) || 0;
+            initSlider(dialog, startSlide);
+        });
+    });
+
+    // Обработчики для partnersDialog
+    const partnerButtons = document.querySelectorAll('[data-dialog="partnersDialog"]');
+    partnerButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const dialog = document.getElementById('partnersDialog');
+            if (dialog) {
+                dialog.showModal();
+            }
+        });
+    });
+
+    // Общая логика закрытия диалогов
+    document.querySelectorAll('dialog').forEach(dialog => {
+        dialog.addEventListener('click', function(e) {
+            if (e.target === dialog) {
+                dialog.close();
+            }
+        });
+    });
+});
