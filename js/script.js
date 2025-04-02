@@ -84,7 +84,29 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Инициализация начального положения
     initializeImagePosition();
-  });
+    
+    const textBlocks = document.querySelectorAll(".module__content");
+    const mediaElements = document.querySelectorAll(".media");
+
+    function changeMedia(index) {
+        mediaElements.forEach(media => {
+            media.classList.remove("active");
+            if (media.dataset.index == index) {
+                media.classList.add("active");
+            }
+        });
+    }
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                changeMedia(entry.target.dataset.index);
+            }
+        });
+    }, { threshold: 0.9 });
+
+    textBlocks.forEach(block => observer.observe(block));
+});
   
   document.addEventListener('DOMContentLoaded', function() {
     // Инициализация слайдера для casesDialog
@@ -175,45 +197,43 @@ function initSlider(dialog, startSlide = 0) {
     if (!slider) return;
 
     const slides = slider.querySelectorAll('.slide');
-    const controlButtons = slider.querySelectorAll('.button-radio');
+    const slidesContainer = slider.querySelector('.slides');
     const prevButton = slider.querySelector('.button-prev');
     const nextButton = slider.querySelector('.button-next');
-    const slidesContainer = slider.querySelector('.slides');
     
-    let currentSlide = startSlide;
+    let currentSlide = Math.min(startSlide, slides.length - 1);
+    const slideWidth = slides[0].offsetWidth + 88; // Учитываем gap между слайдами
     const totalSlides = slides.length;
 
-    function updateSlider() {
-        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-        controlButtons.forEach((btn, idx) => 
-            btn.classList.toggle('active', idx === currentSlide)
-        );
+    // Инициализация позиции
+    slidesContainer.style.transition = 'transform 0.6s';
+    updateSliderPosition();
+
+    function updateSliderPosition() {
+        slidesContainer.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
         prevButton.disabled = currentSlide === 0;
         nextButton.disabled = currentSlide === totalSlides - 1;
     }
 
-    controlButtons.forEach((btn, idx) => {
-        btn.addEventListener('click', () => {
-            currentSlide = idx;
-            updateSlider();
-        });
-    });
-
     prevButton.addEventListener('click', () => {
         if (currentSlide > 0) {
             currentSlide--;
-            updateSlider();
+            updateSliderPosition();
         }
     });
 
     nextButton.addEventListener('click', () => {
         if (currentSlide < totalSlides - 1) {
             currentSlide++;
-            updateSlider();
+            updateSliderPosition();
         }
     });
 
-    updateSlider();
+    // Реинициализация при изменении размера окна
+    window.addEventListener('resize', () => {
+        slideWidth = slides[0].offsetWidth + 88;
+        updateSliderPosition();
+    });
 }
 
     // Обработчики для securitySlider

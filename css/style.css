@@ -190,7 +190,7 @@ body:has(dialog[open]) {
 .main {
   margin-top: 178px;
 }
-.main .accordion, .main .cases, .main .advantages, .main .platforms, .main .security, .main .integration {
+.main .accordion, .main .cases, .main .advantages, .main .platforms, .main .security, .main .integration, .main .modules {
   scroll-margin: 178px;
 }
 .main .preview {
@@ -199,17 +199,17 @@ body:has(dialog[open]) {
 .main article {
   margin-bottom: 178px;
 }
-.main .preview, .main .security, .main .platforms, .main .contacts, .main .card, .main .integration {
+.main .preview, .main .security, .main .platforms, .main .contacts, .main .card, .main .integration, .main .modules {
   display: flex;
   gap: 48px;
   align-items: center;
 }
-.main .preview__block, .main .security__block, .main .platforms__block, .main .contacts__block, .main .card__block, .main .integration__block {
+.main .preview__block, .main .security__block, .main .platforms__block, .main .contacts__block, .main .card__block, .main .integration__block, .main .modules__block {
   display: flex;
   flex-direction: column;
   gap: 48px;
 }
-.main .preview__image, .main .security__image, .main .platforms__image, .main .contacts__image, .main .card__image, .main .integration__image {
+.main .preview__image, .main .security__image, .main .platforms__image, .main .contacts__image, .main .card__image, .main .integration__image, .main .modules__image {
   border-radius: 19px;
 }
 .main .preview {
@@ -448,8 +448,78 @@ body:has(dialog[open]) {
   left: 1110px;
   top: 610px;
 }
-.main .platforms, .main .integration {
+.main .security .slider {
+  width: 60%;
+}
+.main .security .slider img {
+  width: 100%;
+}
+.main .platforms, .main .integration, .main .modules {
   flex-direction: column;
+}
+.main .modules .media {
+  margin: 0 auto;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.5s;
+}
+.main .modules .active {
+  opacity: 1;
+}
+.main .modules__videos {
+  padding: 20vh 0;
+  position: sticky;
+  top: 10vh;
+}
+.main .modules .p-left {
+  padding-left: 54px;
+}
+.main .modules__block {
+  flex-direction: row;
+  grid-column-gap: 64px;
+}
+.main .modules__visual {
+  flex: 0 0 25%;
+  border-radius: 4px;
+  flex-direction: column;
+  display: flex;
+  position: sticky;
+}
+.main .modules__content .module__header {
+  margin-bottom: 32px;
+}
+.main .modules__content .module__ending .heading {
+  margin-bottom: 24px !important;
+}
+.main .modules__content .module__ending .text {
+  margin-bottom: 48px;
+}
+.main .modules__content .module__content {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 74vh;
+  display: flex;
+}
+.main .modules__content .module__content .heading {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.main .modules__content span {
+  font-size: 24px !important;
+}
+.main .modules__content ul {
+  list-style-type: disc;
+  padding-left: 72px !important;
+}
+.main .modules__content ul li {
+  margin-bottom: 20px;
+}
+.main .modules__content ul li:last-of-type {
+  margin: 0;
 }
 .main .integration {
   scroll-margin: 300px;
@@ -775,10 +845,12 @@ dialog:open::backdrop {
 .slider-line {
   position: relative;
   overflow: hidden;
-  width: 80%;
-  margin: 0 auto;
 }
 
+.slider {
+  margin: 0 auto;
+  width: 80%;
+}
 .slider svg {
   position: static !important;
 }
