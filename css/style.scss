@@ -176,12 +176,25 @@ body:has(dialog[open]) {
 
 // Стилизация шапки
 .header {
+    transform: translate(0px, -50px);
+    animation: header-news 0.8s 0.5s forwards;
+
     .article {
         text-align: center;
         white-space: nowrap;
         background: repeating-linear-gradient(-45deg, transparent 0px 25px, rgba(255, 255, 255, 0.06) 25px 50px);
         background-color: #D45749;
-        padding: 12px 0;
+        padding: 12px 0px;
+
+        @keyframes header-news {
+            from {
+                transform: translate(0px, -50px);
+            }
+
+            to {
+                transform: translate(0px, 0px);
+            }
+        }
 
         a,
         span {
@@ -604,9 +617,9 @@ body:has(dialog[open]) {
         }
 
         &__videos {
-            padding: 20vh 0;
+            padding: 6vh 0;
             position: sticky;
-            top: 10vh;
+            top: 28vh;
         }
 
         .p-left {
@@ -648,7 +661,7 @@ body:has(dialog[open]) {
                     flex-direction: column;
                     justify-content: center;
                     align-items: flex-start;
-                    min-height: 74vh;
+                    min-height: 42vh;
                     display: flex;
 
                     .heading {
@@ -658,6 +671,10 @@ body:has(dialog[open]) {
                         gap: 12px;
                         margin-bottom: 12px;
                     }
+                }
+
+                &__content[data-index="1"] {
+                    min-height: 44vh;
                 }
             }
             
@@ -678,6 +695,268 @@ body:has(dialog[open]) {
                 }
             }
         }
+
+        .module-grid {
+            max-width: 222px;
+          }
+          
+          .module-row {
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+          }
+          
+          .top-row,
+          .bottom-row {
+            gap: 40px 72px;
+          }
+          
+          .module-connection {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            flex: 1;
+            opacity: 1;
+          }
+          
+          .icon-container, .icon-container::before, .icon-container::after {
+            border-radius: 48px;
+            background-color: rgba(255, 255, 255, 1);
+            width: 74px;
+            height: 74px;
+          }
+
+          .icon-container {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            align-self: stretch;
+            display: flex;
+            margin: auto 0;
+            padding: 4px;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            box-shadow: 0px 1.362px 6.129px 0px rgba(0, 0, 0, 0.04) inset;
+            box-sizing: content-box;
+        }
+          
+          .icon-image {
+            aspect-ratio: 1;
+            object-fit: contain;
+            object-position: center;
+            width: 54px;
+            align-self: stretch;
+            margin: auto 0;
+          }
+          
+          .middle-row {
+            align-items: center;
+          }
+          
+          .center-column {
+            align-self: stretch;
+            flex: 1;
+          }
+          
+          .center-column .module-connection:last-child {
+            margin-top: 74px;
+          }
+
+          .module-connection.inactive .icon-container {
+            opacity: 0.5;
+          }
+
+          .module-connection.active .icon-container {
+            animation: bg-color-module 0.8s cubic-bezier(0, 0, 0.58, 1) forwards;
+            path {
+                animation: color-module 0.8s cubic-bezier(0, 0, 0.58, 1) forwards;
+            }
+          }
+
+          .module-connection .icon-container {
+            transition: opacity 0.5s ease, transform 0.5s ease;
+          }
+
+          .central-logo {
+            border-radius: 30.355px;
+            background: #D45749;
+            padding: 20px;
+            opacity: 0;
+            transition: all 0.8s;
+            display: none;
+            height: auto !important;
+            border-radius: 50px !important;
+            width: fit-content !important;
+          }
+
+          .central-logo.active {
+            opacity: 1;
+          }
+
+
+          .icon-container::before, .icon-container::after{
+            content: "";
+            position: absolute;
+            background-color: rgba(212, 87, 73, 0);
+            z-index: -1;
+          }
+          
+          .module-connection.active .icon-container::before {
+            animation: first-circle-module 0.8s cubic-bezier(0, 0, 0.58, 1);
+          }
+
+          .module-connection.active .icon-container::after {
+            animation: second-circle-module 1.2s forwards cubic-bezier(0, 0, 0.58, 1);
+          }
+
+          .module-connection.returning .icon-container {
+            opacity: 1;
+            transition: all 1s ease;
+          }
+
+          .module-container {
+            position: relative;
+            width: 300px; /* или больше, в зависимости от макета */
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+          }
+          
+          .module-connection {
+            position: relative;
+            transition: all 0.6s ease-in-out;
+          }
+          
+          /* Финальная конфигурация */
+          .module-connection.reconfigure {
+            transition: all 0.6s ease-in-out;
+          }
+          
+          .module-connection.reconfigure[data-index="1"] {
+            transform: translate(-10px, 44px);
+          }
+          
+          .module-connection.reconfigure[data-index="2"] {
+            transform: translate(22px, 44px);
+          }
+          
+          .module-connection.reconfigure[data-index="3"] {
+            transform: translate(0, -60px);
+          }
+          
+          .module-connection.reconfigure[data-index="4"] {
+            transform: translate(-50px, -34px);
+          }
+
+          .module-connection.reconfigure[data-index="5"] {
+            transform: translate(50px, -34px);
+          }
+
+          .module-connection.reconfigure[data-index="6"] {
+            transform: translate(0px, -8px);
+          }
+
+          .module-connection.reconfigure[data-index="7"] {
+            transform: translate(-10px, -112px);
+          }
+
+          .module-connection.reconfigure[data-index="8"] {
+            transform: translate(22px, -112px);
+          }
+          
+        //   .module-connection.reconfigure:nth-child(5) {
+        //     transform: translate(100px, 50px);
+        //   }
+          
+        //   .module-connection.reconfigure:nth-child(6) {
+        //     transform: translate(50px, 100px);
+        //   }
+          
+        //   .module-connection.reconfigure:nth-child(7) {
+        //     transform: translate(-50px, 100px);
+        //   }
+          
+        //   .module-connection.reconfigure:nth-child(8) {
+        //     transform: translate(-100px, 50px);
+        //   }
+          
+          /* Центральный логотип */
+          .central-logo {
+            position: absolute;
+            z-index: 10;
+            border-radius: 50%;
+            background-color: rgba(212, 87, 73, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 120px;
+            height: 120px;
+          }
+
+          @keyframes first-circle-module {
+            from {
+                color: $color-white !important;
+                transform: scale(1);
+                background-color: rgba(212, 87, 73, 0.20);
+            }
+
+            50% {
+                transform: scale(1.8);
+            }
+
+            to {
+                transform: scale(2.2);
+                background-color: rgba(212, 87, 73, 0);
+            }
+            
+          }
+
+          @keyframes second-circle-module {
+            from {
+                transform: scale(0.8);
+                background-color: rgba(212, 87, 73, 0.2);
+            }
+
+            50% {
+                transform: scale(1);
+                background-color: rgba(212, 87, 73, 0.4);
+            }
+
+            to {
+                transform: scale(1.35);
+                background-color: rgba(212, 87, 73, 0.2);
+            }
+          }
+
+          @keyframes color-module {
+            from {
+                fill: $color-gray;
+            }
+
+            50% {
+                fill: $color-white;
+            }
+
+            to {
+                fill: $color-white;
+            }
+        }
+
+        @keyframes bg-color-module {
+            from {
+                background: $color-white;
+            }
+
+            50% {
+                background: $color-red;
+            }
+            
+            to {
+                background: $color-red;
+            }
+        }
     }
 
     .integration {
@@ -695,7 +974,7 @@ body:has(dialog[open]) {
             position: absolute;
             left: 0;
             top: 0;
-            width: auto;
+            width: 3533px;
             max-width: none;
             will-change: transform;
             transition: transform 2s;

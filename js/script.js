@@ -269,3 +269,58 @@ function initSlider(dialog, startSlide = 0) {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const moduleContents = document.querySelectorAll('.module__content[data-index]');
+    const moduleConnections = document.querySelectorAll('.module-connection');
+    const centralLogo = document.querySelector('.central-logo');
+  
+    function updateActiveModule(activeIndex) {
+      moduleConnections.forEach(conn => {
+        conn.classList.remove('active', 'inactive', 'reconfigure', 'returning');
+      });
+  
+      if (activeIndex === "1") {
+        moduleConnections.forEach(conn => conn.classList.add('returning'));
+        centralLogo.classList.remove('active'); // Скрываем лого при возврате
+        return;
+      }
+  
+      if (activeIndex === "10") {
+        moduleConnections.forEach(conn => conn.classList.add('reconfigure'));
+        centralLogo.classList.add('active'); // Показываем лого
+        return;
+      }
+  
+      centralLogo.classList.remove('active'); // Лого скрыто на других блоках
+  
+      const targetModule = document.querySelector(`.module-connection[data-index="${activeIndex - 1}"]`);
+      if (targetModule) {
+        targetModule.classList.add('active');
+      }
+  
+      moduleConnections.forEach(conn => {
+        if (conn !== targetModule) {
+          conn.classList.add('inactive');
+        }
+      });
+    }
+  
+    const observerOptions = {
+      root: null,
+      threshold: 1
+    };
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const activeIndex = entry.target.getAttribute('data-index');
+          updateActiveModule(activeIndex);
+        }
+      });
+    }, observerOptions);
+  
+    moduleContents.forEach(content => {
+      observer.observe(content);
+    });
+  });

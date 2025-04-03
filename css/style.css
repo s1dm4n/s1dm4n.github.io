@@ -130,12 +130,24 @@ body:has(dialog[open]) {
   font-weight: 300;
 }
 
+.header {
+  transform: translate(0px, -50px);
+  animation: header-news 0.8s 0.5s forwards;
+}
 .header .article {
   text-align: center;
   white-space: nowrap;
   background: repeating-linear-gradient(-45deg, transparent 0px 25px, rgba(255, 255, 255, 0.06) 25px 50px);
   background-color: #D45749;
-  padding: 12px 0;
+  padding: 12px 0px;
+}
+@keyframes header-news {
+  from {
+    transform: translate(0px, -50px);
+  }
+  to {
+    transform: translate(0px, 0px);
+  }
 }
 .header .article a,
 .header .article span {
@@ -457,6 +469,10 @@ body:has(dialog[open]) {
 .main .platforms, .main .integration, .main .modules {
   flex-direction: column;
 }
+.main .modules {
+  /* Финальная конфигурация */
+  /* Центральный логотип */
+}
 .main .modules .media {
   margin: 0 auto;
   opacity: 0;
@@ -467,9 +483,9 @@ body:has(dialog[open]) {
   opacity: 1;
 }
 .main .modules__videos {
-  padding: 20vh 0;
+  padding: 6vh 0;
   position: sticky;
-  top: 10vh;
+  top: 28vh;
 }
 .main .modules .p-left {
   padding-left: 54px;
@@ -498,7 +514,7 @@ body:has(dialog[open]) {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  min-height: 74vh;
+  min-height: 42vh;
   display: flex;
 }
 .main .modules__content .module__content .heading {
@@ -507,6 +523,9 @@ body:has(dialog[open]) {
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
+}
+.main .modules__content .module__content[data-index="1"] {
+  min-height: 44vh;
 }
 .main .modules__content span {
   font-size: 24px !important;
@@ -521,6 +540,208 @@ body:has(dialog[open]) {
 .main .modules__content ul li:last-of-type {
   margin: 0;
 }
+.main .modules .module-grid {
+  max-width: 222px;
+}
+.main .modules .module-row {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+.main .modules .top-row,
+.main .modules .bottom-row {
+  gap: 40px 72px;
+}
+.main .modules .module-connection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  flex: 1;
+  opacity: 1;
+}
+.main .modules .icon-container, .main .modules .icon-container::before, .main .modules .icon-container::after {
+  border-radius: 48px;
+  background-color: rgb(255, 255, 255);
+  width: 74px;
+  height: 74px;
+}
+.main .modules .icon-container {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  align-self: stretch;
+  display: flex;
+  margin: auto 0;
+  padding: 4px;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  box-shadow: 0px 1.362px 6.129px 0px rgba(0, 0, 0, 0.04) inset;
+  box-sizing: content-box;
+}
+.main .modules .icon-image {
+  aspect-ratio: 1;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  width: 54px;
+  align-self: stretch;
+  margin: auto 0;
+}
+.main .modules .middle-row {
+  align-items: center;
+}
+.main .modules .center-column {
+  align-self: stretch;
+  flex: 1;
+}
+.main .modules .center-column .module-connection:last-child {
+  margin-top: 74px;
+}
+.main .modules .module-connection.inactive .icon-container {
+  opacity: 0.5;
+}
+.main .modules .module-connection.active .icon-container {
+  animation: bg-color-module 0.8s cubic-bezier(0, 0, 0.58, 1) forwards;
+}
+.main .modules .module-connection.active .icon-container path {
+  animation: color-module 0.8s cubic-bezier(0, 0, 0.58, 1) forwards;
+}
+.main .modules .module-connection .icon-container {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.main .modules .central-logo {
+  border-radius: 30.355px;
+  background: #D45749;
+  padding: 20px;
+  opacity: 0;
+  transition: all 0.8s;
+  display: none;
+  height: auto !important;
+  border-radius: 50px !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+.main .modules .central-logo.active {
+  opacity: 1;
+}
+.main .modules .icon-container::before, .main .modules .icon-container::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(212, 87, 73, 0);
+  z-index: -1;
+}
+.main .modules .module-connection.active .icon-container::before {
+  animation: first-circle-module 0.8s cubic-bezier(0, 0, 0.58, 1);
+}
+.main .modules .module-connection.active .icon-container::after {
+  animation: second-circle-module 1.2s forwards cubic-bezier(0, 0, 0.58, 1);
+}
+.main .modules .module-connection.returning .icon-container {
+  opacity: 1;
+  transition: all 1s ease;
+}
+.main .modules .module-container {
+  position: relative;
+  width: 300px; /* или больше, в зависимости от макета */
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.main .modules .module-connection {
+  position: relative;
+  transition: all 0.6s ease-in-out;
+}
+.main .modules .module-connection.reconfigure {
+  transition: all 0.6s ease-in-out;
+}
+.main .modules .module-connection.reconfigure[data-index="1"] {
+  transform: translate(-10px, 44px);
+}
+.main .modules .module-connection.reconfigure[data-index="2"] {
+  transform: translate(22px, 44px);
+}
+.main .modules .module-connection.reconfigure[data-index="3"] {
+  transform: translate(0, -60px);
+}
+.main .modules .module-connection.reconfigure[data-index="4"] {
+  transform: translate(-50px, -34px);
+}
+.main .modules .module-connection.reconfigure[data-index="5"] {
+  transform: translate(50px, -34px);
+}
+.main .modules .module-connection.reconfigure[data-index="6"] {
+  transform: translate(0px, -8px);
+}
+.main .modules .module-connection.reconfigure[data-index="7"] {
+  transform: translate(-10px, -112px);
+}
+.main .modules .module-connection.reconfigure[data-index="8"] {
+  transform: translate(22px, -112px);
+}
+.main .modules .central-logo {
+  position: absolute;
+  z-index: 10;
+  border-radius: 50%;
+  background-color: rgb(212, 87, 73);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+}
+@keyframes first-circle-module {
+  from {
+    color: #ffffff !important;
+    transform: scale(1);
+    background-color: rgba(212, 87, 73, 0.2);
+  }
+  50% {
+    transform: scale(1.8);
+  }
+  to {
+    transform: scale(2.2);
+    background-color: rgba(212, 87, 73, 0);
+  }
+}
+@keyframes second-circle-module {
+  from {
+    transform: scale(0.8);
+    background-color: rgba(212, 87, 73, 0.2);
+  }
+  50% {
+    transform: scale(1);
+    background-color: rgba(212, 87, 73, 0.4);
+  }
+  to {
+    transform: scale(1.35);
+    background-color: rgba(212, 87, 73, 0.2);
+  }
+}
+@keyframes color-module {
+  from {
+    fill: #444B50;
+  }
+  50% {
+    fill: #ffffff;
+  }
+  to {
+    fill: #ffffff;
+  }
+}
+@keyframes bg-color-module {
+  from {
+    background: #ffffff;
+  }
+  50% {
+    background: #D45749;
+  }
+  to {
+    background: #D45749;
+  }
+}
 .main .integration {
   scroll-margin: 300px;
 }
@@ -534,7 +755,7 @@ body:has(dialog[open]) {
   position: absolute;
   left: 0;
   top: 0;
-  width: auto;
+  width: 3533px;
   max-width: none;
   will-change: transform;
   transition: transform 2s;
