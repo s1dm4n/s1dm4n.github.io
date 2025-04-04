@@ -48,24 +48,24 @@ document.addEventListener('DOMContentLoaded', () => {
       // Логика с учетом направления прокрутки
       if (direction === 'down') {
         // Прокрутка вниз
-        if ( progress <= 0.75 && progress >= 0.6 && currentStage === 0) {
+        if ( progress <= 0.7 && progress >= 0.6 && currentStage === 0) {
           // Переход от левой части к центральной
           const centerOffset = (imageWidth - parentWidth) / 2;
           parallaxImage.style.transform = `translateX(-${centerOffset}px)`;
           currentStage = 1;
-        } else if (progress <= 0.45 && currentStage === 1) {
+        } else if (progress <= 0.51 && currentStage === 1) {
           // Переход от центральной части к правой
           parallaxImage.style.transform = `translateX(-${maxScroll}px)`;
           currentStage = 2;
         }
       } else if (direction === 'up') {
         // Прокрутка вверх
-        if (progress <= 0.65 && progress >= 0.35  && currentStage === 2) {
+        if (progress >= 0.52  && currentStage === 2) {
           // Переход от правой части к центральной
           const centerOffset = (imageWidth - parentWidth) / 2;
           parallaxImage.style.transform = `translateX(-${centerOffset}px)`;
           currentStage = 1;
-        } else if (progress >= 0.55 && progress <= 0.75 && currentStage === 1) {
+        } else if (progress >= 0.75 && currentStage === 1) {
           // Переход от центральной части к левой
           parallaxImage.style.transform = 'translateX(0)';
           currentStage = 0;
@@ -274,61 +274,65 @@ document.addEventListener('DOMContentLoaded', function () {
     const moduleContents = document.querySelectorAll('.module__content[data-index]');
     const moduleConnections = document.querySelectorAll('.module-connection');
     const centralLogo = document.querySelector('.central-logo');
-    const modulesBlock = document.querySelector('.modules__videos'); // Блок с модулями
-  
+    const modulesBlock = document.querySelector('.modules__videos');
+
+    let lastActiveIndex = null; // Запоминаем последний активный модуль
+
     function getActiveModuleIndex() {
-      let activeIndex = "1";
-      if (!modulesBlock) return activeIndex;
-  
-      const modulesRect = modulesBlock.getBoundingClientRect();
-      const moduleCenter = modulesRect.top + modulesRect.height / 2; // Центр блока модулей
-  
-      moduleContents.forEach(content => {
-        const rect = content.getBoundingClientRect();
-        
-        // Проверяем, когда верхняя граница текста оказывается на уровне центра модуля
-        if (rect.top <= moduleCenter && rect.bottom >= moduleCenter) {
-          activeIndex = content.getAttribute('data-index');
-        }
-      });
-  
-      return activeIndex;
+        let activeIndex = null;
+        if (!modulesBlock) return activeIndex;
+
+        const modulesRect = modulesBlock.getBoundingClientRect();
+        const moduleCenter = modulesRect.top + modulesRect.height / 2;
+
+        moduleContents.forEach(content => {
+            const rect = content.getBoundingClientRect();
+
+            if (rect.top <= moduleCenter && rect.bottom >= moduleCenter) {
+                activeIndex = parseInt(content.getAttribute('data-index'));
+            }
+        });
+
+        return activeIndex;
     }
-  
+
     function updateActiveModule() {
-      let activeIndex = getActiveModuleIndex();
-  
-      moduleConnections.forEach(conn => {
-        conn.classList.remove('active', 'inactive', 'reconfigure', 'returning');
-      });
-  
-      if (activeIndex === "1") {
-        moduleConnections.forEach(conn => conn.classList.add('returning'));
-        centralLogo.classList.remove('active');
-        return;
-      }
-  
-      if (activeIndex === "10") {
-        moduleConnections.forEach(conn => conn.classList.add('reconfigure'));
-        centralLogo.classList.add('active');
-        return;
-      }
-  
-      centralLogo.classList.remove('active');
-  
-      const targetModule = document.querySelector(`.module-connection[data-index="${activeIndex - 1}"]`);
-      if (targetModule) {
-        targetModule.classList.add('active');
-      }
-  
-      moduleConnections.forEach(conn => {
-        if (conn !== targetModule) {
-          conn.classList.add('inactive');
+        let activeIndex = getActiveModuleIndex();
+
+        // Если индекс не изменился, не обновляем состояние
+        if (activeIndex === lastActiveIndex || activeIndex === null) return;
+
+        lastActiveIndex = activeIndex;
+
+        moduleConnections.forEach(conn => {
+            conn.classList.remove('active', 'inactive', 'reconfigure', 'returning');
+        });
+
+        if (activeIndex === 1) {
+            return; // На первом блоке все модули в обычном состоянии
         }
-      });
+
+        if (activeIndex === 10) {
+            moduleConnections.forEach(conn => conn.classList.add('reconfigure'));
+            centralLogo.classList.add('active');
+            return;
+        }
+
+        const targetModule = document.querySelector(`.module-connection[data-index="${activeIndex - 1}"]`);
+        if (targetModule) {
+            targetModule.classList.add('active');
+        }
+
+        centralLogo.classList.remove('active');
+
+        moduleConnections.forEach(conn => {
+            if (conn !== targetModule) {
+                conn.classList.add('inactive');
+            }
+        });
     }
-  
+
     window.addEventListener('scroll', updateActiveModule);
     window.addEventListener('resize', updateActiveModule);
     updateActiveModule();
-  });
+});
