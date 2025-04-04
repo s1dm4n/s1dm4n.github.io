@@ -274,25 +274,47 @@ document.addEventListener('DOMContentLoaded', function () {
     const moduleContents = document.querySelectorAll('.module__content[data-index]');
     const moduleConnections = document.querySelectorAll('.module-connection');
     const centralLogo = document.querySelector('.central-logo');
+    const modulesBlock = document.querySelector('.modules__videos'); // Блок с модулями
   
-    function updateActiveModule(activeIndex) {
+    function getActiveModuleIndex() {
+      let activeIndex = "1";
+      if (!modulesBlock) return activeIndex;
+  
+      const modulesRect = modulesBlock.getBoundingClientRect();
+      const moduleCenter = modulesRect.top + modulesRect.height / 2; // Центр блока модулей
+  
+      moduleContents.forEach(content => {
+        const rect = content.getBoundingClientRect();
+        
+        // Проверяем, когда верхняя граница текста оказывается на уровне центра модуля
+        if (rect.top <= moduleCenter && rect.bottom >= moduleCenter) {
+          activeIndex = content.getAttribute('data-index');
+        }
+      });
+  
+      return activeIndex;
+    }
+  
+    function updateActiveModule() {
+      let activeIndex = getActiveModuleIndex();
+  
       moduleConnections.forEach(conn => {
         conn.classList.remove('active', 'inactive', 'reconfigure', 'returning');
       });
   
       if (activeIndex === "1") {
         moduleConnections.forEach(conn => conn.classList.add('returning'));
-        centralLogo.classList.remove('active'); // Скрываем лого при возврате
+        centralLogo.classList.remove('active');
         return;
       }
   
       if (activeIndex === "10") {
         moduleConnections.forEach(conn => conn.classList.add('reconfigure'));
-        centralLogo.classList.add('active'); // Показываем лого
+        centralLogo.classList.add('active');
         return;
       }
   
-      centralLogo.classList.remove('active'); // Лого скрыто на других блоках
+      centralLogo.classList.remove('active');
   
       const targetModule = document.querySelector(`.module-connection[data-index="${activeIndex - 1}"]`);
       if (targetModule) {
@@ -306,21 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   
-    const observerOptions = {
-      root: null,
-      threshold: 1
-    };
-  
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const activeIndex = entry.target.getAttribute('data-index');
-          updateActiveModule(activeIndex);
-        }
-      });
-    }, observerOptions);
-  
-    moduleContents.forEach(content => {
-      observer.observe(content);
-    });
+    window.addEventListener('scroll', updateActiveModule);
+    window.addEventListener('resize', updateActiveModule);
+    updateActiveModule();
   });

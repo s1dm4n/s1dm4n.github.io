@@ -43,8 +43,13 @@
   }
 }
 html {
+  font-size: 62.5%;
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
+}
+
+body {
+  font-size: 1.6rem;
 }
 
 body:has(dialog[open]) {
@@ -71,7 +76,7 @@ body:has(dialog[open]) {
   justify-content: center;
   align-items: center;
   color: #ffffff;
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 400;
   gap: 10px;
   width: -moz-fit-content;
@@ -115,13 +120,13 @@ body:has(dialog[open]) {
 }
 
 .heading {
-  font-size: 56px;
+  font-size: 5.6rem;
   font-weight: 500;
   margin-bottom: 48px;
 }
 
 .text {
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 200;
   line-height: 140%;
 }
@@ -152,14 +157,16 @@ body:has(dialog[open]) {
 .header .article a,
 .header .article span {
   color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 .header .article a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding-bottom: 4px;
   border-bottom: 2px solid currentColor;
   transition: opacity 0.15s ease-in-out;
+  margin-left: 8px;
 }
 .header .article a:hover {
   opacity: 0.8;
@@ -173,7 +180,7 @@ body:has(dialog[open]) {
   background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.8) 100%);
   -webkit-backdrop-filter: blur(22.5px);
           backdrop-filter: blur(22.5px);
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 400;
 }
 .nav__menu {
@@ -187,7 +194,7 @@ body:has(dialog[open]) {
   gap: 24px;
 }
 .nav a {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 400;
 }
 .nav a:hover {
@@ -295,23 +302,23 @@ body:has(dialog[open]) {
   margin: 0 0 0 24px;
 }
 .main .cases .card__block ul li, .main .cases .card__block ul span {
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 200;
   line-height: 140%;
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 .main .cases .card__block ul span {
   margin: 0 0 0 -24px;
 }
 .main .cases .card__block h3 {
   margin: 0;
-  font-size: 40px;
+  font-size: 4rem;
 }
 .main .cases .card__block .title {
   font-weight: 400;
 }
 .main .cases .card__block .text, .main .cases .card__block .title {
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 .main .cases .card__block a {
   text-decoration-line: underline;
@@ -321,7 +328,7 @@ body:has(dialog[open]) {
   color: #1052DB;
   text-align: center;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 2rem;
 }
 .main .advantages {
   display: flex;
@@ -387,10 +394,10 @@ body:has(dialog[open]) {
   transition: 0.3s;
   display: flex;
   justify-content: space-between;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 200;
   line-height: 140%;
-  font-size: 24px;
+  font-size: 2.2rem;
   padding: 48px 0;
   border-bottom: 1px solid rgba(68, 75, 80, 0.3);
 }
@@ -470,6 +477,8 @@ body:has(dialog[open]) {
   flex-direction: column;
 }
 .main .modules {
+  margin: 0;
+  scroll-margin: 448px;
   /* Финальная конфигурация */
   /* Центральный логотип */
 }
@@ -483,9 +492,9 @@ body:has(dialog[open]) {
   opacity: 1;
 }
 .main .modules__videos {
-  padding: 6vh 0;
   position: sticky;
   top: 28vh;
+  margin-bottom: 10vh;
 }
 .main .modules .p-left {
   padding-left: 54px;
@@ -514,21 +523,22 @@ body:has(dialog[open]) {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  min-height: 42vh;
+  margin-bottom: 178px;
   display: flex;
 }
 .main .modules__content .module__content .heading {
-  font-size: 32px;
+  font-size: 3.2rem;
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
 }
 .main .modules__content .module__content[data-index="1"] {
-  min-height: 44vh;
+  min-height: 32vh;
+  margin: o;
 }
 .main .modules__content span {
-  font-size: 24px !important;
+  font-size: 2.4rem !important;
 }
 .main .modules__content ul {
   list-style-type: disc;
@@ -833,9 +843,9 @@ body:has(dialog[open]) {
   color: rgba(68, 75, 80, 0.8);
 }
 .main .contacts form input {
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
-  line-height: 24px;
+  line-height: 2.4rem;
   width: 100%;
   accent-color: #D45749;
 }
@@ -846,48 +856,48 @@ body:has(dialog[open]) {
 }
 .main .contacts form input::-moz-placeholder {
   color: rgba(68, 75, 80, 0.35);
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
-  line-height: 24px;
+  line-height: 2.4rem;
   -moz-transition: color 0.2s;
   transition: color 0.2s;
 }
 .main .contacts form input::placeholder {
   color: rgba(68, 75, 80, 0.35);
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
-  line-height: 24px;
+  line-height: 2.4rem;
   transition: color 0.2s;
 }
 .main .contacts form input::-webkit-input-placeholder {
   color: rgba(68, 75, 80, 0.35);
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
-  line-height: 24px;
+  line-height: 2.4rem;
 }
 .main .contacts form input:-moz-placeholder {
   color: rgba(68, 75, 80, 0.35);
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
-  line-height: 24px;
+  line-height: 2.4rem;
 }
 .main .contacts form input::-moz-placeholder {
   color: rgba(68, 75, 80, 0.35);
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
-  line-height: 24px;
+  line-height: 2.4rem;
 }
 .main .contacts form input:-ms-input-placeholder {
   color: rgba(68, 75, 80, 0.35);
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
-  line-height: 24px;
+  line-height: 2.4rem;
 }
 .main .contacts form input::-ms-input-placeholder {
   color: rgba(68, 75, 80, 0.35);
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
-  line-height: 24px;
+  line-height: 2.4rem;
 }
 .main .contacts form span {
   color: currentColor;
@@ -900,8 +910,8 @@ body:has(dialog[open]) {
 }
 .main .contacts__confidential {
   color: #444B50 !important;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 1.2rem;
+  line-height: 1.4rem;
   white-space: pre-line;
   text-align: center;
   text-underline-offset: 20%;
@@ -935,7 +945,7 @@ body:has(dialog[open]) {
   padding: 8px;
   align-items: center;
   gap: 4px;
-  line-height: 24px;
+  line-height: 2.4rem;
   border-radius: 12px;
   border: 1px solid rgba(68, 75, 80, 0.8);
   color: rgba(68, 75, 80, 0.8);
@@ -1112,7 +1122,7 @@ dialog:open::backdrop {
   block-size: 48px;
   border: none;
   color: white;
-  font-size: 24px;
+  font-size: 2.4rem;
   cursor: pointer;
   z-index: 10;
   transition: opacity 0.3s;

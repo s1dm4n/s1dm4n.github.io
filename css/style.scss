@@ -12,17 +12,17 @@ $line-height-140: 140%;
 
 //Заготовки текстового оформления
 @mixin font-setting-link-nav {
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 400;
 }
 
 @mixin font-setting-header {
-    font-size: 56px;
+    font-size: 5.6rem;
     font-weight: 500;
 }
 
 @mixin font-setting-text {
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 200;
     line-height: $line-height-140;
 }
@@ -80,8 +80,13 @@ $color-placeholder: rgba(68, 75, 80, 0.35);
 
 //Плавный скролл
 html {
+    font-size: 62.5%;
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
+}
+
+body {
+    font-size: 1.6rem;
 }
 
 //Блокирование скрола при открытии модального окна
@@ -112,7 +117,7 @@ body:has(dialog[open]) {
     justify-content: center;
     align-items: center;
     color: $color-white;
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: 400;
     gap: 10px;
     width: fit-content;
@@ -199,15 +204,17 @@ body:has(dialog[open]) {
         a,
         span {
             color: $color-white;
+            font-size: 1.6rem;
+            font-weight: 400;
         }
 
         a {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding-bottom: 4px;
             border-bottom: 2px solid currentColor;
             transition: opacity 0.15s ease-in-out;
+            margin-left: 8px;
 
             &:hover {
                 opacity: 0.8;
@@ -376,7 +383,7 @@ body:has(dialog[open]) {
                     
                     li, span {
                         @include font-setting-text;
-                        font-size: 18px;
+                        font-size: 1.8rem;
                     }
 
                     span {
@@ -386,7 +393,7 @@ body:has(dialog[open]) {
 
                 h3 {
                     margin: 0;
-                    font-size: 40px;
+                    font-size: 4rem;
                 }
 
                 .title {
@@ -394,7 +401,7 @@ body:has(dialog[open]) {
                 }
 
                 .text, .title {
-                    font-size: 18px;
+                    font-size: 1.8rem;
                 }
 
                 a {
@@ -405,7 +412,7 @@ body:has(dialog[open]) {
                     color: #1052DB;
                     text-align: center;
                     font-weight: 500;
-                    font-size: 20px;
+                    font-size: 2rem;
                 }
 
             }
@@ -501,7 +508,7 @@ body:has(dialog[open]) {
             display: flex;
             justify-content: space-between;
             @include font-setting-text;
-            font-size: 24px;
+            font-size: 2.2rem;
             padding: 48px 0;
             border-bottom: 1px solid rgba(68, 75, 80, 0.3);
         }
@@ -604,6 +611,8 @@ body:has(dialog[open]) {
     }
 
     .modules {
+        margin: 0;
+        scroll-margin: 448px;
         
         .media {
             margin: 0 auto;
@@ -617,9 +626,9 @@ body:has(dialog[open]) {
         }
 
         &__videos {
-            padding: 6vh 0;
             position: sticky;
             top: 28vh;
+            margin-bottom: 10vh;
         }
 
         .p-left {
@@ -661,11 +670,11 @@ body:has(dialog[open]) {
                     flex-direction: column;
                     justify-content: center;
                     align-items: flex-start;
-                    min-height: 42vh;
+                    margin-bottom: 178px;
                     display: flex;
 
                     .heading {
-                        font-size: 32px;
+                        font-size: 3.2rem;
                         display: flex;
                         align-items: center;
                         gap: 12px;
@@ -674,12 +683,13 @@ body:has(dialog[open]) {
                 }
 
                 &__content[data-index="1"] {
-                    min-height: 44vh;
+                    min-height: 32vh;
+                    margin: o;
                 }
             }
             
             span {
-                font-size: 24px !important;
+                font-size: 2.4rem !important;
             }
 
             ul {
@@ -1065,9 +1075,9 @@ body:has(dialog[open]) {
             }
 
             input {
-                font-size: 16px;
+                font-size: 1.6rem;
                 font-weight: 300;
-                line-height: 24px; 
+                line-height: 2.4rem; 
                 width: 100%;
                 accent-color: $color-red;
 
@@ -1080,45 +1090,45 @@ body:has(dialog[open]) {
 
                 &::placeholder {
                     color: $color-placeholder;
-                    font-size: 16px;
+                    font-size:1.6rem;
                     font-weight: 300;
-                    line-height: 24px;
+                    line-height: 2.4rem;
                     transition: color 0.2s;
                 }
     
                 &::-webkit-input-placeholder {
                     color: $color-placeholder;
-                    font-size: 16px;
+                    font-size: 1.6rem;
                     font-weight: 300;
-                    line-height: 24px; 
+                    line-height: 2.4rem; 
                 }
                 
                 &:-moz-placeholder {
                     color: $color-placeholder;
-                    font-size: 16px;
+                    font-size: 1.6rem;
                     font-weight: 300;
-                    line-height: 24px; 
+                    line-height: 2.4rem; 
                 }
                 
                 &::-moz-placeholder {
                     color: $color-placeholder;
-                    font-size: 16px;
+                    font-size: 1.6rem;
                     font-weight: 300;
-                    line-height: 24px; 
+                    line-height: 2.4rem; 
                 }
                 
                 &:-ms-input-placeholder {
                     color: $color-placeholder;
-                    font-size: 16px;
+                    font-size: 1.6rem;
                     font-weight: 300;
-                    line-height: 24px; 
+                    line-height: 2.4rem; 
                 }
                 
                 &::-ms-input-placeholder {
                     color: $color-placeholder;
-                    font-size: 16px;
+                    font-size: 1.6rem;
                     font-weight: 300;
-                    line-height: 24px; 
+                    line-height: 2.4rem; 
                 }
             }
 
@@ -1137,8 +1147,8 @@ body:has(dialog[open]) {
         
         &__confidential {
             color: #444B50!important;
-            font-size: 12px;
-            line-height: 14px;
+            font-size: 1.2rem;
+            line-height: 1.4rem;
             white-space: pre-line;
             text-align: center;
             text-underline-offset: 20%;
@@ -1181,7 +1191,7 @@ body:has(dialog[open]) {
             padding: 8px;
             align-items: center;
             gap: 4px;
-            line-height: 24px;
+            line-height: 2.4rem;
             border-radius: 12px;
             border: 1px solid rgba(68, 75, 80, 0.80);
             color: rgba(68, 75, 80, 0.80);
@@ -1386,7 +1396,7 @@ dialog:open {
     block-size: 48px;
     border: none;
     color: white;
-    font-size: 24px;
+    font-size: 2.4rem;
     cursor: pointer;
     z-index: 10;
     transition: opacity 0.3s;
