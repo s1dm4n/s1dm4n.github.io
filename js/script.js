@@ -1,4 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const burger  = document.getElementById('navBurger');
+    const side    = document.getElementById('sideMenu');
+    const close   = document.getElementById('sideMenuClose');
+    const overlay = document.getElementById('sideMenuOverlay');
+  
+    function openMenu() {
+      side.classList.add('active');
+      overlay.classList.add('active');
+    }
+    function closeMenu() {
+      side.classList.remove('active');
+      overlay.classList.remove('active');
+    }
+  
+    // Открытие/закрытие по бургеру
+    burger.addEventListener('click', () => {
+      side.classList.contains('active') ? closeMenu() : openMenu();
+    });
+    // Закрытие по кресту
+    close.addEventListener('click', closeMenu);
+    // Закрытие по клику на оверлей
+    overlay.addEventListener('click', closeMenu);
+  
+    // Закрытие при клике на любую ссылку внутри меню
+    side.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', closeMenu)
+    );
+  });
+
+document.addEventListener('DOMContentLoaded', () => {
     const parallaxImage = document.querySelector('.parallax-image');
     const container = document.querySelector('.integration__cover');
     const parentWidth = 1080; // Ширина родительского контейнера
@@ -336,3 +366,18 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', updateActiveModule);
     updateActiveModule();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.getElementById('navBurger');
+    const side = document.getElementById('sideMenu');
+    const close = document.getElementById('sideMenuClose');
+
+    burger.addEventListener('click', () => {
+      side.classList.add('active');
+      side.setAttribute('aria-hidden', 'false');
+    });
+    close.addEventListener('click', () => {
+      side.classList.remove('active');
+      side.setAttribute('aria-hidden', 'true');
+    });
+  });
