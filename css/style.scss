@@ -324,6 +324,7 @@ body:has(dialog[open]) {
 
         &__image {
             box-shadow: 0px 2px 20px -2px rgba(0, 0, 0, 0.20);
+            width: 524px;
         }
     }
 
@@ -620,7 +621,7 @@ body:has(dialog[open]) {
         }
 
         .slider {
-            width: 60%;
+            width: 50vh !important
 
             img {
                 width: 100%;
@@ -1019,6 +1020,12 @@ body:has(dialog[open]) {
         }
 
 
+    }
+
+    .platforms {
+        &__image__low-size{
+            display: none;
+        }
     }
 
     .contacts {
@@ -1492,7 +1499,7 @@ dialog:open {
   .side-menu {
     position: fixed;
     top: 0; right: 0;
-    width: 300px; height: 100%;
+    width: 300px; height: 100vh;
     background: #ffffff;
     box-shadow: -8px 0 24px rgba(0,0,0,0.2);
     padding: 2rem 1.5rem;
@@ -1619,30 +1626,38 @@ dialog:open {
         gap: 24px;
     }
 
-@media (max-height: 1900px) {
+@media (max-width: 1900px) {
+    @media (min-height: 1440px) {
+        .main .cases .card__block {
+            height: 35vh;
+            flex-direction: column-reverse;
+        }
+
+        .main .cases .card__image {
+            height: 16vh !important;
+            flex: none;
+        }
+
+        .main .card__image {
+            display: none;
+        }
+
+        .main .cases .card__header {
+           
+            img { 
+                width: 40% !important;
+            }
+
+            & .oil {
+                width: 30% !important;
+            }
+        }
+    }
     .card {
         &__header {
             height: 52vh !important;
         }
     }
-}
-
-@media (max-height: 1500px) {
-    .card {
-        &__header {
-            height: 58vh !important;
-        }
-    }
-
-}
-
-@media (max-height: 1100px) {
-    .card {
-        &__header {
-            height: 64vh !important;
-        }
-    }
-    
     .button-prev {
         left: 100px;
     }
@@ -1651,24 +1666,30 @@ dialog:open {
     }
 }
 
-@media (max-height: 800px) {
+@media (max-width: 1100px) {
+    .card {
+        &__header {
+            height: 64vh !important;
+        }
+    }
+}
+
+@media (max-width: 800px) {
     
     .button-prev {
-        left: 60px;
+        left: 20px;
     }
     .button-next {
-        right: 60px;
+        right: 20px;
     }
 }
 
 @media (max-width: 1500px) {
 
-    .display__centered, .nav .display__centered {
-        width: calc(100% - 124px) !important;
-    }
-
-    .main .security .slider {
-        width: 80% !important;
+    .card {
+        &__header {
+            height: 58vh !important;
+        }
     }
     
     .main .security {
@@ -1689,27 +1710,53 @@ dialog:open {
 
 @media (max-width: 1200px) {
     @media (max-height: 1100px) {
+        
+        .main .security .slider {
+            width: 50vh !important;
+        }
+
         .card__header {
             height: 84vh !important;
 
             img {
-                width: 50%;
+                width: 50% !important;
+            }
+
+            .oil {
+                width: 36% !important;
+            }
+
+            .gas {
+                width: 58% !important;
             }
         }
+    }
+
+    .display__centered{
+        width: calc(100% - 124px);
+    }
+
+    dialog:open {
+        padding: 0;
+    }
+
+    .button-prev {
+        left: 0vh;
+    }
+    
+    .button-next {
+        right: 0vh;
     }
 
     .main {
 
         .security {
 
-            .slider {
-                width: 100% !important;
-            }
             .button-prev {
-                left: -40px !important;
+                left: -10vh !important;
             }
             .button-next {
-                right: -40px !important;
+                right: -10vh !important;
             }
         }
 
@@ -1732,9 +1779,45 @@ dialog:open {
     .nav__li:nth-last-of-type(2) {
         display: none;
     }
+    
+    .button {
+        font-size: 2rem;
+        width: 100%;
+    }
+
+    .heading {
+        font-size: 5.2rem;
+    }
+
+    .main .cases__case {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 32px;
+    }
+
+    .main .cases__button {
+        width: 320px;
+
+        &:first-child>img {
+            height: 56px;
+        }
+
+        img {
+            height: 46px;
+        }
+    }
 }
 
 @media (max-width: 992px) {
+
+    .display__centered{
+        width: calc(100% - 80px) !important;
+    }
+
+    .main .cases__button {
+        width: 250px;
+    }
+
     .nav__ul,
     .nav__menu > a[href^="tel"] {
       display: none;
@@ -1752,6 +1835,7 @@ dialog:open {
 
     .main .security {
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .main .preview {
@@ -1779,15 +1863,6 @@ dialog:open {
         }
     }
 
-    .main .cases__case {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .main .cases__button {
-        width: 250px;
-    }
-
     .main .integration__cover {
         overflow: visible;
         height: auto;
@@ -1799,5 +1874,54 @@ dialog:open {
 
     .main .preview__image {
         width: 100%;
+    }
+
+    .main .advantages {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .main .modules__content .module__content[data-index="1"] {
+        min-height: auto; 
+        margin-bottom: 178px;
+    }
+
+    .main .advantages__image {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    @media (min-height: 1440px) {
+        .button-next {
+            right: 0px;
+        }
+        .button-prev {
+            left: 0px;
+        }
+    }
+    .display__centered{
+        width: calc(100% - 44px) !important;
+    }
+
+    .main .platforms__image {
+        display: none;
+
+        &__low-size {
+            display: block;
+        }
+    }
+}
+
+@media (max-width: 668px) {
+    .main .cases__button {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 375px) {
+    .display__centered{
+        width: calc(100% - 24px) !important;
     }
 }
