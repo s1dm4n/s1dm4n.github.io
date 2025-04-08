@@ -1596,6 +1596,24 @@ dialog:open::backdrop {
   .main .platforms__image__low-size {
     display: block;
   }
+  .text {
+    font-size: 1.6rem;
+  }
+  .heading {
+    font-size: 4.8rem;
+  }
+  h2.heading {
+    font-size: 4.2rem;
+  }
+  .accordion__heading {
+    font-size: 1.8rem !important;
+  }
+  .main .accordion__heading {
+    padding: 28px 0;
+  }
+  .main .modules__content .module__content {
+    margin-left: -20px;
+  }
 }
 @media (max-width: 668px) {
   .main .cases__button {
