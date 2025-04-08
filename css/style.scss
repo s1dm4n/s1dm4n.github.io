@@ -1459,7 +1459,7 @@ dialog:open {
     flex-direction: column;
     justify-content: space-between;
     width: 24px;
-    height: 18px;
+    height: 17px;
     background: none;
     border: none;
     cursor: pointer;
@@ -1467,15 +1467,15 @@ dialog:open {
   }
   .nav__burger span {
     display: block;
-    height: 2.8px;
-    background: #909294;
-    border-radius: 2px;
+    height: 2.6px;
+    background: #7b8992;
     transition: background-image 0.3s;
   }
 
   
   .side-menu.active {
-    transform: translateX(0) !important;          /* при active — на место */
+    transform: translateX(0) !important;   
+    box-shadow: -8px 0 24px rgba(0,0,0,0.2);       /* при active — на место */
     }
   
 /* 1. Оверлей с блюром */
@@ -1501,7 +1501,6 @@ dialog:open {
     top: 0; right: 0;
     width: 300px; height: 100vh;
     background: #ffffff;
-    box-shadow: -8px 0 24px rgba(0,0,0,0.2);
     padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -1782,7 +1781,7 @@ dialog:open {
     
     .button {
         font-size: 2rem;
-        width: 100%;
+        padding: 16px 24px;
     }
 
     .heading {
@@ -1839,7 +1838,7 @@ dialog:open {
     }
 
     .main .preview {
-        flex-wrap: wrap-reverse;
+        flex-direction: column-reverse;
     }
 
     .main .modules__visual {
@@ -1869,11 +1868,7 @@ dialog:open {
     }
 
     .main .preview__block {
-        align-items: flex-end;
-    }
-
-    .main .preview__image {
-        width: 100%;
+        align-items: center;
     }
 
     .main .advantages {
@@ -1900,6 +1895,11 @@ dialog:open {
             left: 0px;
         }
     }
+
+    .main article {
+        margin-bottom: 78px;
+    }
+
     .display__centered{
         width: calc(100% - 44px) !important;
     }
@@ -1917,11 +1917,12 @@ dialog:open {
     }
 
     .heading {
-        font-size: 4.8rem;
+        font-size: 3.2rem;
+        line-height: 100%;
     }
 
     h2.heading {
-        font-size: 4.2rem;
+        font-size: 2.8rem;
     }
 
     .accordion__heading {
@@ -1940,6 +1941,10 @@ dialog:open {
 @media (max-width: 668px) {
     .main .cases__button {
         width: 100%;
+    }
+
+    .nav .mobile-menu a{
+        display: none;
     }
 }
 
