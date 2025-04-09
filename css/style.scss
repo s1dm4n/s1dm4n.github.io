@@ -103,7 +103,7 @@ body:has(dialog[open]) {
 // Фиксированние шапки
 .fixed-top {
     position: fixed;
-    z-index: 10;
+    z-index: 101;
     top: 0;
     left: 0;
     width: 100%;
@@ -1465,138 +1465,91 @@ dialog:open {
     cursor: pointer;
     margin-left: 1rem;
   }
-  .nav__burger span {
-    display: block;
-    height: 2.6px;
-    background: #7b8992;
-    transition: background-image 0.3s;
-  }
 
-  
-  .side-menu.active {
-    transform: translateX(0) !important;   
-    box-shadow: -8px 0 24px rgba(0,0,0,0.2);       /* при active — на место */
-    }
-  
-/* 1. Оверлей с блюром */
-.side-menu-overlay {
+  .mobile-fullscreen-menu {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(2px);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s;
-    z-index: 9999;
-  }
-  .side-menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  /* 2. Само меню */
-  .side-menu {
-    position: fixed;
-    top: 0; right: 0;
-    width: 300px; height: 100vh;
-    background: #ffffff;
-    padding: 2rem 1.5rem;
+    right: 0;
+    top: 0;
+    z-index: 100;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: flex-start;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 10000;
-  }
-  .side-menu.active {
-    transform: translateX(0);
-  }
-  
-  /* 3. Кнопка закрытия */
-  .side-menu__close {
-    align-self: flex-end;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: #444;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  .side-menu__close:hover {
-    color: #D45749;
-  }
-  
-  /* 4. Список ссылок */
-  .side-menu__ul {
-    list-style: none;
-    padding: 0;
-    margin: 2rem 0;
-  }
-  .side-menu__ul li {
-    margin-bottom: 1.25rem;
+    padding-top: 120px;
+
+    /* Анимация открытия */
     opacity: 0;
-    transform: translateX(20px);
-    animation: slideIn 0.4s forwards;
-  }
-  .side-menu__ul li:nth-child(1) { animation-delay: 0.1s; }
-  .side-menu__ul li:nth-child(2) { animation-delay: 0.2s; }
-  .side-menu__ul li:nth-child(3) { animation-delay: 0.3s; }
-  .side-menu__ul li:nth-child(4) { animation-delay: 0.4s; }
-  .side-menu__ul li:nth-child(5) { animation-delay: 0.5s; }
-  .side-menu__ul li:nth-child(6) { animation-delay: 0.6s; }
-  .side-menu__ul li:nth-child(7) { animation-delay: 0.7s; }
-  
-  .side-menu.active .side-menu__ul li {
-    /* запускаем анимацию при открытии */
-  }
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateX(20px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  
-  /* 5. Стили ссылок */
-  .side-menu__ul a {
-    position: relative;
-    font-size: 1.4rem;
-    color: #333;
+    transform: translateY(-20px);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    pointer-events: none;
+    visibility: hidden;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.05);
+    border-left: 1.5px solid rgba(0, 0, 0, 0.05);
+    background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-backdrop-filter: blur(22.5px);
+    backdrop-filter: blur(22.5px);
+    border-radius: 10px;
+}
+
+.mobile-fullscreen-menu.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.mobile-fullscreen-menu.no-transition {
+    transition: none !important;
+}
+
+.mobile-fullscreen-menu__links {
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
+    text-align: left;
+}
+
+.mobile-fullscreen-menu__links li {
+    padding: 16px;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.05);
+}
+
+.mobile-fullscreen-menu__links li:last-of-type {
+    border: none;
+}
+
+.mobile-fullscreen-menu__links a {
+    font-size: 20px;
     text-decoration: none;
-    transition: color 0.3s;
-  }
-  .side-menu__ul a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #D45749;
-    transition: width 0.3s;
-  }
-  .side-menu__ul a:hover {
-    color: #D45749;
-  }
-  .side-menu__ul a:hover::after {
-    width: 100%;
-  }
-  
-  /* 6. Блок контактов */
-  .side-menu__contacts {
-    margin-top: auto;
-    font-size: 1.2rem;
-    color: #555;
-  }
-  .side-menu__contacts p {
-    margin: 0.5rem 0;
-  }
-  .side-menu__contacts a {
-    color: #444b50;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .side-menu__contacts a:hover {
-    color: #D45749;
-  }
+    color: $color-gray;
+}
+
+.mobile-fullscreen-menu__button {
+    margin-top: 40px;
+    padding: 20px 24px;
+}
+
+/* Анимация бургер-меню в крестик */
+.nav__burger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav__burger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav__burger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav__burger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #6c757b;
+    transition: all 0.3s ease-in-out;
+}
+
 
   .nav__cta {
     display: none;
@@ -1779,9 +1732,17 @@ dialog:open {
         display: none;
     }
     
-    .button {
+    .nav__cta {
         font-size: 2rem;
-        padding: 16px 24px;
+        padding: 12px 24px;
+    }
+
+    .mobile-fullscreen-menu {
+        padding-top: 150px;
+    }
+
+    .mobile-fullscreen-menu__button {
+        display: none;
     }
 
     .heading {
@@ -1896,6 +1857,10 @@ dialog:open {
         }
     }
 
+    .nav__cta {
+        display: none !important;
+    }
+
     .main .modules__content .module__content {
         margin-bottom: 78px;
     }
@@ -1939,6 +1904,39 @@ dialog:open {
 
     .main .modules__content .module__content {
         margin-left: -20px;
+    }
+    
+    .mobile-fullscreen-menu {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 120px;
+    
+        /* Анимация открытия */
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+        pointer-events: none;
+        visibility: hidden;
+    }
+
+    .mobile-fullscreen-menu__links {
+        width: 100%;
+    }
+
+    .mobile-fullscreen-menu__button {
+        display: flex;
+        font-size: 2rem;
+    }
+    
+    .button {
+        padding: 20px 24px;
     }
 }
 

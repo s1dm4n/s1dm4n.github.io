@@ -1,32 +1,60 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const burger  = document.getElementById('navBurger');
-    const side    = document.getElementById('sideMenu');
-    const close   = document.getElementById('sideMenuClose');
-    const overlay = document.getElementById('sideMenuOverlay');
-  
-    function openMenu() {
-      side.classList.add('active');
-      overlay.classList.add('active');
-    }
-    function closeMenu() {
-      side.classList.remove('active');
-      overlay.classList.remove('active');
-    }
-  
-    // Открытие/закрытие по бургеру
-    burger.addEventListener('click', () => {
-      side.classList.contains('active') ? closeMenu() : openMenu();
+const burger = document.getElementById('navBurger');
+const menu = document.getElementById('mobileMenu');
+const menuLinks = document.querySelectorAll('.mobile-fullscreen-menu__links a');
+
+// Функция для открытия меню
+function openMenu() {
+    burger.classList.add('open');
+    menu.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Функция для закрытия меню
+function closeMenu() {
+    burger.classList.remove('open');
+    menu.classList.add('no-transition');
+    menu.classList.remove('active');
+    document.body.style.overflow = '';
+
+    // Возвращаем анимацию на следующее открытие
+    requestAnimationFrame(() => {
+        menu.classList.remove('no-transition');
     });
-    // Закрытие по кресту
-    close.addEventListener('click', closeMenu);
-    // Закрытие по клику на оверлей
-    overlay.addEventListener('click', closeMenu);
-  
-    // Закрытие при клике на любую ссылку внутри меню
-    side.querySelectorAll('a').forEach(link =>
-      link.addEventListener('click', closeMenu)
-    );
-  });
+}
+
+// Обработчик клика по бургеру
+burger.addEventListener('click', () => {
+    if (menu.classList.contains('active')) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
+});
+
+// Обработчик кликов по ссылкам в меню
+menuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        closeMenu();
+
+        // Плавный скролл к якорю (с учётом фиксированной шапки)
+        const href = link.getAttribute('href');
+        const target = document.querySelector(href);
+        if (target) {
+            const headerOffset = document.getElementById('header').offsetHeight;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            setTimeout(() => {
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }, 0);
+
+            e.preventDefault();
+        }
+    });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const parallaxImage = document.querySelector('.parallax-image');
