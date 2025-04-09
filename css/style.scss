@@ -1489,6 +1489,8 @@ dialog:open {
     -webkit-backdrop-filter: blur(22.5px);
     backdrop-filter: blur(22.5px);
     border-radius: 10px;
+    overflow: hidden auto;
+    max-height: 90vh;
 }
 
 .mobile-fullscreen-menu.active {
@@ -1924,6 +1926,7 @@ dialog:open {
         transition: opacity 0.25s ease-out, transform 0.25s ease-out;
         pointer-events: none;
         visibility: hidden;
+        max-height: none;
     }
 
     .mobile-fullscreen-menu__links {
