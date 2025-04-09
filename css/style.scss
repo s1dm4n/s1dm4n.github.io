@@ -621,7 +621,7 @@ body:has(dialog[open]) {
         }
 
         .slider {
-            width: 50vh !important
+            width: 50vh !important;
 
             img {
                 width: 100%;
@@ -1791,7 +1791,7 @@ dialog:open {
     .main .cases__case {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 32px;
+        gap: 28px;
     }
 
     .main .cases__button {
@@ -1878,7 +1878,7 @@ dialog:open {
 
     .main .modules__content .module__content[data-index="1"] {
         min-height: auto; 
-        margin-bottom: 178px;
+        margin-bottom: 78px;
     }
 
     .main .advantages__image {
@@ -1896,6 +1896,10 @@ dialog:open {
         }
     }
 
+    .main .modules__content .module__content {
+        margin-bottom: 78px;
+    }
+    
     .main article {
         margin-bottom: 78px;
     }
@@ -1912,12 +1916,12 @@ dialog:open {
         }
     }
 
-    .text {
-        font-size: 1.6rem;
+    .text, ul li {
+        font-size: 1.6rem !important;
     }
 
     .heading {
-        font-size: 3.2rem;
+        font-size: 3.2rem !important;
         line-height: 100%;
     }
 
@@ -1944,6 +1948,12 @@ dialog:open {
     }
 
     .nav .mobile-menu a{
+        display: none;
+    }
+}
+
+@media (max-width: 476px) {
+    .main .security svg {
         display: none;
     }
 }
