@@ -1437,7 +1437,7 @@ dialog:open::backdrop {
     width: calc(100% - 80px) !important;
   }
   .main .cases__button {
-    width: 250px;
+    width: 282px;
   }
   .nav__ul,
   .nav__menu > a[href^=tel] {
@@ -1536,14 +1536,10 @@ dialog:open::backdrop {
   .main .accordion__heading {
     padding: 28px 0;
   }
-  .main .modules__content .module__content {
-    margin-left: -20px;
-  }
   .mobile-fullscreen-menu {
     left: 0;
     right: 0;
     bottom: 0;
-    background: white;
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -1568,11 +1564,14 @@ dialog:open::backdrop {
   .button {
     padding: 20px 24px;
   }
+  .main .modules__content ul {
+    padding-left: 22px !important;
+  }
+  .main .modules .p-left {
+    padding-left: 4px;
+  }
 }
 @media (max-width: 668px) {
-  .main .cases__button {
-    width: 100%;
-  }
   .nav .mobile-menu a {
     display: none;
   }
