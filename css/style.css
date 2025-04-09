@@ -559,7 +559,10 @@ body:has(dialog[open]) {
 }
 .main .modules__content .module__content[data-index="1"] {
   min-height: 420px;
-  margin: 0;
+  margin-bottom: 172px;
+}
+.main .modules__content .module__content[data-index="1"] h2 {
+  font-size: 5.2rem;
 }
 .main .modules__content span {
   font-size: 2.4rem !important;
@@ -1473,6 +1476,7 @@ dialog:open::backdrop {
   }
   .main .integration__image__low-size {
     display: block;
+    width: 500px;
   }
   .main .integration__cover {
     overflow: visible;
@@ -1485,12 +1489,21 @@ dialog:open::backdrop {
     flex-direction: column;
     gap: 20px;
   }
+  .main .modules__content .module__content {
+    align-items: center;
+    margin-bottom: 78px !important;
+  }
   .main .modules__content .module__content[data-index="1"] {
     min-height: auto;
-    margin-bottom: 78px;
   }
   .main .advantages__image {
     display: none;
+  }
+  .main .modules__content ul {
+    padding-left: 22px !important;
+  }
+  .main .modules .p-left {
+    padding-left: 4px;
   }
 }
 @media (max-width: 768px) and (min-height: 1440px) {
@@ -1563,12 +1576,6 @@ dialog:open::backdrop {
   }
   .button {
     padding: 20px 24px;
-  }
-  .main .modules__content ul {
-    padding-left: 22px !important;
-  }
-  .main .modules .p-left {
-    padding-left: 4px;
   }
 }
 @media (max-width: 668px) {
