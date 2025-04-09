@@ -402,9 +402,6 @@ body:has(dialog[open]) {
   transition: all 0.3s;
   cursor: pointer;
 }
-.main .accordion__details[open] {
-  padding-bottom: 100px;
-}
 .main .accordion .text {
   border: none !important;
 }
@@ -797,7 +794,7 @@ body:has(dialog[open]) {
   will-change: transform;
   transition: transform 2s;
 }
-.main .integration__image__low-size {
+.main .integration__image__low-size, .main .integration__image__mobile {
   display: none;
 }
 .main .platforms__image__low-size {
@@ -834,7 +831,7 @@ body:has(dialog[open]) {
   width: -moz-fit-content;
   width: fit-content;
 }
-.main .contacts form {
+.main form {
   display: flex;
   padding: 44px 38px;
   align-items: center;
@@ -843,51 +840,51 @@ body:has(dialog[open]) {
   background: #FFF;
   background-color: #ffffff;
 }
-.main .contacts form .inputs {
+.main form .inputs {
   display: flex;
   width: 100%;
   gap: 16px !important;
 }
-.main .contacts form .button {
+.main form .button {
   width: 100%;
 }
-.main .contacts form input, .main .contacts form label {
+.main form input, .main form label {
   color: rgba(68, 75, 80, 0.8);
   border-radius: 16px;
   border: 1px solid rgba(68, 75, 80, 0.35);
   background: #FFF;
   padding: 14px 16px;
 }
-.main .contacts form label {
+.main form label {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
   color: rgba(68, 75, 80, 0.35);
 }
-.main .contacts form input[type=text]:hover, .main .contacts form input[type=email]:hover, .main .contacts form label:hover {
+.main form input[type=text]:hover, .main form input[type=email]:hover, .main form label:hover {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
   color: rgba(68, 75, 80, 0.8);
 }
-.main .contacts form input:hover::-moz-placeholder {
+.main form input:hover::-moz-placeholder {
   color: rgba(68, 75, 80, 0.8);
 }
-.main .contacts form input:hover::placeholder, .main .contacts form label:hover {
+.main form input:hover::placeholder, .main form label:hover {
   color: rgba(68, 75, 80, 0.8);
 }
-.main .contacts form input {
+.main form input {
   font-size: 1.6rem;
   font-weight: 300;
   line-height: 2.4rem;
   width: 100%;
   accent-color: #D45749;
 }
-.main .contacts form input[type=checkbox i] {
+.main form input[type=checkbox i] {
   width: -moz-fit-content;
   width: fit-content;
   color: rgba(68, 75, 80, 0.35);
 }
-.main .contacts form input::-moz-placeholder {
+.main form input::-moz-placeholder {
   color: rgba(68, 75, 80, 0.35);
   font-size: 1.6rem;
   font-weight: 300;
@@ -895,61 +892,59 @@ body:has(dialog[open]) {
   -moz-transition: color 0.2s;
   transition: color 0.2s;
 }
-.main .contacts form input::placeholder {
+.main form input::placeholder {
   color: rgba(68, 75, 80, 0.35);
   font-size: 1.6rem;
   font-weight: 300;
   line-height: 2.4rem;
   transition: color 0.2s;
 }
-.main .contacts form input::-webkit-input-placeholder {
+.main form input::-webkit-input-placeholder {
   color: rgba(68, 75, 80, 0.35);
   font-size: 1.6rem;
   font-weight: 300;
   line-height: 2.4rem;
 }
-.main .contacts form input:-moz-placeholder {
+.main form input:-moz-placeholder {
   color: rgba(68, 75, 80, 0.35);
   font-size: 1.6rem;
   font-weight: 300;
   line-height: 2.4rem;
 }
-.main .contacts form input::-moz-placeholder {
+.main form input::-moz-placeholder {
   color: rgba(68, 75, 80, 0.35);
   font-size: 1.6rem;
   font-weight: 300;
   line-height: 2.4rem;
 }
-.main .contacts form input:-ms-input-placeholder {
+.main form input:-ms-input-placeholder {
   color: rgba(68, 75, 80, 0.35);
   font-size: 1.6rem;
   font-weight: 300;
   line-height: 2.4rem;
 }
-.main .contacts form input::-ms-input-placeholder {
+.main form input::-ms-input-placeholder {
   color: rgba(68, 75, 80, 0.35);
   font-size: 1.6rem;
   font-weight: 300;
   line-height: 2.4rem;
 }
-.main .contacts form span {
-  color: currentColor;
+.main form .checkbox__text {
+  font-weight: 300;
+  color: rgba(68, 75, 80, 0.35) !important;
   padding: 0;
   border: none;
   transition: color 0.2s;
 }
-.main .contacts form .checkbox__text {
-  font-weight: 300;
-}
-.main .contacts__confidential {
+.main form .form__confidential {
   color: #444B50 !important;
-  font-size: 1.2rem;
+  font-size: 1.2rem !important;
   line-height: 1.4rem;
   white-space: pre-line;
   text-align: center;
   text-underline-offset: 20%;
 }
-.main .contacts__confidential a {
+.main form .form__confidential a {
   color: currentColor;
 }
 
@@ -1539,15 +1534,22 @@ dialog:open::backdrop {
   .heading {
     font-size: 3.2rem !important;
     line-height: 100%;
+    margin-bottom: 28px;
   }
-  h2.heading {
-    font-size: 2.8rem;
+  h3.heading {
+    font-size: 2.8rem !important;
+  }
+  .main .modules__content span {
+    font-size: 2rem;
   }
   .accordion__heading {
     font-size: 1.8rem !important;
   }
-  .main .accordion__heading {
-    padding: 28px 0;
+  .accordion__heading {
+    padding: 28px 0 !important;
+  }
+  .main .accordion__heading.first {
+    padding: 0 0 28px 0 !important;
   }
   .mobile-fullscreen-menu {
     left: 0;
@@ -1576,6 +1578,10 @@ dialog:open::backdrop {
   }
   .button {
     padding: 20px 24px;
+    font-size: 2rem;
+  }
+  .main .accordion__details[open] {
+    padding: 0;
   }
 }
 @media (max-width: 668px) {
@@ -1586,6 +1592,15 @@ dialog:open::backdrop {
 @media (max-width: 476px) {
   .main .security svg {
     display: none;
+  }
+  .main .platforms__image {
+    display: none;
+  }
+  .main .platforms__image__low-size {
+    display: none;
+  }
+  .main .platforms__image__mobile {
+    display: block;
   }
 }
 @media (max-width: 375px) {
