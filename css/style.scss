@@ -1863,6 +1863,10 @@ dialog:open {
     .main .modules .p-left {
         padding-left: 4px;
     }
+
+    .main article {
+        scroll-margin: 178px !important;
+    }
     
 }
 
@@ -1951,7 +1955,7 @@ dialog:open {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding-top: 120px;
+        padding-top: 130px;
     
         /* Анимация открытия */
         opacity: 0;
@@ -1978,6 +1982,10 @@ dialog:open {
 
     .main .accordion__details[open] {
         padding: 0;
+    }
+
+    .main article {
+        scroll-margin: 148px !important;
     }
 }
 

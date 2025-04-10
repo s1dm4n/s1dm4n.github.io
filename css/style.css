@@ -1502,6 +1502,9 @@ dialog:open::backdrop {
   .main .modules .p-left {
     padding-left: 4px;
   }
+  .main article {
+    scroll-margin: 178px !important;
+  }
 }
 @media (max-width: 768px) and (min-height: 1440px) {
   .button-next {
@@ -1571,7 +1574,7 @@ dialog:open::backdrop {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 120px;
+    padding-top: 130px;
     /* Анимация открытия */
     opacity: 0;
     transform: translateY(-20px);
@@ -1593,6 +1596,9 @@ dialog:open::backdrop {
   }
   .main .accordion__details[open] {
     padding: 0;
+  }
+  .main article {
+    scroll-margin: 148px !important;
   }
 }
 @media (max-width: 668px) {

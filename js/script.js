@@ -1,61 +1,3 @@
-const burger = document.getElementById('navBurger');
-const menu = document.getElementById('mobileMenu');
-const menuLinks = document.querySelectorAll('.mobile-fullscreen-menu__links a');
-
-// Функция для открытия меню
-function openMenu() {
-    burger.classList.add('open');
-    menu.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-// Функция для закрытия меню
-function closeMenu() {
-    burger.classList.remove('open');
-    menu.classList.add('no-transition');
-    menu.classList.remove('active');
-    document.body.style.overflow = '';
-
-    // Возвращаем анимацию на следующее открытие
-    requestAnimationFrame(() => {
-        menu.classList.remove('no-transition');
-    });
-}
-
-// Обработчик клика по бургеру
-burger.addEventListener('click', () => {
-    if (menu.classList.contains('active')) {
-        closeMenu();
-    } else {
-        openMenu();
-    }
-});
-
-// Обработчик кликов по ссылкам в меню
-menuLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        closeMenu();
-
-        // Плавный скролл к якорю (с учётом фиксированной шапки)
-        const href = link.getAttribute('href');
-        const target = document.querySelector(href);
-        if (target) {
-            const headerOffset = document.getElementById('header').offsetHeight;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            setTimeout(() => {
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }, 0);
-
-            e.preventDefault();
-        }
-    });
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     const parallaxImage = document.querySelector('.parallax-image');
     const container = document.querySelector('.integration__cover');
@@ -409,3 +351,51 @@ document.addEventListener('DOMContentLoaded', () => {
       side.setAttribute('aria-hidden', 'true');
     });
   });
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.getElementById('navBurger');
+    const menu = document.getElementById('mobileMenu');
+
+    function updateScrollLock() {
+        if (menu.classList.contains('active')) {
+            if (window.innerWidth <= 768) {
+                document.body.style.overflow = 'hidden'; // Блокируем прокрутку на мобильном
+            } else {
+                document.body.style.overflow = ''; // Разрешаем прокрутку на планшете и выше
+            }
+        } else {
+            document.body.style.overflow = ''; // Разрешаем в любом случае, если меню закрыто
+        }
+    }
+
+    function closeMenu() {
+        menu.classList.remove('active');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    // Обработка изменения ширины окна
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 992 && menu.classList.contains('active')) {
+            closeMenu(); // Закрываем меню при переходе на десктоп
+        } else {
+            updateScrollLock(); // Синхронизируем скролл
+        }
+    });
+
+    // Обработка клика по бургеру
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        menu.classList.toggle('active');
+        updateScrollLock();
+    });
+
+    // Закрытие меню при клике по ссылке в мобильном меню
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('active');
+            burger.classList.remove('open');
+            document.body.style.overflow = ''; // или document.documentElement.classList.remove('lock-scroll');
+        });
+    });
+});
