@@ -390,6 +390,7 @@ body:has(dialog[open]) {
 }
 .main .advantages__text {
   font-weight: 500;
+  font-size: 2.2rem;
 }
 .main .advantages h2, .main .advantages p {
   color: #ffffff;
@@ -1511,6 +1512,9 @@ dialog:open::backdrop {
   }
 }
 @media (max-width: 768px) {
+  .main .modules__content ul li {
+    margin-bottom: 10px;
+  }
   .nav__cta {
     display: none !important;
   }
@@ -1528,6 +1532,9 @@ dialog:open::backdrop {
   }
   .main .platforms__image__low-size {
     display: block;
+  }
+  .main .advantages__text {
+    font-size: 2.2rem !important;
   }
   .text, ul li {
     font-size: 1.4rem !important;
