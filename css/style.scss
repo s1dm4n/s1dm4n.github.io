@@ -1916,11 +1916,6 @@ dialog:open {
         font-size: 1.8rem;
     }
 
-    
-    .main .accordion .text {
-        font-size: 1.6rem;
-    }
-
     .heading {
         font-size: 3.2rem !important;
         line-height: 100%;
@@ -1939,8 +1934,12 @@ dialog:open {
         margin: 0 0 20px 16px;
     }
 
-    .accordion__heading {
+    .main .accordion ul li {
         font-size: 1.6rem !important;
+    }
+
+    .accordion__heading {
+        font-size: 1.8rem !important;
     }
 
     .accordion__heading {
