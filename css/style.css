@@ -794,10 +794,10 @@ body:has(dialog[open]) {
   will-change: transform;
   transition: transform 2s;
 }
-.main .integration__image__low-size, .main .integration__image__mobile {
+.main .integration__image__low-size {
   display: none;
 }
-.main .platforms__image__low-size {
+.main .platforms__image__low-size, .main .platforms__image__mobile {
   display: none;
 }
 .main .contacts {
@@ -935,6 +935,7 @@ body:has(dialog[open]) {
   padding: 0;
   border: none;
   transition: color 0.2s;
+  line-height: 2.4rem;
 }
 .main form .form__confidential {
   color: #444B50 !important;
@@ -992,6 +993,7 @@ body:has(dialog[open]) {
 }
 .footer__copyright {
   gap: 32px;
+  flex-wrap: wrap;
 }
 .footer dialog {
   padding: 0;
@@ -1542,8 +1544,11 @@ dialog:open::backdrop {
   .main .modules__content span {
     font-size: 2rem;
   }
+  .main .accordion ul {
+    margin: 0 0 20px 16px;
+  }
   .accordion__heading {
-    font-size: 1.8rem !important;
+    font-size: 1.6rem !important;
   }
   .accordion__heading {
     padding: 28px 0 !important;
@@ -1602,9 +1607,41 @@ dialog:open::backdrop {
   .main .platforms__image__mobile {
     display: block;
   }
+  form {
+    padding: 24px 18px !important;
+  }
+  form input, form label {
+    padding: 8px 12px !important;
+    border-radius: 12px !important;
+  }
+  form input::-moz-placeholder {
+    font-size: 1.4rem !important;
+  }
+  form input::placeholder, form .checkbox__text {
+    font-size: 1.4rem !important;
+  }
+  form .button {
+    font-size: 1.8rem;
+    white-space: nowrap;
+    padding: 14px 24px !important;
+  }
+  .main .contacts {
+    padding: 24px !important;
+    border-radius: 32px !important;
+    gap: 32px;
+  }
+  .main .contacts__data {
+    gap: 8px;
+  }
+  .main .contacts__heading {
+    margin-bottom: 16px;
+  }
 }
 @media (max-width: 375px) {
   .display__centered {
     width: calc(100% - 24px) !important;
+  }
+  .button {
+    font-size: 1.8rem;
   }
 }/*# sourceMappingURL=style.css.map */
