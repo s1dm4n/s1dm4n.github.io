@@ -1540,6 +1540,9 @@ dialog:open::backdrop {
     font-size: 2.2rem !important;
   }
   .text {
+    font-size: 1.8rem;
+  }
+  .main .accordion .text {
     font-size: 1.6rem;
   }
   .heading {
