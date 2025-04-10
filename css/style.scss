@@ -1867,6 +1867,17 @@ dialog:open {
     .main article {
         scroll-margin: 178px !important;
     }
+    dialog {
+        padding: 0 !important;
+      }
+      .main .security .slider {
+        width: 80vw !important;
+      }
+      .main .cases .slider {
+        width: 80vw !important;
+      }
+      .button-prev { left: 20px !important; }
+      .button-next { right: 20px !important; }
     
 }
 
@@ -1934,11 +1945,11 @@ dialog:open {
         margin: 0 0 20px 16px;
     }
 
-    .main .accordion ul li {
+    .main .accordion ul li, .main .accordion-text {
         font-size: 1.6rem !important;
     }
 
-    .accordion__heading {
+    .accordion__heading{
         font-size: 1.8rem !important;
     }
 
