@@ -1333,7 +1333,7 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
   }
 }
 @media (max-width: 1624px) {
-  .child-cases {
+  .child {
     width: 80% !important;
   }
 }
@@ -1617,7 +1617,7 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
   .main .cases .card__header {
     padding: 0;
   }
-  .child-cases {
+  .child {
     width: 90% !important;
   }
 }
