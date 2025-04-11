@@ -108,72 +108,86 @@ document.addEventListener('DOMContentLoaded', () => {
     textBlocks.forEach(block => observer.observe(block));
 });
   
-document.addEventListener('DOMContentLoaded', function() {
-    // Общая функция для любого диалога‑слайдера
-    function initSlider(dialog, startSlide = 0) {
-      const slider = dialog.querySelector('.slider');
-      if (!slider) return;
-      const slides         = slider.querySelectorAll('.slide');
-      const slidesContainer= slider.querySelector('.slides');
-      const prevButton     = slider.querySelector('.button-prev');
-      const nextButton     = slider.querySelector('.button-next');
-      let currentSlide     = Math.min(startSlide, slides.length - 1);
-      let slideWidth       = slides[0].offsetWidth + 88; // gap
-  
-      function updateSliderPosition() {
-        slidesContainer.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-        prevButton.disabled = currentSlide === 0;
-        nextButton.disabled = currentSlide === slides.length - 1;
-      }
-  
-      slidesContainer.style.transition = 'transform 0.6s';
-      updateSliderPosition();
-  
-      prevButton.addEventListener('click', () => {
-        if (currentSlide > 0) {
-          currentSlide--;
-          updateSliderPosition();
-        }
-      });
-      nextButton.addEventListener('click', () => {
-        if (currentSlide < slides.length - 1) {
-          currentSlide++;
-          updateSliderPosition();
-        }
-      });
-      window.addEventListener('resize', () => {
-        slideWidth = slides[0].offsetWidth + 88;
+  document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация слайдера для casesDialog
+    function initCasesSlider(dialog, startSlide = 0) {
+        const slider = dialog.querySelector('.slider');
+        if (!slider) return;
+
+        const slides = slider.querySelectorAll('.slide');
+        const slidesContainer = slider.querySelector('.slides');
+        const controlButtons = slider.querySelectorAll('.button-radio');
+        const prevButton = slider.querySelector('.button-prev');
+        const nextButton = slider.querySelector('.button-next');
+        
+        let currentSlide = Math.min(startSlide, slides.length - 1);
+        const slideWidth = slides[0].offsetWidth + 88; // Add 88px gap to slide width
+        const totalSlides = slides.length;
+
+        // Установка начальной позиции
+        slidesContainer.style.transition = 'transform 0.6s';
         updateSliderPosition();
-      });
+
+        function updateSliderPosition() {
+            slidesContainer.style.transform = `translateX(calc(-${currentSlide * slideWidth}px))`; // Add half gap offset
+            
+            // Обновление активных кнопок
+            controlButtons.forEach((button, index) => {
+                button.classList.toggle('active', index === currentSlide);
+            });
+
+            // Обновление состояния кнопок навигации
+            prevButton.disabled = currentSlide === 0;
+            nextButton.disabled = currentSlide === totalSlides - 1;
+        }
+
+        // Обработчики для кнопок управления
+        controlButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                currentSlide = index;
+                updateSliderPosition();
+            });
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSliderPosition();
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSliderPosition();
+            }
+        });
     }
-  
-    // Открытие securityDialog
-    document.querySelectorAll('[data-dialog="securitySlider"]').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const dlg = document.getElementById('securitySlider');
-        if (!dlg) return;
-        dlg.showModal();
-        initSlider(dlg, parseInt(this.dataset.startSlide) || 0);
-      });
+
+    // Обработчик для открытия диалога casesDialog
+    const caseButtons = document.querySelectorAll('[data-dialog="casesDialog"]');
+    caseButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const dialog = document.getElementById('casesDialog');
+            if (!dialog) return;
+
+            dialog.showModal();
+            
+            // Инициализация слайдера с указанным начальным слайдом
+            const startSlide = parseInt(this.dataset.startSlide) || 0;
+            initCasesSlider(dialog, startSlide);
+        });
     });
-  
-    // Открытие casesDialog
-    document.querySelectorAll('[data-dialog="casesDialog"]').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const dlg = document.getElementById('casesDialog');
-        if (!dlg) return;
-        dlg.showModal();
-        initSlider(dlg, parseInt(this.dataset.startSlide) || 0);
-      });
+
+    // Закрытие диалога при клике вне контента
+    document.querySelectorAll('dialog').forEach(dialog => {
+        dialog.addEventListener('click', function(e) {
+            if (e.target === dialog) {
+                dialog.close();
+            }
+        });
     });
-  
-    // Закрытие по клику на фон
-    document.querySelectorAll('dialog').forEach(dlg => {
-      dlg.addEventListener('click', e => {
-        if (e.target === dlg) dlg.close();
-      });
-    });
-  });
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     // Общая функция инициализации слайдера
@@ -383,5 +397,40 @@ document.addEventListener('DOMContentLoaded', () => {
             burger.classList.remove('open');
             document.body.style.overflow = ''; // или document.documentElement.classList.remove('lock-scroll');
         });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const dialogs = document.querySelectorAll('dialog');
+
+    dialogs.forEach(dialog => {
+        const sliderLine = dialog.querySelector('.slider-line');
+        const nextBtn = dialog.querySelector('.button-next');
+        const prevBtn = dialog.querySelector('.button-prev');
+
+        let startX = 0;
+        let endX = 0;
+
+        sliderLine.addEventListener('touchstart', function (e) {
+            startX = e.touches[0].clientX;
+        });
+
+        sliderLine.addEventListener('touchend', function (e) {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const deltaX = endX - startX;
+            const threshold = 50;
+
+            if (Math.abs(deltaX) > threshold) {
+                if (deltaX < 0) {
+                    nextBtn.click();
+                } else {
+                    prevBtn.click();
+                }
+            }
+        }
     });
 });
