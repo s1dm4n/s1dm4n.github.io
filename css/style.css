@@ -1674,4 +1674,7 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
   .main .cases .card__block {
     height: 60vh;
   }
+  .child-security {
+    height: 80% !important;
+  }
 }/*# sourceMappingURL=style.css.map */
