@@ -1173,7 +1173,7 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
 .slider-close {
   position: absolute;
   top: 0;
-  left: 20px;
+  left: 0;
   z-index: 1000000;
 }
 
