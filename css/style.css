@@ -227,7 +227,7 @@ body:has(dialog[open]) {
 .main {
   margin-top: 12vmin;
 }
-.main .accordion, .main .cases, .main .advantages, .main .platforms, .main .security, .main .integration, .main .modules {
+.main .accordion, .main .cases, .main .advantages, .main .platforms, .main .partners, .main .security, .main .integration, .main .modules {
   scroll-margin: 178px;
 }
 .main .preview {
@@ -236,17 +236,17 @@ body:has(dialog[open]) {
 .main article {
   margin-bottom: 178px;
 }
-.main .preview, .main .security, .main .platforms, .main .contacts, .main .card, .main .integration, .main .modules {
+.main .preview, .main .security, .main .platforms, .main .partners, .main .contacts, .main .card, .main .integration, .main .modules {
   display: flex;
   gap: 48px;
   align-items: center;
 }
-.main .preview__block, .main .security__block, .main .platforms__block, .main .contacts__block, .main .card__block, .main .integration__block, .main .modules__block {
+.main .preview__block, .main .security__block, .main .platforms__block, .main .partners__block, .main .contacts__block, .main .card__block, .main .integration__block, .main .modules__block {
   display: flex;
   flex-direction: column;
   gap: 48px;
 }
-.main .preview__image, .main .security__image, .main .platforms__image, .main .contacts__image, .main .card__image, .main .integration__image, .main .modules__image {
+.main .preview__image, .main .security__image, .main .platforms__image, .main .partners__image, .main .contacts__image, .main .card__image, .main .integration__image, .main .modules__image {
   border-radius: 18px;
 }
 .main .preview {
@@ -491,7 +491,7 @@ body:has(dialog[open]) {
   -o-object-fit: contain;
      object-fit: contain;
 }
-.main .platforms, .main .integration, .main .modules {
+.main .platforms, .main .partners, .main .integration, .main .modules {
   flex-direction: column;
 }
 .main .modules {
@@ -803,6 +803,13 @@ body:has(dialog[open]) {
   padding: 48px;
   align-items: start;
 }
+.main .contacts iframe {
+  border-radius: 32px;
+  width: 100%;
+}
+.main .contacts h4 {
+  font-size: 32px;
+}
 .main .contacts__header h3 {
   margin-bottom: 32px;
 }
@@ -814,6 +821,7 @@ body:has(dialog[open]) {
 }
 .main .contacts__block {
   gap: 32px;
+  flex: 100%;
 }
 .main .contacts * {
   color: #ffffff;
@@ -828,122 +836,59 @@ body:has(dialog[open]) {
   width: -moz-fit-content;
   width: fit-content;
 }
-.main form {
+.main .contacts svg, .main .partners svg {
+  width: 28px !important;
+  flex: none;
+}
+.main .partners__card {
+  background-color: #fff;
   display: flex;
-  padding: 44px 38px;
-  align-items: center;
-  gap: 32px;
+  text-align: left;
+  padding: 48px;
+  gap: 48px;
   border-radius: 24px;
-  background: #FFF;
-  background-color: #ffffff;
+  border: 1px solid #000;
 }
-.main form .inputs {
-  display: flex;
-  width: 100%;
-  gap: 16px !important;
+.main .partners__card:first-child {
+  margin-bottom: 32px;
 }
-.main form .button {
-  width: 100%;
+.main .partners__card h4 {
+  font-weight: 400;
+  font-size: 32px;
 }
-.main form input, .main form label {
-  color: rgba(68, 75, 80, 0.8);
-  border-radius: 16px;
-  border: 1px solid rgba(68, 75, 80, 0.35);
-  background: #FFF;
-  padding: 14px 16px;
+.main .partners__card img {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
-.main form label {
+.main .partners__card svg path {
+  fill: currentColor;
+}
+.main .partners__card .email path {
+  fill: #D45749;
+}
+.main .partners__card span {
+  font-weight: 300;
   display: flex;
   align-items: center;
   gap: 8px;
-  cursor: pointer;
-  color: rgba(68, 75, 80, 0.35);
 }
-.main form input[type=text]:hover, .main form input[type=email]:hover, .main form label:hover {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
-  color: rgba(68, 75, 80, 0.8);
+.main .partners__card span:first-of-type {
+  align-items: start;
 }
-.main form input:hover::-moz-placeholder {
-  color: rgba(68, 75, 80, 0.8);
+.main .partners__card span a {
+  text-decoration-thickness: 5%;
+  text-underline-offset: 19%;
 }
-.main form input:hover::placeholder, .main form label:hover {
-  color: rgba(68, 75, 80, 0.8);
+.main .partners__data {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-.main form input {
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 2.4rem;
-  width: 100%;
-  accent-color: #D45749;
+.main .partners__data li {
+  margin-bottom: 8px;
 }
-.main form input[type=checkbox i] {
-  width: -moz-fit-content;
-  width: fit-content;
-  color: rgba(68, 75, 80, 0.35);
-}
-.main form input::-moz-placeholder {
-  color: rgba(68, 75, 80, 0.35);
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 2.4rem;
-  -moz-transition: color 0.2s;
-  transition: color 0.2s;
-}
-.main form input::placeholder {
-  color: rgba(68, 75, 80, 0.35);
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 2.4rem;
-  transition: color 0.2s;
-}
-.main form input::-webkit-input-placeholder {
-  color: rgba(68, 75, 80, 0.35);
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 2.4rem;
-}
-.main form input:-moz-placeholder {
-  color: rgba(68, 75, 80, 0.35);
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 2.4rem;
-}
-.main form input::-moz-placeholder {
-  color: rgba(68, 75, 80, 0.35);
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 2.4rem;
-}
-.main form input:-ms-input-placeholder {
-  color: rgba(68, 75, 80, 0.35);
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 2.4rem;
-}
-.main form input::-ms-input-placeholder {
-  color: rgba(68, 75, 80, 0.35);
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 2.4rem;
-}
-.main form .checkbox__text {
-  font-weight: 300;
-  color: rgba(68, 75, 80, 0.35) !important;
-  padding: 0;
-  border: none;
-  transition: color 0.2s;
-  line-height: 2.4rem;
-}
-.main form .form__confidential {
-  color: #444B50 !important;
-  font-size: 1.2rem !important;
-  line-height: 1.4rem;
-  white-space: pre-line;
-  text-align: center;
-  text-underline-offset: 20%;
-}
-.main form .form__confidential a {
-  color: currentColor;
+.main .partners__data li:last-of-type {
+  margin: 0;
 }
 
 .footer {
@@ -994,53 +939,6 @@ body:has(dialog[open]) {
 }
 .footer dialog {
   padding: 0;
-}
-.footer .partners__card {
-  background-color: #fff;
-  display: flex;
-  text-align: left;
-  padding: 48px;
-  border-radius: 24px;
-  gap: 48px;
-}
-.footer .partners__card:first-child {
-  margin-bottom: 32px;
-}
-.footer .partners__card h4 {
-  font-weight: 400;
-}
-.footer .partners__card img {
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-.footer .partners__card svg path {
-  fill: currentColor;
-}
-.footer .partners__card .email path {
-  fill: #D45749;
-}
-.footer .partners__card span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.footer .partners__card span:first-of-type {
-  align-items: start;
-}
-.footer .partners__card span a {
-  text-decoration-thickness: 5%;
-  text-underline-offset: 19%;
-}
-.footer .partners__data {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.footer .partners__data li {
-  margin-bottom: 8px;
-}
-.footer .partners__data li:last-of-type {
-  margin: 0;
 }
 
 dialog {
@@ -1450,9 +1348,6 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
   .main .contacts {
     flex-wrap: wrap;
   }
-  .footer .partners__card {
-    flex-wrap: wrap;
-  }
   .main .integration__image {
     display: none;
   }
@@ -1503,6 +1398,12 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
   }
 }
 @media (max-width: 768px) {
+  .main .contacts iframe {
+    border-radius: 24px;
+  }
+  .main .partners__card h4 {
+    font-size: 24px;
+  }
   .main .modules__content ul li {
     margin-bottom: 10px;
   }

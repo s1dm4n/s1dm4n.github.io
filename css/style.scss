@@ -285,7 +285,7 @@ body:has(dialog[open]) {
 .main {
     margin-top: 12vmin;
 
-    .accordion, .cases, .advantages, .platforms, .security, .integration, .modules {
+    .accordion, .cases, .advantages, .platforms, .partners,.security, .integration, .modules {
         scroll-margin: 178px;
     }
 
@@ -297,7 +297,7 @@ body:has(dialog[open]) {
         margin-bottom: 178px;
     }
 
-    .preview, .security, .platforms, .contacts, .card, .integration, .modules {
+    .preview, .security, .platforms, .partners, .contacts, .card, .integration, .modules {
         display: flex;
         gap: 48px;
         align-items: center;
@@ -625,7 +625,7 @@ body:has(dialog[open]) {
 
     }
 
-    .platforms, .integration, .modules {
+    .platforms, .partners, .integration, .modules {
         flex-direction: column;
     }
 
@@ -1034,6 +1034,15 @@ body:has(dialog[open]) {
         padding: 48px;
         align-items: start;
 
+        iframe {
+            border-radius: 32px;
+            width: 100%;
+        }
+
+        h4 {
+            font-size: 32px;
+        }
+
         &__header {
             h3 {
                 margin-bottom: 32px;
@@ -1050,6 +1059,7 @@ body:has(dialog[open]) {
 
         &__block {
             gap: 32px;
+            flex: 100%;
         }
 
         & * {
@@ -1069,131 +1079,75 @@ body:has(dialog[open]) {
 
     }
 
-    form {
-        display: flex;
-        padding: 44px 38px;
-        align-items: center;
-        gap: 32px;
-        border-radius: 24px;
-        background: #FFF;
-        background-color: $color-white;
-
-        .inputs {
-            display: flex;
-            width: 100%;
-            gap: 16px !important;
-        }
-        
-        .button {
-            width: 100%;
-        }
-
-        input, label {
-            color: rgba(68, 75, 80, 0.8);
-            border-radius: 16px;
-            border: 1px solid $color-placeholder;
-            background: #FFF;
-            padding: 14px 16px;
-        }
-
-        label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            color: rgba(68, 75, 80, 0.35);
-        }
-        
-        input[type="text"]:hover, input[type="email"]:hover, label:hover{
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
-            color: rgba(68, 75, 80, 0.8);
-        }
-
-        input:hover::placeholder, label:hover {
-            color: rgba(68, 75, 80, 0.8);
-        }
-
-        input {
-            font-size: 1.6rem;
-            font-weight: 300;
-            line-height: 2.4rem; 
-            width: 100%;
-            accent-color: $color-red;
-
-            &[type="checkbox" i] {
-                width: fit-content;
-                color: $color-placeholder;
-            }
-
-        
-
-            &::placeholder {
-                color: $color-placeholder;
-                font-size:1.6rem;
-                font-weight: 300;
-                line-height: 2.4rem;
-                transition: color 0.2s;
-            }
-
-            &::-webkit-input-placeholder {
-                color: $color-placeholder;
-                font-size: 1.6rem;
-                font-weight: 300;
-                line-height: 2.4rem; 
-            }
-            
-            &:-moz-placeholder {
-                color: $color-placeholder;
-                font-size: 1.6rem;
-                font-weight: 300;
-                line-height: 2.4rem; 
-            }
-            
-            &::-moz-placeholder {
-                color: $color-placeholder;
-                font-size: 1.6rem;
-                font-weight: 300;
-                line-height: 2.4rem; 
-            }
-            
-            &:-ms-input-placeholder {
-                color: $color-placeholder;
-                font-size: 1.6rem;
-                font-weight: 300;
-                line-height: 2.4rem; 
-            }
-            
-            &::-ms-input-placeholder {
-                color: $color-placeholder;
-                font-size: 1.6rem;
-                font-weight: 300;
-                line-height: 2.4rem; 
-            }
-        }
-
-        .checkbox__text {
-            font-weight: 300;
-            color: $color-placeholder !important;
-            padding: 0;
-            border: none;
-            transition: color 0.2s;
-            line-height: 2.4rem;
-        }
-
-        .form__confidential {
-            color: #444B50!important;
-            font-size: 1.2rem !important;
-            line-height: 1.4rem;
-            white-space: pre-line;
-            text-align: center;
-            text-underline-offset: 20%;
-
-            a {
-                color: currentColor;
-            }
-        }
-          
+    .contacts svg, .partners svg {
+        width: 28px !important;
+        flex: none;
     }
+
+    .partners {
+
+        &__card {
+            background-color: #fff;
+            display: flex;
+            text-align: left;
+            padding: 48px;
+            gap: 48px;
+            border-radius: 24px;
+            border: 1px solid #000;
+    
+            &:first-child {
+                margin-bottom: 32px;
+            }
+        
+            h4 {
+                font-weight: 400;
+                font-size: 32px;
+            }
+    
+            img {
+                object-fit: contain;
+            }
+        
+            svg path{
+                fill: currentColor;
+            }
+    
+            .email path {
+                fill: $color-red;
+            }
+    
+            span {
+                font-weight: 300;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+    
+                &:first-of-type {
+                    align-items: start;
+                }
+    
+                a {
+                    text-decoration-thickness: 5%;
+                    text-underline-offset: 19%;
+                }
+            }
+        }
+    
+        &__data {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+    
+            li {
+                margin-bottom: 8px;
+    
+                &:last-of-type {
+                    margin: 0;
+                }
+            }
+        }
+    
+        }
 }
 
 // Стилизация подвала
@@ -1256,68 +1210,6 @@ body:has(dialog[open]) {
 
     dialog {
         padding: 0;
-    }
-
-    .partners {
-
-    &__card {
-        background-color: #fff;
-        display: flex;
-        text-align: left;
-        padding: 48px;
-        border-radius: 24px;
-        gap: 48px;
-
-        &:first-child {
-            margin-bottom: 32px;
-        }
-    
-        h4 {
-            font-weight: 400;
-        }
-
-        img {
-            object-fit: contain;
-        }
-    
-        svg path{
-            fill: currentColor;
-        }
-
-        .email path {
-            fill: $color-red;
-        }
-
-        span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            &:first-of-type {
-                align-items: start;
-            }
-
-            a {
-                text-decoration-thickness: 5%;
-                text-underline-offset: 19%;
-            }
-        }
-    }
-
-    &__data {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-
-        li {
-            margin-bottom: 8px;
-
-            &:last-of-type {
-                margin: 0;
-            }
-        }
-    }
-
     }
 }
 
@@ -1794,10 +1686,6 @@ dialog {
         flex-wrap: wrap;
     }
 
-    .footer .partners__card {
-        flex-wrap: wrap;
-    }
-
     .main .integration__image {
 
         display: none;
@@ -1862,6 +1750,14 @@ dialog {
         .button-prev {
             left: 0px;
         }
+    }
+    
+    .main .contacts iframe {
+        border-radius: 24px;
+    }
+
+    .main .partners__card h4 {
+        font-size: 24px;
     }
 
     .main .modules__content ul li {
