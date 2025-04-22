@@ -84,6 +84,7 @@ body:has(dialog[open]) {
   width: -moz-fit-content;
   width: fit-content;
   transition: all 0.15s ease-in-out;
+  cursor: pointer;
 }
 .button:hover {
   background-color: #BF4E42;
@@ -277,6 +278,7 @@ body:has(dialog[open]) {
   border-radius: 20px;
   border: 0.8px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2) inset;
+  cursor: pointer;
 }
 .main .cases .card__header {
   gap: 28px;
@@ -774,25 +776,54 @@ body:has(dialog[open]) {
   }
 }
 .main .integration {
-  scroll-margin: 300px;
+  scroll-margin: 178px !important;
 }
-.main .integration__cover {
-  position: relative;
-  overflow: hidden;
+.integration__slider {
   width: 100%;
-  height: 402px; /* Высота контейнера */
 }
-.main .integration__image {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 3533px;
-  max-width: none;
-  will-change: transform;
-  transition: transform 2s;
+
+.integration__slider .slick-list {
+  width: 100%;
+}
+
+.integration__slider .slick-track {
+  display: flex;
+  width: 100% !important;
+  align-items: center; /* Центрирование по вертикали */
+}
+
+.integration__slider .slide {
+  width: 100% !important;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.integration__slider .integration__image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  /* margin: 0 auto; */
 }
 .main .integration__image__low-size {
   display: none;
+}
+.main .integration .slick-dots button{
+  transform: scale(2.5);
+}
+.main .integration .slick-dots li{
+  margin: 0 10px;
+}
+.main .integration .slick-dots li.slick-active button:before{
+  opacity: 1;
+}
+.main .integration .slick-dots li button:hover:before{
+  opacity: 0.75 !important;
+}
+.main .integration .slick-dots li.slick-active button:hover:before{
+  opacity: 1 !important;
+}
+.main .integration .slick-dots li button:before {
+  color: #D45749;
 }
 .main .platforms__image__low-size, .main .platforms__image__mobile {
   display: none;
@@ -840,6 +871,9 @@ body:has(dialog[open]) {
   width: 28px !important;
   flex: none;
 }
+.main .partners__block {
+  width: 100%;
+}
 .main .partners__card {
   background-color: #fff;
   display: flex;
@@ -879,9 +913,21 @@ body:has(dialog[open]) {
   text-decoration-thickness: 5%;
   text-underline-offset: 19%;
 }
-.main .partners__data {
+.main .partners__data, .main .partners__contacts__data, .main .partners__header {
   display: flex;
   flex-direction: column;
+}
+.main .partners__header {
+  gap: 12px;
+}
+.main .partners__header span {
+  font-size: 24px;
+  font-weight: 200;
+}
+.main .partners__data {
+  gap: 48px;
+}
+.main .partners__contacts__data {
   gap: 16px;
 }
 .main .partners__data li {
@@ -890,7 +936,6 @@ body:has(dialog[open]) {
 .main .partners__data li:last-of-type {
   margin: 0;
 }
-
 .footer {
   display: flex;
   flex-direction: column;
@@ -1289,7 +1334,7 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
     padding: 12px 24px;
   }
   .mobile-fullscreen-menu {
-    padding-top: 150px;
+    padding-top: 90px;
   }
   .mobile-fullscreen-menu__button {
     display: none;
@@ -1348,16 +1393,12 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
   .main .contacts {
     flex-wrap: wrap;
   }
-  .main .integration__image {
+  .main .integration__slider {
     display: none;
   }
   .main .integration__image__low-size {
     display: block;
     width: 500px;
-  }
-  .main .integration__cover {
-    overflow: visible;
-    height: auto;
   }
   .main .preview__block {
     align-items: center;
@@ -1382,7 +1423,7 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
   .main .modules .p-left {
     padding-left: 4px;
   }
-  .main article {
+  .main article, .main .contacts {
     scroll-margin: 178px !important;
   }
   dialog {
