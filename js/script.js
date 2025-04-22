@@ -1,88 +1,19 @@
+$('.integration__slider').slick({
+    dots: true,
+    speed: 600, // Уменьшить скорость для плавности
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    touchThreshold: 30,
+    edgeFriction: 0.2, // Увеличить для лучшего скролла
+    draggable: true,
+    swipe: true,
+    swipeToSlide: true,
+    touchMove: true,
+    arrows: false
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-    const parallaxImage = document.querySelector('.parallax-image');
-    const container = document.querySelector('.integration__cover');
-    const parentWidth = 1080; // Ширина родительского контейнера
-    let lastScrollTop = 0;
-    let animationFrame = null;
-    let currentStage = 0; // Текущая стадия: 0 - лево, 1 - центр, 2 - право
-  
-    const resetImagePosition = () => {
-      parallaxImage.style.transform = 'translateX(0)';
-      currentStage = 0;
-    };
-  
-    const initializeImagePosition = () => {
-      // Начальная фиксация слева
-      parallaxImage.style.transform = 'translateX(0)';
-      currentStage = 0;
-    };
-  
-    const parallaxScroll = () => {
-      const st = window.pageYOffset || document.documentElement.scrollTop;
-      const direction = st > lastScrollTop ? 'down' : 'up';
-      lastScrollTop = st <= 0 ? 0 : st;
-  
-      const containerRect = container.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const imageWidth = parallaxImage.offsetWidth;
-      const maxScroll = Math.max(0, imageWidth - parentWidth);
-  
-      // Проверка видимости контейнера
-      if (containerRect.bottom < 0 || containerRect.top > viewportHeight) {
-        resetImagePosition();
-        return;
-      }
-  
-      const containerCenter = containerRect.top + containerRect.height / 2;
-      const viewportCenter = viewportHeight / 2;
-  
-      // Адаптация активной зоны для маленькой высоты контейнера
-      const activeZoneStart = viewportCenter - containerRect.height;
-      const activeZoneEnd = viewportCenter + containerRect.height;
-  
-      // Ограничение progress в диапазоне [0, 1]
-      const progress = Math.max(0, Math.min(1, (containerCenter - activeZoneStart) / (activeZoneEnd - activeZoneStart)));
-  
-      console.log('Progress:', progress.toFixed(2), 'Current Stage:', currentStage);
-  
-      // Логика с учетом направления прокрутки
-      if (direction === 'down') {
-        // Прокрутка вниз
-        if ( progress <= 0.7 && progress >= 0.6 && currentStage === 0) {
-          // Переход от левой части к центральной
-          const centerOffset = (imageWidth - parentWidth) / 2;
-          parallaxImage.style.transform = `translateX(-${centerOffset}px)`;
-          currentStage = 1;
-        } else if (progress <= 0.51 && currentStage === 1) {
-          // Переход от центральной части к правой
-          parallaxImage.style.transform = `translateX(-${maxScroll}px)`;
-          currentStage = 2;
-        }
-      } else if (direction === 'up') {
-        // Прокрутка вверх
-        if (progress >= 0.52  && currentStage === 2) {
-          // Переход от правой части к центральной
-          const centerOffset = (imageWidth - parentWidth) / 2;
-          parallaxImage.style.transform = `translateX(-${centerOffset}px)`;
-          currentStage = 1;
-        } else if (progress >= 0.75 && currentStage === 1) {
-          // Переход от центральной части к левой
-          parallaxImage.style.transform = 'translateX(0)';
-          currentStage = 0;
-        }
-      }
-    };
-  
-    window.addEventListener('scroll', () => {
-      if (!animationFrame) {
-        animationFrame = requestAnimationFrame(() => {
-          parallaxScroll();
-          animationFrame = null;
-        });
-      }
-    }, { passive: true });
-  
-    // Инициализация начального положения
+// Инициализация начального положения
     initializeImagePosition();
     
     const textBlocks = document.querySelectorAll(".module__content");
@@ -336,21 +267,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', updateActiveModule);
     updateActiveModule();
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.getElementById('navBurger');
-    const side = document.getElementById('sideMenu');
-    const close = document.getElementById('sideMenuClose');
-
-    burger.addEventListener('click', () => {
-      side.classList.add('active');
-      side.setAttribute('aria-hidden', 'false');
-    });
-    close.addEventListener('click', () => {
-      side.classList.remove('active');
-      side.setAttribute('aria-hidden', 'true');
-    });
-  });
   
   document.addEventListener('DOMContentLoaded', () => {
     const burger = document.getElementById('navBurger');
