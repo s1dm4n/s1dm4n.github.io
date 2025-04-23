@@ -833,6 +833,7 @@ body:has(dialog[open]) {
   background-color: #D45749;
   padding: 48px;
   align-items: start;
+  scroll-margin: 200px;
 }
 .main .contacts iframe {
   border-radius: 32px;
