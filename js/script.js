@@ -11,33 +11,6 @@ $('.integration__slider').slick({
     touchMove: true,
     arrows: false
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-// Инициализация начального положения
-    initializeImagePosition();
-    
-    const textBlocks = document.querySelectorAll(".module__content");
-    const mediaElements = document.querySelectorAll(".media");
-
-    function changeMedia(index) {
-        mediaElements.forEach(media => {
-            media.classList.remove("active");
-            if (media.dataset.index == index) {
-                media.classList.add("active");
-            }
-        });
-    }
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                changeMedia(entry.target.dataset.index);
-            }
-        });
-    }, { threshold: 0.9 });
-
-    textBlocks.forEach(block => observer.observe(block));
-});
   
   document.addEventListener('DOMContentLoaded', function() {
     // Инициализация слайдера для casesDialog
