@@ -1012,7 +1012,7 @@ dialog {
   justify-content: center;
 }
 
-dialog:open {
+dialog[open] {
   opacity: 1;
 }
 
@@ -1022,7 +1022,7 @@ dialog {
 }
 
 @starting-style {
-  dialog:open {
+  dialog[open] {
     opacity: 0;
   }
 }
@@ -1031,12 +1031,12 @@ dialog::backdrop {
   transition: display 0.1s allow-discrete, overlay 0.1s allow-discrete, background-color 0.3s;
 }
 
-dialog:open::backdrop {
+dialog[open]::backdrop {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
 @starting-style {
-  dialog:open::backdrop {
+  dialog[open]::backdrop {
     background-color: rgba(0, 0, 0, 0);
   }
 }
@@ -1443,7 +1443,10 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
     border-radius: 24px;
   }
   .main .partners__card h4 {
-    font-size: 24px;
+    font-size: 20px;
+  }
+  .main .partners__header span {
+    font-size: 18px;
   }
   .main .modules__content ul li {
     margin-bottom: 10px;
@@ -1563,7 +1566,15 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
     width: 90% !important;
   }
 }
+@media (max-width: 543px) {
+  .main .contacts iframe {
+    height: 300px;
+  }
+}
 @media (max-width: 476px) {
+  .footer__links {
+    flex-direction: column;
+  }
   form {
     padding: 24px 18px !important;
   }
