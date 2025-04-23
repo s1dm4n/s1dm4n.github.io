@@ -1570,8 +1570,38 @@ dialog .slider, dialog .slider-line, dialog .slides, dialog .slide, dialog .slid
   .main .contacts iframe {
     height: 300px;
   }
+  .main .partners__contacts__data span {
+    font-size: 16px;
+  }
+  .main .partners__card {
+    padding: 0 0 48px 0;
+    border: none;
+    border-bottom: 1px solid #00000050;
+    border-radius: 0;
+  }
 }
 @media (max-width: 476px) {
+  .main .advantages__text {
+    font-size: 2rem !important;
+  }
+  .text {
+    font-size: 1.6rem;
+  }
+  .heading {
+    font-size: 2.8rem !important;
+  }
+  h3.heading {
+    font-size: 2.4rem !important;
+  }
+  .main .modules__content span {
+    font-size: 1.8rem;
+  }
+  .mobile-fullscreen-menu__button {
+    font-size: 1.8rem;
+  }
+  .button {
+    font-size: 1.8rem;
+  }
   .footer__links {
     flex-direction: column;
   }
