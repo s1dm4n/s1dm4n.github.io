@@ -90,7 +90,7 @@
             @media(max-width: 1168px) {
                 order: -1;
                 grid-column: -1/1;
-                height: clamp(20rem, 15.283rem + 23.5849vw, 32.5rem);
+                height: clamp(10.75rem, 2.9054rem + 40.5405vw, 32.5rem);
                 border: 1px solid var(--line-style);
                 border-bottom: none;
             }
@@ -117,6 +117,11 @@
             height: 80%;
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
+            
+            @media(max-width: 644px) {
+                width: 100%;
+                height: 100%;
+            }
 
             img {
                 width: 100%;
@@ -174,6 +179,7 @@
             gap: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
             display: flex;
             align-items: center;
+            cursor: pointer;
 
             svg {
                 transform-origin: center center;
@@ -191,6 +197,123 @@
                 width: fit-content;
                 text-transform: none;
                 font-weight: 700;
+            }
+
+            .arrow-icon {
+                position: relative;
+                width: 24px;
+                height: 24px;
+                transform-style: preserve-3d;
+                transition: transform 0.6s;
+                will-change: transform;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    border-right: 2.25px solid var.$color-white;
+                    border-top: 2.25px solid var.$color-white;
+                    transform:
+                        translate(-50%, -50%) rotateZ(45deg);
+                    opacity: 0;
+                    width: clamp(0.75rem, 0.6856rem + 0.2746vw, 1.125rem);
+                    height: clamp(0.75rem, 0.6856rem + 0.2746vw, 1.125rem);
+                    transform-origin: center;
+                    transition: all 0.4s;
+                    /* Плавный переход */
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 47%;
+                    left: 40%;
+                    width: clamp(0.75rem, 0.6856rem + 0.2746vw, 1.125rem);
+                    height: 2.25px;
+                    background-color: var.$color-white;
+                    transition: all 0.3s;
+                    /* Плавный переход */
+                }
+
+                &.active {
+
+                    &::before {
+                        animation: unfold-in 0.6s forwards;
+                    }
+
+                    &::after {
+                        animation: fade-out 0.3s forwards;
+                    }
+                }
+
+                /* Анимации при удалении active */
+                &:not(.active) {
+
+                    &::before {
+                        animation: unfold-out 0.4s forwards;
+                    }
+
+                    &::after {
+                        animation: fade-in 0.6s forwards;
+                    }
+                }
+            }
+        }
+
+        @keyframes unfold-in {
+            from {
+                transform:
+                    translate(-50%, -50%)
+                    rotateX(90deg)
+                    rotateZ(45deg);
+                opacity: 0;
+            }
+
+            to {
+                transform:
+                    translate(-50%, -50%)
+                    rotateX(0deg)
+                    rotateZ(45deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes unfold-out {
+            from {
+                transform:
+                    translate(-50%, -50%)
+                    rotateX(0deg)
+                    rotateZ(45deg);
+                opacity: 1;
+            }
+
+            to {
+                transform:
+                    translate(-50%, -50%)   
+                    rotateX(90deg)
+                    rotateZ(45deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
             }
         }
 
