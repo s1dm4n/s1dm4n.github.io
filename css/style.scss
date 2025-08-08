@@ -1,7 +1,3 @@
-//Импорты
-@use "pages/main" as main;
-@use "pages/modules" as modules;
-
 //Сброс CSS
 html,
 body,
@@ -165,3 +161,7 @@ th {
     font-style: normal;
     font-display: swap;
 }
+
+//Импорты
+@use "pages/main" as main;
+@use "pages/modules" as modules;
