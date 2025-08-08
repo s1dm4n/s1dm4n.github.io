@@ -948,6 +948,10 @@ p {
     min-height: 332px;
   }
 }
+.advantages__container:first-child .advantages__image img {
+  -o-object-position: 50% 4%;
+     object-position: 50% 4%;
+}
 .advantages__icon {
   text-align: end;
   color: #c8c8c8;

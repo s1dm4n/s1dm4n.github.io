@@ -814,6 +814,12 @@ p {
     }
   }
 
+  &__container:first-child {
+    .advantages__image img {
+      object-position: 50% 4%;
+    }
+  }
+
   &__icon {
     text-align: end;
     color: var.$color-gray;
