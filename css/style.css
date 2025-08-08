@@ -1400,13 +1400,13 @@ p {
   /* Плавный переход */
 }
 .modules-style .accordion__collaps-header .arrow-icon.active::before {
-  animation: unfold-in 0.6s forwards;
+  animation: unfold-in 0.3s forwards;
 }
 .modules-style .accordion__collaps-header .arrow-icon.active::after {
-  animation: fade-out 0.3s forwards;
+  animation: fade-out 0.2s forwards;
 }
 .modules-style .accordion__collaps-header .arrow-icon:not(.active)::before {
-  animation: unfold-out 0.4s forwards;
+  animation: unfold-out 0.2s forwards;
 }
 .modules-style .accordion__collaps-header .arrow-icon:not(.active)::after {
   animation: fade-in 0.6s forwards;

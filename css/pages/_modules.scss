@@ -239,11 +239,11 @@
                 &.active {
 
                     &::before {
-                        animation: unfold-in 0.6s forwards;
+                        animation: unfold-in 0.3s forwards;
                     }
 
                     &::after {
-                        animation: fade-out 0.3s forwards;
+                        animation: fade-out 0.2s forwards;
                     }
                 }
 
@@ -251,7 +251,7 @@
                 &:not(.active) {
 
                     &::before {
-                        animation: unfold-out 0.4s forwards;
+                        animation: unfold-out 0.2s forwards;
                     }
 
                     &::after {
