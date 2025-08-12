@@ -186,7 +186,6 @@ p {
   }
 
   &-2 {
-
     color: var.$color-white;
 
     &::before {
@@ -998,10 +997,56 @@ p {
 
   &-slide {
     overflow: hidden;
+    position: relative;
+    border: 1px solid var(--line-style);
+    background-color: var.$color-bg;
+    background-color: transparent;
+    cursor: pointer;
+    @include mixin.transition(opacity);
 
     .card {
-      border: 1px solid var(--line-style);
+      position: relative;
+      z-index: 1;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      @include mixin.transition(height);
+    }
+
+    &::before {
       background-color: var.$color-bg;
+    }
+
+    &::after {
+      height: 0px;
+      background-color: #ffffff;
+      @include mixin.transition(height);
+    }
+
+    time, span, p {
+      @include mixin.transition(color);
+    }
+
+    &:hover {
+      time, span, p {
+          color: #000 !important;
+        }
+
+      &::after {
+        height: 100%;
+        @include mixin.transition(height);
+      }
+    }
+
+    &:active {
+      opacity: 0.8;
     }
 
     .news-card {
