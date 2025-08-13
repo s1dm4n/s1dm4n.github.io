@@ -1095,46 +1095,24 @@ p {
 }
 .swiper-slide {
   overflow: hidden;
-  position: relative;
-  border: 1px solid var(--line-style);
-  background-color: #272a2f;
-  background-color: transparent;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-.swiper-slide .card {
-  position: relative;
-  z-index: 1;
-}
-.swiper-slide::before, .swiper-slide::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  transition: height 0.3s ease;
-}
-.swiper-slide::before {
-  background-color: #272a2f;
 }
 .swiper-slide::after {
-  height: 0px;
-  background-color: #ffffff;
-  transition: height 0.3s ease;
-}
-.swiper-slide time, .swiper-slide span, .swiper-slide p {
-  transition: color 0.3s ease;
-}
-.swiper-slide:hover time, .swiper-slide:hover span, .swiper-slide:hover p {
-  color: #000 !important;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0px;
+  height: 4px;
+  background: #e45b5b;
+  z-index: 1;
+  transition: width 0.3s;
 }
 .swiper-slide:hover::after {
-  height: 100%;
-  transition: height 0.3s ease;
+  width: 100%;
 }
-.swiper-slide:active {
-  opacity: 0.8;
+.swiper-slide .card {
+  border: 1px solid var(--line-style);
+  background-color: #272a2f;
 }
 .swiper-slide .news-card {
   transition: opacity 0.3s ease;
@@ -1146,7 +1124,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 24px;
+  padding: 32px;
 }
 .swiper-slide .news-card__content time {
   opacity: 0.5;
@@ -1211,8 +1189,7 @@ p {
   -o-object-fit: cover;
      object-fit: cover;
   height: 100%;
-  height: clamp(15rem, 13.0692rem + 8.238vw, 26.25rem);
-  filter: grayscale(1);
+  height: clamp(15rem, 12.4256rem + 10.984vw, 30rem);
 }
 @media (max-width: 1024px) {
   .news-card img {

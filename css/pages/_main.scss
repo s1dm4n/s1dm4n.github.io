@@ -186,6 +186,7 @@ p {
   }
 
   &-2 {
+
     color: var.$color-white;
 
     &::before {
@@ -997,56 +998,28 @@ p {
 
   &-slide {
     overflow: hidden;
-    position: relative;
-    border: 1px solid var(--line-style);
-    background-color: var.$color-bg;
-    background-color: transparent;
-    cursor: pointer;
-    @include mixin.transition(opacity);
-
-    .card {
-      position: relative;
-      z-index: 1;
-    }
-
-    &::before,
+    
     &::after {
       content: "";
       position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
+      bottom: 0;
       left: 0;
-      @include mixin.transition(height);
-    }
-
-    &::before {
-      background-color: var.$color-bg;
-    }
-
-    &::after {
-      height: 0px;
-      background-color: #ffffff;
-      @include mixin.transition(height);
-    }
-
-    time, span, p {
-      @include mixin.transition(color);
+      width: 0px;
+      height: 4px;
+      background: var.$color-accent;
+      z-index: 1;
+      transition: width .3s;
     }
 
     &:hover {
-      time, span, p {
-          color: #000 !important;
+        &::after {
+          width: 100%;
         }
-
-      &::after {
-        height: 100%;
-        @include mixin.transition(height);
-      }
     }
 
-    &:active {
-      opacity: 0.8;
+    .card {
+      border: 1px solid var(--line-style);
+      background-color: var.$color-bg;
     }
 
     .news-card {
@@ -1060,7 +1033,7 @@ p {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        padding: 24px;
+        padding: 32px;
 
         time {
           opacity: 0.5;
@@ -1143,8 +1116,8 @@ p {
     width: 100%;
     object-fit: cover;
     height: 100%;
-    height: clamp(15rem, 13.0692rem + 8.238vw, 26.25rem);
-    filter: grayscale(1);
+    height: clamp(15rem, 12.4256rem + 10.984vw, 30rem);
+    // filter: grayscale(1);
 
     @media(max-width: var.$bp-lg) {
       height: clamp(15rem, 8.4996rem + 27.735vw, 26.25rem);
