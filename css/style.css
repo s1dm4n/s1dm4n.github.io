@@ -1,4 +1,130 @@
 @charset "UTF-8";
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope"), url("/fonts/manrope-extrabold.woff2") format("woff2"), url("/fonts/manrope-extrabold.woff") format("woff"), url("/fonts/manrope-extrabold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope"), url("/fonts/manrope-bold.woff2") format("woff2"), url("/fonts/manrope-bold.woff") format("woff"), url("/fonts/manrope-bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope"), url("/fonts/manrope-semibold.woff2") format("woff2"), url("/fonts/manrope-semibold.woff") format("woff"), url("/fonts/manrope-semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope"), url("/fonts/manrope-medium.woff2") format("woff2"), url("/fonts/manrope-medium.woff") format("woff"), url("/fonts/manrope-medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope"), url("/fonts/manrope-regular.woff2") format("woff2"), url("/fonts/manrope-regular.woff") format("woff"), url("/fonts/manrope-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope"), url("/fonts/manrope-light.woff2") format("woff2"), url("/fonts/manrope-light.woff") format("woff"), url("/fonts/manrope-light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope"), url("/fonts/manrope-extralight.woff2") format("woff2"), url("/fonts/manrope-extralight.woff") format("woff"), url("/fonts/manrope-extralight.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
   --gutter-h: calc(50vw - 60rem);
   --block-spacing: 7rem;
@@ -173,6 +299,17 @@ body a {
   text-decoration: none;
 }
 
+.link {
+  color: #e45b5b;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  line-height: 160%;
+  font-weight: 600;
+  color: #e45b5b;
+  margin: 0;
+  display: block;
+}
+
 img {
   display: block !important;
   width: 100%;
@@ -240,12 +377,6 @@ p {
   color: #ffffff;
   margin: 0;
 }
-@media (max-width: 1024px) {
-  .font-main,
-  p {
-    line-height: 148%;
-  }
-}
 
 .font-large,
 .font-medium,
@@ -294,7 +425,7 @@ p {
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  padding: clamp(1rem, 0.25rem + 0.7813vw, 1.5rem) clamp(0.75rem, 0.25rem + 0.7813vw, 1.5rem);
+  padding: clamp(0.875rem, 0.25rem + 0.7813vw, 1.5rem) clamp(0.75rem, 0.25rem + 0.7813vw, 1.5rem);
   gap: 3rem;
   background-color: transparent;
   border: none;
@@ -821,6 +952,20 @@ p {
   transform: translateZ(0);
 }
 
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tag {
+  padding: 4px 12px;
+  display: inline-block;
+  line-height: normal;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: #272a2f;
+}
+
 .modules,
 .advantages,
 .distributors {
@@ -832,22 +977,6 @@ p {
 .advantages__content,
 .distributors__content {
   gap: 48px;
-}
-.modules__tags,
-.advantages__tags,
-.distributors__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.modules__tag,
-.advantages__tag,
-.distributors__tag {
-  padding: 4px 12px;
-  display: inline-block;
-  line-height: normal;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background-color: #272a2f;
 }
 
 .modules__image {
@@ -1287,7 +1416,7 @@ p {
   .modules-style .accordion__image {
     order: -1;
     grid-column: -1/1;
-    height: clamp(10.75rem, 2.9054rem + 40.5405vw, 32.5rem);
+    height: clamp(9.25rem, 0.4764rem + 43.8679vw, 32.5rem);
     border: 1px solid var(--line-style);
     border-bottom: none;
   }
@@ -1308,7 +1437,6 @@ p {
 .modules-style .accordion__slide {
   position: absolute;
   width: 80%;
-  height: 80%;
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
 }
@@ -1554,129 +1682,140 @@ p {
   text-align: left;
 }
 
-html,
-body,
-p,
-ol,
-ul,
-li,
-dl,
-dt,
-dd,
-blockquote,
-figure,
-fieldset,
-legend,
-textarea,
-pre,
-iframe,
-hr,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  padding: 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: 100%;
-  font-weight: normal;
-}
-
-ul {
-  list-style: none;
-}
-
-button,
-input,
-select {
-  margin: 0;
-}
-
-html {
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-img,
-video {
-  height: auto;
-  max-width: 100%;
-}
-
-iframe {
-  border: 0;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-td,
-th {
-  padding: 0;
-}
-
-@font-face {
-  font-family: "Manrope";
-  src: local("Manrope"), url("/fonts/manrope-extrabold.woff2") format("woff2"), url("/fonts/manrope-extrabold.woff") format("woff"), url("/fonts/manrope-extrabold.ttf") format("truetype");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Manrope";
-  src: local("Manrope"), url("/fonts/manrope-bold.woff2") format("woff2"), url("/fonts/manrope-bold.woff") format("woff"), url("/fonts/manrope-bold.ttf") format("truetype");
+.news-style .font-large {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1.75rem, 1.4286rem + 1.6071vw, 4rem);
+  line-height: 112%;
   font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+  color: #ffffff;
+  margin: 0;
 }
-@font-face {
-  font-family: "Manrope";
-  src: local("Manrope"), url("/fonts/manrope-semibold.woff2") format("woff2"), url("/fonts/manrope-semibold.woff") format("woff"), url("/fonts/manrope-semibold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Manrope";
-  src: local("Manrope"), url("/fonts/manrope-medium.woff2") format("woff2"), url("/fonts/manrope-medium.woff") format("woff"), url("/fonts/manrope-medium.ttf") format("truetype");
+.news-style .font-lead {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem);
+  line-height: 160%;
   font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+  color: #ffffff;
+  margin: 0;
 }
-@font-face {
-  font-family: "Manrope";
-  src: local("Manrope"), url("/fonts/manrope-regular.woff2") format("woff2"), url("/fonts/manrope-regular.woff") format("woff"), url("/fonts/manrope-regular.ttf") format("truetype");
+.news-style .tag-main {
+  background-color: #e45b5b;
+}
+.news-style .tag {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem);
+  line-height: 100%;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0;
+  padding: clamp(0.375rem, 0.3535rem + 0.0915vw, 0.5rem) clamp(0.5rem, 0.4571rem + 0.1831vw, 0.75rem);
+}
+.news-style .hero__content {
+  gap: 32px;
+  padding: clamp(0.75rem, 0.1922rem + 2.3799vw, 4rem) clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem) clamp(1.5rem, 1.3069rem + 0.8238vw, 2.625rem) clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem);
+  margin: 0;
+}
+.news-style .media {
+  background: linear-gradient(45deg, transparent calc(50% - var(--line-width) / 2), var(--line-color) calc(50% - var(--line-width) / 2), var(--line-color) calc(50% + var(--line-width) / 2), transparent calc(50% + var(--line-width) / 2));
+  background-size: var(--line-spacing) var(--line-spacing);
+  --line-color: #ffffff20;
+  --line-width: 1px;
+  --line-spacing: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.news-style .media__primery, .news-style .media__secondary {
+  background-color: #272a2f !important;
+}
+@media (max-width: 1024px) {
+  .news-style .media__primery, .news-style .media__secondary {
+    grid-column: -1/1 !important;
+  }
+}
+.news-style .media img {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.news-style .media__content {
+  margin: 0 clamp(0rem, -25.5rem + 23.4375vw, 12rem);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+.news-style .media__primery {
+  grid-column: span 10;
+}
+@media (max-width: 1024px) {
+  .news-style .media__primery {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+.news-style .media__secondary {
+  grid-column: span 6;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+@media (max-width: 1024px) {
+  .news-style .media__secondary {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 78px;
+  }
+}
+.news-style .media__secondary .demo__content {
+  position: sticky;
+  top: 98px;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: clamp(1.5rem, 1.3069rem + 0.8238vw, 2.625rem);
+  gap: clamp(1.5rem, 1.3069rem + 0.8238vw, 2.625rem);
+}
+@media (max-width: 1024px) {
+  .news-style .media__secondary .demo__content {
+    position: static;
+    border: none;
+  }
+}
+.news-style .media__secondary .demo__decription {
+  font-family: "Manrope", sans-serif;
+  font-size: 1px;
+  line-height: 148%;
   font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+  color: #ffffff;
+  margin: 0;
 }
-@font-face {
-  font-family: "Manrope";
-  src: local("Manrope"), url("/fonts/manrope-light.woff2") format("woff2"), url("/fonts/manrope-light.woff") format("woff"), url("/fonts/manrope-light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+.news-style .media__secondary .demo__title {
+  font-size: 1.75rem;
 }
-@font-face {
-  font-family: "Manrope";
-  src: local("Manrope"), url("/fonts/manrope-extralight.woff2") format("woff2"), url("/fonts/manrope-extralight.woff") format("woff"), url("/fonts/manrope-extralight.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+.news-style .media__secondary .demo__buttons {
+  gap: 1.125rem;
+}
+.news-style .media__secondary .demo__button {
+  padding: clamp(0.75rem, 0.6307rem + 0.5089vw, 0.875rem) clamp(1rem, 0.7615rem + 1.0178vw, 1.25rem);
+  gap: 1rem;
+}
+.news-style .media__secondary .demo__button .button__text {
+  font-size: clamp(1rem, 0.727rem + 0.2488vw, 1.125rem);
+}
+.news-style .media__secondary .demo__button svg {
+  height: clamp(0.625rem, 0.3268rem + 1.2723vw, 0.9375rem);
+}
+@media (max-width: 1024px) {
+  .news-style .media__secondary .demo__button svg {
+    height: clamp(1rem, -0.1179rem + 1.7467vw, 1.5rem);
+  }
+}
+.news-style .media .mb {
+  margin-bottom: clamp(1.5rem, 1.2426rem + 1.0984vw, 3rem) !important;
+}
+.news-style .media__paragraph {
+  padding: 0 clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem);
+}
+.news-style .media__list-marker {
+  list-style-type: square;
+}
+.news-style .media__list-marker li {
+  margin: 0 0 20px 32px;
+}
+.news-style .media strong {
+  color: #e45b5b;
+  font-weight: 600;
 }/*# sourceMappingURL=style.css.map */

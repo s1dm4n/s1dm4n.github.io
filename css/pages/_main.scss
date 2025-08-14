@@ -17,6 +17,12 @@ body {
   }
 }
 
+.link {
+  color: var.$color-accent;
+  @include mixin.text-style(clamp(1rem, 1.25vw, 1.25rem), 160%, 600, var.$color-accent);
+  display: block;
+}
+
 img {
   display: block !important;
   width: 100%;
@@ -62,10 +68,6 @@ button {
 .font-main,
 p {
   @include mixin.text-style(clamp(1rem, 1.25vw, 1.25rem), 160%, 400);
-
-  @media(max-width: var.$bp-lg) {
-    line-height: 148%;
-  }
 }
 
 .font-large,
@@ -112,7 +114,7 @@ p {
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  padding: clamp(1rem, 0.25rem + 0.7813vw, 1.5rem) clamp(0.75rem, 0.25rem + 0.7813vw, 1.5rem);
+  padding: clamp(.875rem, 0.25rem + 0.7813vw, 1.5rem) clamp(0.75rem, 0.25rem + 0.7813vw, 1.5rem);
   gap: 3rem;
   background-color: transparent;
   border: none;
@@ -672,6 +674,20 @@ p {
   }
 }
 
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .tag {
+    padding: 4px 12px;
+    display: inline-block;
+    line-height: normal;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background-color: var.$color-bg;
+  }
+
 .modules,
 .advantages,
 .distributors {
@@ -681,20 +697,6 @@ p {
 
   &__content {
     gap: 48px;
-  }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  &__tag {
-    padding: 4px 12px;
-    display: inline-block;
-    line-height: normal;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background-color: var.$color-bg;
   }
 }
 

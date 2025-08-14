@@ -90,7 +90,7 @@
             @media(max-width: 1168px) {
                 order: -1;
                 grid-column: -1/1;
-                height: clamp(10.75rem, 2.9054rem + 40.5405vw, 32.5rem);
+                height: clamp(9.25rem, 0.4764rem + 43.8679vw, 32.5rem);
                 border: 1px solid var(--line-style);
                 border-bottom: none;
             }
@@ -114,7 +114,6 @@
         &__slide {
             position: absolute;
             width: 80%;
-            height: 80%;
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
             
