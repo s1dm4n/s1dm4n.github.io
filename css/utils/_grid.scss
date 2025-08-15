@@ -1,3 +1,5 @@
+@use "../utils/variables" as var;
+
 //Переменные с исходника
 :root {
     --gutter-h: calc(50vw - 60rem);
@@ -6,7 +8,6 @@
     --default-border-width: 2px;
     --trans-default: 150ms;
     --column: calc((100vw - (var(--gutter-h) * 2)) / 16);
-    --line-style: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 2168px) {
@@ -187,6 +188,6 @@
 }
 
 .line {
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 1px solid var.$color-line;
     grid-area: 1 / 1 / 1 / 1;
 }

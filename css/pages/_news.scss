@@ -5,7 +5,7 @@
 .news-style {
     
     .font-large {
-        @include mixin.text-style(clamp(1.75rem, 1.4286rem + 1.6071vw, 4rem), 112%, 700);
+        @include mixin.text-style(clamp(1.75rem, 1.4286rem + 1.6071vw, 4rem), 124%, 700);
     }
 
     .font-lead {
@@ -23,15 +23,50 @@
 
     .hero {
         &__content {
-            gap: 32px;
-            padding: clamp(0.75rem, 0.1922rem + 2.3799vw, 4rem) clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem) clamp(1.5rem, 1.3069rem + 0.8238vw, 2.625rem) clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem);
+            gap: clamp(1.5rem, 1.3069rem + 0.8238vw, 2.625rem);
+            padding: clamp(0.75rem, 0.1922rem + 2.3799vw, 4rem) clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem);
             margin: 0;
+        }
+
+        &__elements {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        &__navigation {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+
+            span, time {
+                @include mixin.text-style(clamp(1rem, 0.9142rem + 0.3661vw, 1.5rem), 100%, 500);
+            }
+
+            a {
+                span {
+                    text-transform: none;
+                    align-items: center;
+                    display: flex;
+                    gap: 12px;
+
+                    svg {
+                        path {
+                            stroke: currentColor;
+                        }
+                    }
+                }
+            }
+        }
+        
+            &__nav-slash {
+            opacity: 0.5;
         }
     }
     .media {
         background: linear-gradient(45deg, transparent calc(50% - var(--line-width) / 2), var(--line-color) calc(50% - var(--line-width) / 2), var(--line-color) calc(50% + var(--line-width) / 2), transparent calc(50% + var(--line-width) / 2));
         background-size: var(--line-spacing) var(--line-spacing);
-        --line-color: #ffffff20;
+        --line-color: #ffffff10;
         --line-width: 1px;
         --line-spacing: 20px;
         border-top: 1px solid var.$color-line;
@@ -47,6 +82,7 @@
 
         img {
             border-bottom: 1px solid var.$color-line;
+            margin-bottom: clamp(1.5rem, 1.2426rem + 1.0984vw, 3rem) !important;
         }
 
         &__content {
@@ -121,13 +157,15 @@
             }
         }
 
-        .mb {
-            margin-bottom: clamp(1.5rem, 1.2426rem + 1.0984vw, 3rem) !important;
+        &__link {
+            display: inline !important;
         }
 
         &__paragraph {
             padding: 0 clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem);
+            margin-bottom: clamp(1.5rem, 1.2426rem + 1.0984vw, 3rem) !important;
         }
+
         
         &__list-marker {
             list-style-type: square;
