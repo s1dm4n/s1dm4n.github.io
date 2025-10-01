@@ -1,0 +1,149 @@
+---
+layout: base.njk
+pageStyle: news-style
+---
+<section class="hero grid gutter fade-in" id="hero" data-fade-group>
+<div class="hero__content row">
+    <nav class="hero__navigation">
+    <a href="/#swiper" class="hero__nav-news nav-font">
+        <span>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="19"
+            viewBox="0 0 16 19"
+            fill="none"
+        >
+            <path
+            d="M9.24219 1.68018L1.42546 9.4969L9.24219 17.3136"
+            stroke="white"
+            stroke-width="2"
+            />
+            <path d="M2.10938 9.5H15.0294" stroke="white" stroke-width="2" />
+        </svg>
+        Новости
+        </span>
+    </a>
+    <svg
+        class="hero__nav-slash"
+        xmlns="http://www.w3.org/2000/svg"
+        width="8"
+        height="21"
+        viewBox="0 0 8 21"
+        fill="none"
+    >
+        <path
+        d="M6.47266 0.458008L1.03746 20.7424"
+        stroke="white"
+        stroke-width="2"
+        />
+    </svg>
+    <time class="news-date font-main">
+        {{ date | dateLong }}
+    </time>
+    </nav>
+    <h1 class="hero__title font-large">
+        {{ title }}
+    </h1>
+    <div class="hero__elements">
+    <div class="tags">
+        <div class="tag tag-main font-main">{{ mainTag }}</div>
+        {% for tag in tags %}
+            <div class="tag font-main">{{ tag }}</div>
+        {% endfor %}
+    </div>
+    <p class="hero__description font-lead">
+        {{ excerpt }}
+    </p>
+    </div>
+</div>
+<div aria-hidden="true" class="lines grid" style="z-index: -2">
+    <div class="cols-4 line"></div>
+    <div class="cols-4 line"></div>
+    <div class="cols-4 line"></div>
+    <div class="cols-4 line"></div>
+    <div class="cols-4 line"></div>
+</div>
+</section>
+<section class="media grid gutter fade-in" id="media" data-fade-group>
+<div class="media__content grid row fade-in">
+    <div class="media__primery fade-in">
+    <picture>
+          <source srcset="/img/{{ image }}.avif 1x, /img/{{ image }}@2x.avif 2x" type="image/avif">
+          <source srcset="/img/{{ image }}.webp 1x, /img/{{ image }}@2x.webp 2x" type="image/webp">
+          <img 
+            src="/img/{{ image }}.jpg"
+            srcset="/img/{{ image }}.jpg 1x, /img/{{ image }}@2x.jpg 2x"
+            alt="{{ imageAlt }}"
+            loading="lazy">
+    </picture>
+    <div class="news__content">
+        {{ content | wrapParagraphs | safe }}
+    </div>
+    </div>
+    <div class="media__secondary fade-in">
+    <div class="demo__content fade-in">
+        <div class="demo__text-block">
+        <span class="demo__title font-title"> Узнать больше </span>
+        <p class="demo__description">
+            Ознакомьтесь со всеми возможностями «Этоса» или закажите
+            презентацию системы прямо сейчас.
+        </p>
+        </div>
+        <div class="demo__buttons">
+        <a class="demo__button button" type="button" href="/#distributor">
+            <span class="button__text">Посмотреть</span>
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="26"
+            viewBox="0 0 25 26"
+            fill="none"
+            >
+            <path
+                d="M22 4L3 23"
+                stroke="#4C0000"
+                stroke-width="3"
+                stroke-linecap="square"
+            />
+            <path
+                d="M23 23V3H3"
+                stroke="#4C0000"
+                stroke-width="3"
+                stroke-linecap="square"
+            />
+            </svg>
+        </a>
+        <a
+            class="demo__button button button-2"
+            type="button"
+            href="https://docs.etos-pro.ru/services/idoc/"
+        >
+            <span class="button__text">Почитать</span>
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="26"
+            viewBox="0 0 25 26"
+            fill="none"
+            >
+            <path
+                d="M22 4L3 23"
+                stroke="#4C0000"
+                stroke-width="3"
+                stroke-linecap="square"
+            />
+            <path
+                d="M23 23V3H3"
+                stroke="#4C0000"
+                stroke-width="3"
+                stroke-linecap="square"
+            />
+            </svg>
+        </a>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+{% include "swiper-container.njk" %}

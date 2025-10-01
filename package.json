@@ -1,0 +1,28 @@
+{
+  "name": "s1dm4n.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eleventy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s1dm4n/s1dm4n.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s1dm4n/s1dm4n.github.io/issues"
+  },
+  "homepage": "https://github.com/s1dm4n/s1dm4n.github.io#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  },
+  "dependencies": {
+    "@11ty/eleventy-img": "^6.0.4",
+    "@sindresorhus/slugify": "^3.0.0",
+    "luxon": "^3.7.2"
+  }
+}

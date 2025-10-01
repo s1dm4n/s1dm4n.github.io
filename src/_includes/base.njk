@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <title>{{ title }}</title>
+    {% include "links.njk" %}
+    </head>
+    <body class="{{pageStyle}}">
+    {% include "header.njk" %}
+
+
+    <main>
+        {{ content | safe }}
+    </main>
+
+    {% include "footer.njk" %}
+    {% include "scripts.njk" %}
+
+    <script src="/js/swiper.js"></script>
+    <script src="/js/main.js"></script>
+    </body>
+</html>
