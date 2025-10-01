@@ -1,2 +1,4 @@
 vid/*.webm filter=lfs diff=lfs merge=lfs -text
 vid/*.mp4 filter=lfs diff=lfs merge=lfs -text
+src/vid/*.mp4 filter=lfs diff=lfs merge=lfs -text
+src/vid/*.webm filter=lfs diff=lfs merge=lfs -text
