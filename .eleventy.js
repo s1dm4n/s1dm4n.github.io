@@ -43,33 +43,3 @@ module.exports = function(eleventyConfig) {
     }
   };
 };
-
-const Image = require("@11ty/eleventy-img");
-const path = require("path");
-
-async function imageShortcode(src, alt, sizes = "100vw") {
-  if (!alt) {
-    throw new Error(`Missing \`alt\` on image: ${src}`);
-  }
-
-  let metadata = await Image(src, {
-    widths: [null, 2 * 600], // оригинальный размер + @2x
-    formats: ["avif", "webp", "jpeg"],
-    urlPath: "/img/",
-    outputDir: "./_site/img/",
-  });
-
-  // Генерация <picture>
-  return Image.generateHTML(metadata, {
-    alt,
-    sizes,
-    loading: "lazy",
-    decoding: "async",
-  });
-}
-
-module.exports = function(eleventyConfig) {
-  eleventyConfig.addNunjucksAsyncShortcode("picture", imageShortcode);
-  eleventyConfig.addLiquidShortcode("picture", imageShortcode);
-  eleventyConfig.addJavaScriptFunction("picture", imageShortcode);
-};
