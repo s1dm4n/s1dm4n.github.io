@@ -3,7 +3,8 @@ const slugify = require("@sindresorhus/slugify").default;
 
 module.exports = function(eleventyConfig) {
   // Копирование статики
-  eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/css/style.css");
+  eleventyConfig.addPassthroughCopy("src/css/swiper-bundle.min.css");
   eleventyConfig.addPassthroughCopy("src/fonts");
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/js");
