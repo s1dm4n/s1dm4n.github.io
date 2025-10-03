@@ -1,0 +1,59 @@
+name: Build Release Archive
+
+on:
+  push:
+    tags:  # Триггер только на тегах, например, v1.0.0
+      - 'v*'
+
+permissions:
+  contents: write  # Для создания Release
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with Eleventy
+        run: npm run build  # Создаёт _site
+
+      - name: Create ZIP archive
+        run: |
+          # Создаём ZIP из _site (без корневой папки _site/, чтобы файлы были в корне архива)
+          cd _site
+          zip -r ../stroi.etos.ru.zip . -x "*.git*"  # Исключаем .git, если есть
+          cd ..
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}  # Например, v1.0.0
+          release_name: Release ${{ github.ref_name }}  # Название: Release v1.0.0
+          body: |  # Описание Release (можно кастомизировать)
+            Автоматический релиз сайта "ЭТОС".
+            Скачайте `stroi.etos.ru.zip` для установки.
+          draft: false  # Опубликовать сразу
+          prerelease: false
+
+      - name: Upload ZIP to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}  # URL для аплоада из предыдущего шага
+          asset_path: ./stroi.etos.ru.zip  # Путь к архиву
+          asset_name: stroi.etos.ru.zip  # Имя файла в Release
+          asset_content_type: application/zip  # MIME-тип для ZIP
