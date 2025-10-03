@@ -3,13 +3,15 @@ const slugify = require("@sindresorhus/slugify").default;
 
 module.exports = function(eleventyConfig) {
   // Копирование статики
-  eleventyConfig.addPassthroughCopy("src/css/style.css");
-  eleventyConfig.addPassthroughCopy("src/css/swiper-bundle.min.css");
-  eleventyConfig.addPassthroughCopy("src/fonts");
-  eleventyConfig.addPassthroughCopy("src/img");
-  eleventyConfig.addPassthroughCopy("src/js");
-  eleventyConfig.addPassthroughCopy("src/modules");
-  eleventyConfig.addPassthroughCopy("src/vid");
+  eleventyConfig.addPassthroughCopy({
+    "src/css/style.css": "css/style.css",
+    "src/css/swiper-bundle.min.css": "css/swiper-bundle.min.css",
+    "src/fonts": "fonts",
+    "src/img": "img",
+    "src/js": "js",
+    "src/modules": "modules",
+    "src/vid": "vid"
+  });
 
   // Коллекция новостей
   eleventyConfig.addCollection("news", function(collectionApi) {
@@ -21,8 +23,6 @@ module.exports = function(eleventyConfig) {
     if (!dateObj) return "Дата не указана";
     return DateTime.fromJSDate(new Date(dateObj)).toFormat(format);
   });
-
-  const { DateTime } = require("luxon");
 
   eleventyConfig.addFilter("dateLong", (dateObj) => {
     if (!dateObj) return "Дата не указана";

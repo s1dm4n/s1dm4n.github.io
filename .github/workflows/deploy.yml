@@ -2,8 +2,8 @@ name: Build and Deploy Eleventy
 
 on:
   push:
-    branches: [main]  # Триггер на пуше в main
-  workflow_dispatch:  # Для ручного запуска
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -24,14 +24,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Актуальная версия Node.js
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build with Eleventy
-        run: npm run build
+        run: npm run build  # Создаёт _site на сервере
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -39,7 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site  # Директория с собранным сайтом
+          path: ./_site  # Путь к папке, созданной на сервере
 
   deploy:
     environment:
