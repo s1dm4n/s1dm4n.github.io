@@ -1,28 +1,18 @@
-name: Build, Deploy, and Release
+name: Build Release Archive
 
 on:
   push:
-    tags: ['v*']
-  workflow_dispatch:
-    inputs:
-      tag_name:
-        description: 'Tag name (e.g., v1.0.1)'
-        required: true
-        default: 'v1.0.1'
+    tags: ['v*']  # Триггер на теги, например, v1.0.0
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: write  # Для создания Release
 
 jobs:
-  build-and-deploy:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Полная история для тегов
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,48 +24,28 @@ jobs:
         run: npm ci
 
       - name: Build with Eleventy
-        run: npm run build
+        run: npm run build  # Создаёт _site
 
       - name: Install zip
-        run: sudo apt-get install -y zip
+        run: sudo apt-get install -y zip  # Гарантирует наличие zip
 
       - name: Create ZIP archive
         run: |
           cd _site
-          zip -r ../stroi.etos.ru-v${{ github.event.inputs.tag_name || github.ref_name }}.zip . -x "*.git*"
+          zip -r ../stroi.etos.ru-v${{ github.ref_name }}.zip . -x "*.git*"  # Динамическое имя: stroi.etos.ru-v1.0.0.zip
           cd ..
-
-      - name: Create Tag (for workflow_dispatch)
-        if: github.event_name == 'workflow_dispatch'
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git tag ${{ github.event.inputs.tag_name }}
-          git push origin ${{ github.event.inputs.tag_name }}
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./_site
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v1  # Исправлено с v4 на v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.event.inputs.tag_name || github.ref_name }}
-          release_name: Release ${{ github.event.inputs.tag_name || github.ref_name }}
+          tag_name: ${{ github.ref_name }}  # Например, v1.0.0
+          release_name: Release ${{ github.ref_name }}
           body: |
             Релиз сайта "ЭТОС" (stroi.etos.ru).
-            Скачайте `stroi.etos.ru-v${{ github.event.inputs.tag_name || github.ref_name }}.zip` для статической версии сайта.
+            Скачайте `stroi.etos.ru-v${{ github.ref_name }}.zip` для статической версии сайта.
           draft: false
           prerelease: false
 
@@ -85,6 +55,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./stroi.etos.ru-v${{ github.event.inputs.tag_name || github.ref_name }}.zip
-          asset_name: stroi.etos.ru-v${{ github.event.inputs.tag_name || github.ref_name }}.zip
+          asset_path: ./stroi.etos.ru-v${{ github.ref_name }}.zip
+          asset_name: stroi.etos.ru-v${{ github.ref_name }}.zip
           asset_content_type: application/zip
