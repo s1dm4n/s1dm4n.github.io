@@ -8,3 +8,9 @@ src/vid/demo-id.webm filter=lfs diff=lfs merge=lfs -text
 src/vid/demo-sod.mp4 filter=lfs diff=lfs merge=lfs -text
 src/vid/demo-id.mp4 filter=lfs diff=lfs merge=lfs -text
 src/vid/* filter=lfs diff=lfs merge=lfs -text
+_site/vid/* filter=lfs diff=lfs merge=lfs -text
+_site/vid/demo-id.webm filter=lfs diff=lfs merge=lfs -text
+_site/vid/demo-sod.mp4 filter=lfs diff=lfs merge=lfs -text
+_site/vid/demo-id.mp4 filter=lfs diff=lfs merge=lfs -text
+_site/vid/*.mp4 filter=lfs diff=lfs merge=lfs -text
+_site/vid/*.webm filter=lfs diff=lfs merge=lfs -text
