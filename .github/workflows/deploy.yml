@@ -2,13 +2,15 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]  # Триггер на push в main
-  pull_request:
     branches: [main]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Даёт права на запись в репозиторий
+      pages: write     # Даёт права для GitHub Pages
+      id-token: write  # Для аутентификации
 
     steps:
       - name: Checkout
@@ -18,7 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'  # Кэширование зависимостей
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
@@ -28,10 +30,3 @@ jobs:
 
       - name: Build Eleventy
         run: npx @11ty/eleventy
-
-      - name: Deploy to GitHub Pages
-        if: github.event_name == 'push'  # Деплой только на push
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site  # Папка с сгенерированными файлами
