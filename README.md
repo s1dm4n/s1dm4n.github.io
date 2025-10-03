@@ -6,6 +6,7 @@
 
 **Создание релиза (как продолжение)**
 - Обновите контент (например, добавьте новость в src/news/new-post.md):
+
   `---
   title: Новый пост
   date: 2025-10-04
@@ -13,13 +14,11 @@
   Контент новости...`
   
 - Сберите и протестируйте: `npm run build`
-  
 - Запушьте изменения:
   `git add .
   git commit -m "Add new news post"
   git push origin main`
   Это обновит сайт на s1dm4n.github.io через deploy.yml.
-  
 - Создайте тег для релиза:
   `git tag v1.0.1
   git push origin v1.0.1`
