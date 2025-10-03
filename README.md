@@ -4,6 +4,13 @@
 - Установим зависимости `npm ci` - это установит luxon, @sindresorhus/slugify и другие зависимости из package.json (как в вашем .eleventy.js).
 - Проверим сборку - соберем сайт локально `npm run build` (убедитесь, что папка _site создалась (dir _site) и содержит index.html)
 
+**Аутентификация**
+- Сгенерируйте SSH-ключ: ssh-keygen -t ed25519 -C "your_email@example.com"
+- Нажмите Enter для дефолтного пути C:\Users\<YourUser>\.ssh\id_ed25519
+- Добавьте публичный ключ в GitHub: Скопируйте id_ed25519.pub (откройте в текстовом редакторе) --> В GitHub → Settings → SSH and GPG keys → New SSH key → вставьте ключ.
+- git remote set-url origin git@github.com:s1dm4n/s1dm4n.github.io.git
+- Проверьте: ssh -T git@github.com (должно вывести `Hi s1dm4n!`).
+
 **Создание релиза (как продолжение)**
 - Обновите контент (например, добавьте новость в src/news/new-post.md):
 
