@@ -37,9 +37,9 @@
 }
 
 @font-face {
-    font-family: "Manrope Medium";
+    font-family: "Manrope";
     src:
-        local("Manrope"),
+        local("Manrope Medium"),
         url("/fonts/manrope-medium.woff2") format("woff2"),
         url("/fonts/manrope-medium.woff") format("woff"),
         url("/fonts/manrope-medium.ttf") format("truetype");
@@ -73,9 +73,9 @@
 }
 
 @font-face {
-    font-family: "Manrope ExtraLight";
+    font-family: "Manrope";
     src:
-        local("Manrope"),
+        local("Manrope ExtraLight"),
         url("/fonts/manrope-extralight.woff2") format("woff2"),
         url("/fonts/manrope-extralight.woff") format("woff"),
         url("/fonts/manrope-extralight.ttf") format("truetype");
