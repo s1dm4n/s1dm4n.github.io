@@ -51,10 +51,45 @@ module.exports = function(eleventyConfig) {
     return `${day} ${month} ${year}`;
   });
 
-  eleventyConfig.addFilter("wrapParagraphs", (content) => {
-    if (!content) return "";
-    return content.replace(/<p>(.*?)<\/p>/g, '<p class="media__paragraph font-main">$1</p>');
+eleventyConfig.addFilter("wrapElements", (content) => {
+  if (!content) return "";
+  
+  const elementClasses = {
+    'p': ['font-main'],
+    'h1': ['font-title'],
+    'h2': ['font-title'],
+    'h3': ['font-title'],
+    'h4': ['font-title'],
+    'h5': ['font-title'],
+    'h6': ['font-title']
+  };
+  
+  let result = content;
+  
+  Object.entries(elementClasses).forEach(([tag, classes]) => {
+    const classString = classes.join(' ');
+    const regex = new RegExp(`<${tag}\\b([^>]*)>`, 'g');
+    
+    result = result.replace(regex, (match, attributes) => {
+      // Если уже есть классы, добавляем к ним
+      if (attributes.includes('class="')) {
+        return match.replace(
+          'class="',
+          `class="${classString} `
+        );
+      } else if (attributes.includes("class='")) {
+        return match.replace(
+          "class='",
+          `class='${classString} `
+        );
+      } else {
+        return `<${tag} class="${classString}"${attributes}>`;
+      }
+    });
   });
+  
+  return result;
+});
 
   eleventyConfig.addFilter("slug", (str) => slugify(str));
 

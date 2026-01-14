@@ -27,7 +27,7 @@
                     <li><a href="/#modules" class="nav-font">Модули</a></li>
                     <li><a href="/#advantages" class="nav-font">Преимущества</a></li>
                     <li><a href="/#swiper" class="nav-font">Новости</a></li>
-                    <li><a href="/#demo" class="nav-font">Демонстрация</a></li>
+                    <li><a href="/#demo" class="nav-font">Узнать больше</a></li>
                     <li><a href="/#distributor" class="nav-font">Контакты</a></li>
                 </ul>
                 <div class="header__nav-icons">
@@ -61,7 +61,7 @@
                 <li class="mobile-menu__list-item"><a href="/#advantages" class="nav-font"><span>Преимущества</span></a>
                 </li>
                 <li class="mobile-menu__list-item"><a href="/#swiper" class="nav-font"><span>Новости</span></a></li>
-                <li class="mobile-menu__list-item"><a href="/#demo" class="nav-font"><span>Демонстрация</span></a></li>
+                <li class="mobile-menu__list-item"><a href="/#demo" class="nav-font"><span>Узнать больше</span></a></li>
                 <li class="mobile-menu__list-item"><a href="/#distributor" class="nav-font"><span>Контакты</span></a>
                 </li>
             </ul>
@@ -306,7 +306,7 @@
                             Настройки программы позволяют ограничить доступ
                             к любым данным системы как для организаций в
                             зависимости от их функции, типа выполняемых
-                            работ и пр., так и для отдельных сотрудников.
+                            работ и пр., так и для отдельных сотрудников (выбор из 70 функций).
                         </p>
                     </div>
                 </div>
@@ -558,6 +558,15 @@
                                 loading="lazy">
                         </picture>
                         <picture class="accordion__slide" data-index="0">
+                            <source srcset="/img/accordion-sod-rd-04.avif"
+                                type="image/avif">
+                            <source srcset="/img/accordion-sod-rd-04.webp"
+                                type="image/webp">
+                            <img src="/img/accordion-sod-rd-04.jpg"
+                                alt="Работа с ведомостями объемов работ и спецификациями"
+                                loading="lazy">
+                        </picture>
+                        <picture class="accordion__slide" data-index="0">
                             <source srcset="/img/accordion-sod-rd-03.avif"
                                 type="image/avif">
                             <source srcset="/img/accordion-sod-rd-03.webp"
@@ -605,9 +614,25 @@
                             </h3>
                         </button>
                         <p class="accordion__collaps-content font-main" id="collaps-content">
-                            Система обеспечивает загрузку и
-                            структурированное хранение рабочей документации
-                            в соответствии с ГОСТ Р 21.101-20.
+                            В системе реализованы функции по выдаче замечаний к любому файлу РД, 
+                            их отправки проектировщику, а также контроля устранения выявленных несоответствий. 
+                        </p>
+                    </div>
+                    <div class="accordion__collaps-wrapper">
+                        <button class="accordion__collaps-header" id="collaps-wrapper">
+                            <svg class="accordion__icon" width="24" height="24" viewBox="0 0 24 24">
+                                <line x1="2" y1="12" x2="22" y2="12" stroke="white" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="12" y1="2" x2="12" y2="22" stroke="white" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                            <h3 class="font-header">
+                                Работа с ведомостями объемов работ и спецификациями
+                            </h3>
+                        </button>
+                        <p class="accordion__collaps-content font-main" id="collaps-content">
+                            Программа позволяет работать с ВОР и листами спецификации, как с таблицами, 
+                            и далее контролировать соответствие указанным документам поставленных материалов и выполненных работ
                         </p>
                     </div>
                     <div class="accordion__collaps-wrapper">
@@ -814,5 +839,4 @@
     <script src="/js/script.js"></script>
     <script src="/js/accordion.js"></script>
 </body>
-
 </html>

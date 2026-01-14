@@ -98,8 +98,8 @@ th {
   font-display: swap;
 }
 @font-face {
-  font-family: "Manrope Medium";
-  src: local("Manrope"), url("/fonts/manrope-medium.woff2") format("woff2"), url("/fonts/manrope-medium.woff") format("woff"), url("/fonts/manrope-medium.ttf") format("truetype");
+  font-family: "Manrope";
+  src: local("Manrope Medium"), url("/fonts/manrope-medium.woff2") format("woff2"), url("/fonts/manrope-medium.woff") format("woff"), url("/fonts/manrope-medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -119,8 +119,8 @@ th {
   font-display: swap;
 }
 @font-face {
-  font-family: "Manrope ExtraLight";
-  src: local("Manrope"), url("/fonts/manrope-extralight.woff2") format("woff2"), url("/fonts/manrope-extralight.woff") format("woff"), url("/fonts/manrope-extralight.ttf") format("truetype");
+  font-family: "Manrope";
+  src: local("Manrope ExtraLight"), url("/fonts/manrope-extralight.woff2") format("woff2"), url("/fonts/manrope-extralight.woff") format("woff"), url("/fonts/manrope-extralight.ttf") format("truetype");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
@@ -1719,6 +1719,9 @@ p {
   margin: 0;
   padding: clamp(0.375rem, 0.3535rem + 0.0915vw, 0.5rem) clamp(0.5rem, 0.4571rem + 0.1831vw, 0.75rem);
 }
+.news-style .news__content {
+  padding: 0 clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem);
+}
 .news-style .news__content a {
   font-family: "Manrope", sans-serif;
   font-size: clamp(1rem, 1.25vw, 1.25rem);
@@ -1739,13 +1742,21 @@ p {
 .news-style .news__content a:active {
   color: #961e1e;
 }
+.news-style .news__content .font-main, .news-style .news__content p {
+  margin-bottom: clamp(1.5rem, 1.2426rem + 1.0984vw, 3rem) !important;
+}
 .news-style .news__content ul {
   list-style-type: square;
-  padding: 0 clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem);
   margin-bottom: clamp(1.5rem, 1.2426rem + 1.0984vw, 3rem) !important;
 }
 .news-style .news__content ul li {
   margin: 0 0 20px 32px;
+}
+.news-style .news__content .font-title {
+  margin-bottom: clamp(0.75rem, 0.6213rem + 0.5492vw, 1.5rem);
+}
+.news-style .news__content h3 {
+  font-size: clamp(1.25rem, 1.1642rem + 0.3661vw, 1.75rem);
 }
 .news-style .hero__content {
   gap: clamp(1.5rem, 1.3069rem + 0.8238vw, 2.625rem);
@@ -1873,10 +1884,6 @@ p {
 }
 .news-style .media__link {
   display: inline !important;
-}
-.news-style .media__paragraph {
-  padding: 0 clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem);
-  margin-bottom: clamp(1.5rem, 1.2426rem + 1.0984vw, 3rem) !important;
 }
 .news-style .media strong {
   color: #e45b5b;
