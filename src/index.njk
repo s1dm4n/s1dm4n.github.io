@@ -2,7 +2,8 @@
 layout: base.njk
 title: Система управления строительством
 ---
-
+      {# Сохраняем отфильтрованный список в переменную #}
+      {% set otherNews = collections.news | reverse | rejectattr("url", "eq", page.url) %}  
       <section class="hero grid gutter gb fade-in" id="hero" data-fade-group>
         <div class="hero__content cols-8">
           <div class="hero__badges">
@@ -804,6 +805,8 @@ title: Система управления строительством
             </div>
           </div>
         </div>
+        {# Показываем секцию слайдера, только если есть другие новости #}
+        {% if otherNews.length > 0 %}
         <div class="swiper-wrapper">
           {% for post in collections.news | reverse %} {% include
           "news-card.njk" %} {% endfor %}

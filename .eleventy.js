@@ -18,6 +18,14 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/news/*.md");
   });
 
+  // Фильтр для исключения текущей страницы новости из коллекции с новостями (swiper-container)
+  eleventyConfig.addFilter("exceptCurrent", function(collection, currentUrl) {
+    if (!collection || !Array.isArray(collection)) {
+      return [];
+    }
+    return collection.filter(item => item.url !== currentUrl);
+  });
+
   // Фильтры
   eleventyConfig.addFilter("date", (dateObj, format = "dd.MM.yyyy") => {
     if (!dateObj) return "Дата не указана";
