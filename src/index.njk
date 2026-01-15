@@ -1,9 +1,8 @@
 ---
 layout: base.njk
 title: Система управления строительством
+description: "Универсальное решение для управления строительными проектами любой сложности: быстрое внедрение, конкурентная стоимость, гибкая настройка"
 ---
-      {# Сохраняем отфильтрованный список в переменную #}
-      {% set otherNews = collections.news | reverse | rejectattr("url", "eq", page.url) %}  
       <section class="hero grid gutter gb fade-in" id="hero" data-fade-group>
         <div class="hero__content cols-8">
           <div class="hero__badges">
@@ -356,7 +355,7 @@ title: Система управления строительством
           <div class="intro__text-block">
             <span class="intro__title font-title"> Что такое ЭТОС? </span>
             <p class="intro__description">
-              «ЭТОС» – цифровая экосистема для комплексного управления
+              «ЭТОС» — цифровая экосистема для комплексного управления
               строительными проектами. Она состоит из функциональных модулей -
               готовых программ для решения конкретных задач на разных этапах
               строительства.
@@ -759,6 +758,8 @@ title: Система управления строительством
           <div class="cols-4 line"></div>
         </div>
       </section>
+      {# Показываем секцию слайдера, только если есть другие новости #}
+      {% if collections.news | length > 0 %}
       <section class="swiper-container gutter gt fade-in" id="swiper">
         <div class="swiper-header">
           <h2 class="font-medium">Новости</h2>
@@ -805,11 +806,10 @@ title: Система управления строительством
             </div>
           </div>
         </div>
-        {# Показываем секцию слайдера, только если есть другие новости #}
-        {% if otherNews.length > 0 %}
         <div class="swiper-wrapper">
-          {% for post in collections.news | reverse %} {% include
-          "news-card.njk" %} {% endfor %}
+          {% for post in collections.news | reverse %}
+            {% include "news-card.njk" %}
+          {% endfor %}
         </div>
         <div aria-hidden="true" class="lines grid" style="z-index: -2">
           <div class="cols-4 line"></div>
@@ -819,6 +819,7 @@ title: Система управления строительством
           <div class="cols-4 line"></div>
         </div>
       </section>
+      {% endif %}
       <section class="demo grid gutter gt" id="demo" data-fade-group>
         <div class="demo__content cols-8 fade-in">
           <div class="demo__text-block">
@@ -969,4 +970,3 @@ title: Система управления строительством
           <div class="cols-4 line"></div>
         </div>
       </section>
-      {% include "map.njk" %}

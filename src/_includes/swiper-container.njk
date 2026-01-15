@@ -1,5 +1,8 @@
   {# Сохраняем отфильтрованный список в переменную #}
-  {% set otherNews = collections.news | reverse | rejectattr("url", "eq", page.url) %}  
+  {% set otherNews = collections.news | reverse %}
+  
+  {# Показываем секцию слайдера, только если есть другие новости #}
+  {% if otherNews.length > 0 %}
   <section class="swiper-container gutter gt fade-in" id="swiper">
     <div class="swiper-header">
       <h2 class="font-medium">Другие новости</h2>
@@ -46,8 +49,6 @@
         </div>
       </div>
     </div>
-    {# Показываем секцию слайдера, только если есть другие новости #}
-    {% if otherNews.length > 0 %}
     <div class="swiper-wrapper">
       {% set otherNews = collections.news | exceptCurrent(page.url) | reverse %}
           {% for post in otherNews %}
@@ -62,3 +63,4 @@
       <div class="cols-4 line"></div>
     </div>
   </section>
+  {% endif %}
