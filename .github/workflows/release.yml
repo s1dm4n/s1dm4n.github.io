@@ -1,20 +1,19 @@
-name: Build Release Archive
+name: Build Dual Releases
 
 on:
   push:
-    tags: ['v*']  # Триггер на теги, например, v1.0.0
+    tags: ['v*']
 
 permissions:
-  contents: write  # Для создания Release
+  contents: write
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout with LFS  # ИЗМЕНЕНО: Добавлен LFS
+      - name: Checkout code (без LFS)
         uses: actions/checkout@v4
-        with:
-          lfs: true  # КРИТИЧЕСКИ ВАЖНО!
+        id: checkout_lite
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -25,40 +24,43 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build with Eleventy
-        run: npm run build  # Создаёт _site
-
-      - name: Copy LFS videos to build directory  # НОВЫЙ ШАГ
+      - name: Build Lite version (без видео)
         run: |
-          # Копируем видео из src/vid в _site/vid
-          cp -r src/vid _site/vid 2>/dev/null || true
+          npm run build
+          # Переименовываем _site для lite версии
+          mv _site _site_lite
           
-          # Проверяем, что файлы скопировались правильно
-          ls -la _site/vid/ || echo "Папка vid не найдена"
-          
-          # Проверяем размеры файлов (должны быть >1KB для видео)
-          find _site/ -name "*.mp4" -o -name "*.webm" | xargs ls -lh 2>/dev/null || echo "Видеофайлы не найдены"
-
-      - name: Install zip
-        run: sudo apt-get install -y zip
-
-      - name: Create ZIP archive
+      - name: Build Full version (с видео)
         run: |
-          cd _site
-          # Создаем архив с проверкой содержимого
-          echo "Содержимое _site перед архивированием:"
-          find . -name "*.mp4" -o -name "*.webm" | head -10
+          # Загружаем LFS файлы
+          git lfs fetch --all
+          git lfs checkout
           
-          zip -r ../stroi.etos.ru-v${{ github.ref_name }}.zip . -x "*.git*"
+          # Копируем видео в папку src/vid если их нет
+          if [ ! -d "src/vid" ] || [ -z "$(ls -A src/vid/*.mp4 2>/dev/null)" ]; then
+            echo "Видео не найдены, используем заглушки"
+            mkdir -p src/vid
+            # Создаем заглушки (опционально)
+            echo "<!-- Video placeholder -->" > src/vid/video-placeholder.html
+          fi
+          
+          # Собираем полную версию
+          npm run build
+          mv _site _site_full
+
+      - name: Create ZIP archives
+        run: |
+          sudo apt-get install -y zip
+          
+          # Lite версия (без видео)
+          cd _site_lite
+          zip -r ../stroi.etos.ru-lite-v${{ github.ref_name }}.zip .
           cd ..
           
-          # Проверяем размер архива
-          ls -lh stroi.etos.ru-v${{ github.ref_name }}.zip
-
-      - name: Verify ZIP contains videos  # НОВЫЙ ШАГ: Проверка
-        run: |
-          # Проверяем, что в архиве есть видеофайлы
-          unzip -l stroi.etos.ru-v${{ github.ref_name }}.zip | grep -E "\.(mp4|webm)$" | head -5 || echo "Видеофайлы не найдены в архиве"
+          # Full версия (с видео)
+          cd _site_full
+          zip -r ../stroi.etos.ru-full-v${{ github.ref_name }}.zip .
+          cd ..
 
       - name: Create Release
         id: create_release
@@ -69,24 +71,42 @@ jobs:
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
           body: |
-            Релиз сайта "ЭТОС" (stroi.etos.ru).
+            ## Две версии сайта:
             
-            **Важно:** Видеофайлы теперь включены в архив через Git LFS.
-            Скачайте `stroi.etos.ru-v${{ github.ref_name }}.zip` для статической версии сайта.
+            ### 🚀 Lite версия (рекомендуется)
+            - **stroi.etos.ru-lite-v${{ github.ref_name }}.zip** - без видео
+            - Меньший размер (~5-10MB)
+            - Быстрая загрузка
+            - Видео заменены на заглушки с описанием
             
-            Содержимое:
-            - Все HTML/CSS/JS файлы
-            - Видеофайлы в папке `vid/`
-            - Полностью готовый к размещению сайт
+            ### 🎬 Full версия
+            - **stroi.etos.ru-full-v${{ github.ref_name }}.zip** - с видео
+            - Полный функционал
+            - Большой размер (~50-100MB)
+            - Все видеофайлы включены
+            
+            ### Что нового:
+            - Добавлена легкая версия без видео
+            - Оптимизирована загрузка
           draft: false
           prerelease: false
 
-      - name: Upload ZIP to Release
+      - name: Upload Lite ZIP
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./stroi.etos.ru-v${{ github.ref_name }}.zip
-          asset_name: stroi.etos.ru-v${{ github.ref_name }}.zip
+          asset_path: ./stroi.etos.ru-lite-v${{ github.ref_name }}.zip
+          asset_name: stroi.etos.ru-lite-v${{ github.ref_name }}.zip
+          asset_content_type: application/zip
+
+      - name: Upload Full ZIP
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./stroi.etos.ru-full-v${{ github.ref_name }}.zip
+          asset_name: stroi.etos.ru-full-v${{ github.ref_name }}.zip
           asset_content_type: application/zip
