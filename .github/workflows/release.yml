@@ -11,8 +11,10 @@ jobs:
   build-and-release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout with LFS  # ИЗМЕНЕНО: Добавлен LFS
         uses: actions/checkout@v4
+        with:
+          lfs: true  # КРИТИЧЕСКИ ВАЖНО!
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -26,26 +28,56 @@ jobs:
       - name: Build with Eleventy
         run: npm run build  # Создаёт _site
 
+      - name: Copy LFS videos to build directory  # НОВЫЙ ШАГ
+        run: |
+          # Копируем видео из src/vid в _site/vid
+          cp -r src/vid _site/vid 2>/dev/null || true
+          
+          # Проверяем, что файлы скопировались правильно
+          ls -la _site/vid/ || echo "Папка vid не найдена"
+          
+          # Проверяем размеры файлов (должны быть >1KB для видео)
+          find _site/ -name "*.mp4" -o -name "*.webm" | xargs ls -lh 2>/dev/null || echo "Видеофайлы не найдены"
+
       - name: Install zip
-        run: sudo apt-get install -y zip  # Гарантирует наличие zip
+        run: sudo apt-get install -y zip
 
       - name: Create ZIP archive
         run: |
           cd _site
-          zip -r ../stroi.etos.ru-v${{ github.ref_name }}.zip . -x "*.git*"  # Динамическое имя: stroi.etos.ru-v1.0.0.zip
+          # Создаем архив с проверкой содержимого
+          echo "Содержимое _site перед архивированием:"
+          find . -name "*.mp4" -o -name "*.webm" | head -10
+          
+          zip -r ../stroi.etos.ru-v${{ github.ref_name }}.zip . -x "*.git*"
           cd ..
+          
+          # Проверяем размер архива
+          ls -lh stroi.etos.ru-v${{ github.ref_name }}.zip
+
+      - name: Verify ZIP contains videos  # НОВЫЙ ШАГ: Проверка
+        run: |
+          # Проверяем, что в архиве есть видеофайлы
+          unzip -l stroi.etos.ru-v${{ github.ref_name }}.zip | grep -E "\.(mp4|webm)$" | head -5 || echo "Видеофайлы не найдены в архиве"
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1  # Исправлено с v4 на v1
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}  # Например, v1.0.0
+          tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
           body: |
             Релиз сайта "ЭТОС" (stroi.etos.ru).
+            
+            **Важно:** Видеофайлы теперь включены в архив через Git LFS.
             Скачайте `stroi.etos.ru-v${{ github.ref_name }}.zip` для статической версии сайта.
+            
+            Содержимое:
+            - Все HTML/CSS/JS файлы
+            - Видеофайлы в папке `vid/`
+            - Полностью готовый к размещению сайт
           draft: false
           prerelease: false
 
