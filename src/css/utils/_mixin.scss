@@ -1,4 +1,5 @@
 @use "variables" as var;
+@use "sass:list";
 
 // Миксины
 @mixin text-style($size, $line-height, $weight, $color: var.$color-white) {
@@ -15,7 +16,7 @@
   );
 
 @each $prop in $props {
-  $transition: append($transition, $prop $duration $easing, comma);
+  $transition: list.append($transition, $prop $duration $easing, comma);
 }
 
 -webkit-transition: $transition;

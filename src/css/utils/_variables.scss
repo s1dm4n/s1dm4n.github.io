@@ -6,18 +6,21 @@ $font-weights: (
   "bold": 700
 );
 
-$color-bg: #272a2f;
+$color-bg: #ddd;
+$color-secondary: #0C2742;
+$color-text: #1A3652;
+
 $color-gray: #c8c8c8;
 $color-white: #ffffff;
-$color-accent: #e45b5b;
-$color-accent-text: #4c0000;
+$color-accent: #2383E2;
+$color-accent-text: #153453;
 $color-accent-bg: #753536;
-$color-accent-link-hover: #bf3838;
-$color-accent-link-active: #961e1e;
+$color-accent-link-hover: #1867b7;
+$color-accent-link-active: #124f8d;
 $color-cert-badge: #969696;
 $color-gray-bg: #3D3F44;
 $color-dark-gray-bg: #4E5054;
-$color-line: rgba(255, 255, 255, 0.075);
+$color-line: #BEC2C6;
 
 $bp-xxl: 1440px;
 $bp-xl: 1280px;

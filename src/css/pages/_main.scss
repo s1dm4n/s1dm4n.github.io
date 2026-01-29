@@ -88,7 +88,7 @@ p {
 //Кнопки навигации
 .nav {
   &-font {
-    @include mixin.text-style(1.125rem, 100%, 500, var.$color-gray);
+    @include mixin.text-style(1.125rem, 100%, 500, var.$color-secondary);
     text-transform: uppercase;
     text-decoration: none;
     @include mixin.transition(opacity);
@@ -188,15 +188,15 @@ p {
 
   &-2 {
 
-    color: var.$color-white;
+    color: var.$color-secondary;
 
     &::before {
       background: transparent;
-      border: 1px solid var.$color-white;
+      border: 1px solid var.$color-secondary;
     }
 
     &::after {
-      background-color: var.$color-white;
+      background-color: var.$color-secondary;
     }
 
     &:hover {
@@ -213,10 +213,18 @@ p {
   z-index: 40;
   max-width: 100vw;
   border-bottom: 1px solid var.$color-line;
-  background: rgba(35, 38, 42, 0.8);
+  background: rgba(var.$color-bg, 0.8);
   backdrop-filter: blur(50px);
   @include mixin.transition(color);
   @include mixin.transition(opacity, 0.8s);
+
+  .logo-accent-letter {
+    fill: var.$color-accent;
+  }
+
+  .logo-secondary-letters {
+    fill: var.$color-secondary;
+  }
 
   &__container {
     display: flex;
@@ -260,28 +268,18 @@ p {
 
     &-list {
       display: flex;
-      margin-right: 128px;
+      margin-right: clamp(0rem, -16rem + 20vw, 8rem);
 
       li {
-        padding-right: 3.25rem;
+        padding-right: clamp(1.5rem, -2rem + 4.375vw, 3.25rem);
 
         &:last-child {
           padding-right: 0;
         }
       }
 
-      @media(max-width: 1444px) {
-        margin-right: 52px;
-
+      @media(max-width: 1316px) {
         li {
-          padding-right: 32px;
-        }
-      }
-
-      @media(max-width: 1132px) {
-        li {
-          padding-right: 24px;
-
           &:last-child {
             display: none;
           }
@@ -305,6 +303,7 @@ p {
           justify-content: center;
           width: 42px;
           height: 42px;
+          color:var.$color-accent-text;
 
           &:first-child {
             margin-right: 12px;
@@ -541,7 +540,7 @@ p {
 .modules,
 .advantages,
 .demo,
-.distributors {
+.contacts {
   &__content {
     padding: clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem);
     display: flex;
@@ -689,7 +688,7 @@ p {
 
 .modules,
 .advantages,
-.distributors {
+.contacts {
   display: flex;
   flex-direction: column;
   gap: calc(12rem - clamp(4rem, 10.6667rem + -4.1667vw, 8rem));
@@ -861,7 +860,7 @@ p {
   }
 }
 
-.distributors {
+.contacts {
 
   &__content {
     border: 1px solid var.$color-line;
