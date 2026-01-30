@@ -3,26 +3,6 @@ window.addEventListener('load', updateTexts);
 window.addEventListener('resize', updateTexts);
 
 document.addEventListener('DOMContentLoaded', function () {
-  const title = document.getElementById('dynamic-title');
-
-  if (!title) {
-    console.error('Элемент с id="dynamic-title" не найден!');
-    return;
-  }
-
-  const mediaQuery = window.matchMedia('(max-width: 352px)');
-
-  function updateTitle(e) {
-    title.textContent = e.matches
-      ? "Дилеры"
-      : "Дистрибьютеры";
-  }
-
-  mediaQuery.addListener(updateTitle);
-  updateTitle(mediaQuery); // Инициализация
-});
-
-document.addEventListener('DOMContentLoaded', function () {
   const sliderImage = document.querySelector('.intro__image');
   const slider = document.querySelector('.intro__slider');
   const slides = document.querySelectorAll('.intro__slide');

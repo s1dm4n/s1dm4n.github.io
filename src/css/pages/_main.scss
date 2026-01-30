@@ -71,7 +71,7 @@ p, ul, li {
 .font-large,
 .font-medium,
 .font-title,
-.font-header,
+.font-header 
 .font-main,
 ul,
 li,
@@ -80,7 +80,22 @@ h2,
 h3,
 p {
   text-align: left !important;
-  color: var.$color-white;
+}
+
+.font-large,
+.font-medium,
+.font-title,
+.font-header {
+    color: var.$color-secondary;
+}
+.font-main,
+ul,
+li,
+h1,
+h2,
+h3,
+p {
+  color: var.$color-text;
 }
 
 // Компоненты
@@ -286,6 +301,14 @@ p {
         }
       }
 
+      @media(max-width: 1164px) {
+        li {
+          &:nth-last-child(2) {
+            display: none;
+          }
+        }
+      }
+
       @media(max-width: var.$bp-lg) {
         display: none;
       }
@@ -303,10 +326,10 @@ p {
           justify-content: center;
           width: 42px;
           height: 42px;
-          color:var.$color-accent-text;
+          color:var.$color-secondary;
 
           &:first-child {
-            margin-right: 12px;
+            margin-right: clamp(0.25rem, -0.75rem + 1.25vw, 0.75rem);
           }
         }
       }
@@ -369,7 +392,7 @@ p {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-20px);
-  background: rgba(35, 38, 42, 0.8);
+  background: rgba(var.$color-bg, 0.8);
   backdrop-filter: blur(22.5px);
   overflow: hidden auto;
   @include mixin.transition((opacity, visibility, transform), 0.2s, ease-out);
@@ -392,7 +415,7 @@ p {
     padding: 0;
 
     &-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 1px solid var.$color-line;
       @include mixin.transition(background-color);
 
       &:last-child {
@@ -465,41 +488,6 @@ p {
     }
   }
 
-  .cert-badge {
-    border-radius: 8px;
-    padding-top: 24px;
-    flex: 1;
-
-    &__icon {
-      svg {
-        color: var.$color-cert-badge;
-        height: clamp(2.125rem, 1.8613rem + 1.0242vw, 3.5rem);
-      }
-    }
-
-    &__number {
-      text-transform: uppercase;
-      @include mixin.text-style(clamp(0.625rem, 0.5051rem + 0.4655vw, 1.25rem), 124%, 500, var.$color-cert-badge);
-    }
-  }
-
-  &__title {
-    display: block;
-
-    @media(max-width: var.$bp-lg) {
-      font-weight: 500;
-    }
-
-    &-line {
-      display: block;
-
-      &:nth-child(2) {
-        @include mixin.text-style(clamp(1.5rem, 1.8vw + 1rem, 3rem), 112%, 500, var.$color-gray);
-        margin-top: 16px;
-      }
-    }
-  }
-
   .visually-hidden {
     position: absolute;
     width: 1px;
@@ -536,10 +524,9 @@ p {
   }
 }
 
-.intro,
 .modules,
 .advantages,
-.demo,
+.standart-block,
 .contacts {
   &__content {
     padding: clamp(0.75rem, 0.4282rem + 1.373vw, 2.625rem);
@@ -547,7 +534,7 @@ p {
     flex-direction: column;
     gap: 56px;
     border: 1px solid var.$color-line;
-    background: var.$color-bg;
+    background: var.$color-content-block-bg;
 
     @media(max-width: var.$bp-lg) {
       border-top: none;
@@ -574,104 +561,6 @@ p {
   }
 }
 
-.intro {
-
-  &__content,
-  &__image {
-    @media(max-width: 1302px) {
-      grid-column: 1 / -1
-    }
-  }
-
-  &__content {
-    margin-left: -0.325px;
-
-    @media(max-width: 1302px) {
-      margin: 0;
-      border-top: none;
-    }
-  }
-
-  &__image {
-    width: 100%;
-    height: 100%;
-    border: 1px solid var.$color-line;
-    border-right: 1px solid transparent;
-    --overlay-color: rgba(38, 41, 49, 0.6);
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--overlay-color);
-      @include mixin.transition(background-color, 0.4s, cubic-bezier(0.16, 1, 0.3, 1));
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    @media(max-width: 1302px) {
-      border-right: 1px solid var.$color-line;
-    }
-  }
-
-  &__slider {
-    position: relative;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    min-height: clamp(12.5rem, 7.612rem + 24.4399vw, 27.5rem);
-    transition: filter 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
-    filter: grayscale(1);
-    opacity: 0.3;
-
-  }
-
-  &__slides {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-
-    picture {
-      display: block;
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  &__slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    top: 0;
-    left: 0;
-    object-position: center !important;
-    @include mixin.transition(opacity, 0.4s);
-    transition: opacity 0.4s;
-
-    &.active {
-      opacity: 1;
-    }
-  }
-
-  &__timer-line {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 4px;
-    background: var.$color-accent;
-    z-index: 10;
-    will-change: height, opacity;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-}
-
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -682,20 +571,14 @@ p {
     padding: 4px 12px;
     display: inline-block;
     line-height: normal;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid var.$color-line;
     background-color: var.$color-bg;
   }
 
-.modules,
-.advantages,
-.contacts {
+.main-title-gap {
   display: flex;
   flex-direction: column;
-  gap: calc(12rem - clamp(4rem, 10.6667rem + -4.1667vw, 8rem));
-
-  &__content {
-    gap: 48px;
-  }
+  gap: clamp(3rem, 1.5rem + 3.125vw, 4rem);
 }
 
 .modules {
@@ -703,10 +586,10 @@ p {
     background: linear-gradient(45deg, transparent calc(50% - var(--line-width) / 2), var(--line-color) calc(50% - var(--line-width) / 2), var(--line-color) calc(50% + var(--line-width) / 2), transparent calc(50% + var(--line-width) / 2));
     background-size: var(--line-spacing) var(--line-spacing);
     background-color: #272a2f;
-    --line-color: #ffffff20;
+    --line-color: ;
     --line-width: 1px;
     --line-spacing: 20px;
-    border: 1px solid #ffffff20;
+    border: 1px solid var.$color-line;
     border-left: none;
     display: flex;
     justify-content: center;
@@ -751,7 +634,7 @@ p {
     }
 
     &__image {
-      border-left: 1px solid #ffffff20;
+      border-left: 1px solid var.$color-line;
     }
 
     &__content {
@@ -806,7 +689,6 @@ p {
   }
 
   &__container:nth-child(2) &__content:last-of-type {
-    background-color: var.$color-gray-bg;
     min-height: 462px;
 
     @media(max-width: var.$bp-lg) {
@@ -817,19 +699,6 @@ p {
   &__container:first-child {
     .advantages__image img {
       object-position: 50% 4%;
-    }
-  }
-
-  &__icon {
-    text-align: end;
-    color: var.$color-gray;
-    opacity: 0.4;
-
-    @media(max-width: var.$bp-lg) {
-      svg {
-        width: 64px;
-        height: 64px;
-      }
     }
   }
 
@@ -848,7 +717,7 @@ p {
   }
 }
 
-.demo {
+.standart-block {
   &__buttons {
     display: flex;
     flex-wrap: wrap;
@@ -884,7 +753,7 @@ p {
 
       &:last-child {
         color: var.$color-white;
-        background-color: var.$color-dark-gray-bg;
+        background-color: var.$color-secondary;
         font-weight: 500;
       }
     }
@@ -896,7 +765,17 @@ p {
     flex-direction: column;
 
     a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
       text-decoration: none;
+      @include mixin.text-style(clamp(1rem, 1.25vw, 1.25rem), 124%, 500, var.$color-secondary);
+
+      @media(max-width: 432px) {
+        svg {
+          display: none;
+        }
+      }
     }
   }
 
@@ -910,9 +789,22 @@ p {
     gap: 32px;
   }
 
-  &__map {
-    filter: grayscale(1) !important;
+  &__map {    
+      position: relative;
 
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgb(12 39 66);
+      mix-blend-mode: color;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
     iframe {
       @media(max-width: var.$bp-lg) {
         height: 330px;
@@ -929,7 +821,7 @@ p {
     display: flex;
     gap: 8px;
     text-decoration: none;
-    color: var.$color-white;
+    color: var.$color-secondary;
     font-style: normal;
     align-items: center;
     @include mixin.transition(opacity);
@@ -964,6 +856,7 @@ p {
   &__copyright {
     opacity: 0.5;
     filter: brightness(0.5);
+    text-align: center;
 
     @media(max-width: var.$bp-lg) {
       & {
