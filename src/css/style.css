@@ -483,7 +483,7 @@ p {
 }
 .button::after {
   height: 0;
-  background-color: #ffffff;
+  background-color: #0C2742;
   transition: height 0.3s ease;
 }
 .button:hover {
@@ -835,8 +835,8 @@ p {
   -o-object-fit: cover;
      object-fit: cover;
   height: 100%;
-  -o-object-position: 78% 28%;
-     object-position: 78% 28%;
+  -o-object-position: 50% 28%;
+     object-position: 50% 28%;
 }
 @media (max-width: 1024px) {
   .modules__image,
@@ -1239,4 +1239,36 @@ p {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.functions .standart-block__content {
+  padding: clamp(0.75rem, 0.4282rem + 1.373vw, 3rem);
+}
+
+.vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.125rem, 0.5417rem + 1.2153vw, 2rem);
+}
+.vertical-list-row {
+  color: #1A3652 !important;
+  display: flex;
+  gap: clamp(0.5rem, 0.0455rem + 2.2727vw, 1.5rem);
+}
+.vertical-list-row:first-child {
+  margin-top: clamp(1.75rem, 1.4643rem + 0.4464vw, 2rem);
+}
+.vertical-list-row span {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1rem, 0.85rem + 0.75vw, 1.75rem);
+  line-height: 160%;
+  font-weight: 500;
+  color: #1A3652;
+  margin: 0;
+}
+.vertical-list-row svg {
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
+  width: clamp(1.5rem, 0.5rem + 2.0833vw, 3rem) !important;
+  height: clamp(1.5rem, 0.5rem + 2.0833vw, 3rem) !important;
 }/*# sourceMappingURL=style.css.map */

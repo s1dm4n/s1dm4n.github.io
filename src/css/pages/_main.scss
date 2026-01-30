@@ -166,7 +166,7 @@ p {
 
   &::after {
     height: 0;
-    background-color: var.$color-accent-text;
+    background-color: var.$color-secondary;
     @include mixin.transition(height);
   }
 
@@ -552,7 +552,7 @@ p {
       width: 100%;
       object-fit: cover;
       height: 100%;
-      object-position: 78% 28%;
+      object-position: 50% 28%;
     }
 
     @media(max-width: var.$bp-lg) {
@@ -1030,4 +1030,42 @@ p {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.functions {
+  .standart-block {
+    &__content {
+      padding: clamp(0.75rem, 0.4282rem + 1.373vw, 3rem);
+    }
+  }
+}
+
+.vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.125rem, 0.5417rem + 1.2153vw, 2rem);
+  &-row {
+    color: var.$color-text !important;
+    display: flex;
+    gap: clamp(0.5rem, 0.0455rem + 2.2727vw, 1.5rem);
+
+    &:first-child {
+      margin-top: clamp(1.75rem, 1.4643rem + 0.4464vw, 2rem);
+    }
+
+    span {
+      @include mixin.text-style(clamp(1rem, 0.85rem + 0.75vw, 1.75rem), 160%, 500, var.$color-text);
+    }
+
+    svg {
+      aspect-ratio: 1/1;
+      flex-shrink: 0;
+      width: clamp(1.5rem, 0.5rem + 2.0833vw, 3rem) !important;
+      height: clamp(1.5rem, 0.5rem + 2.0833vw, 3rem) !important;
+
+      // @media (max-width: 432px) {
+      //   display: block;
+      // }
+    }
+  }
 }
